@@ -1,0 +1,131 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{graphicx}
+\usepackage{scrextend}
+\usepackage{wrapfig}
+
+\author{Konrad Cybulski}
+\title{TITLE}
+
+\begin{document}
+	
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		
+		\LARGE
+		\textbf{TITLE}
+		
+		\vspace{2cm}
+		\Large
+		
+		\textbf{Konrad Cybulski}
+		
+		\vfill
+		
+		Honours Research Notes
+		
+		\vspace{0.8cm}
+		
+		\includegraphics[width=0.4\textwidth]{images/monash_emblem.jpg}
+		
+		\large
+		Faculty of Information Technology\\
+		Monash University\\
+		Australia\\
+		\today
+		
+	\end{center}
+\end{titlepage}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+\section{Research Notes}
+There exist methods for manipulating graph topologies such that the resulting evolutionary system increases the likelihood with which high fitness individuals fixate \cite{graph amplifiersr, birth-death amplifiers}.
+This process involves numerous system factors: edge weighting, birth-death initialisation, 
+\\\\
+The main paper on which I am aiming to base my research on is that by Pavlogiannis, Tkadlec, Chatterjee \& Nowak \cite{graph amplifiers}, which among other things, shows evidence of increasing fixation probabilities of advantageous mutants by structuring graph topologies according to a simple heuristic.
+This involves logically separating a directed graph topology into two parts: a hub, and branches.
+By doing so, and increasing weights directed towards the hub of a graph, the topology is able to maximise migration activitiy toward a centralised hub, and thus increase the likelihood of fixation for advantageous mutants.
+\\\\
+
+\section{Papers/Books}
+\subsection{\cite{graph amplifiers} Creating arbitrarily strong amplifiers of natural selection on graphs}
+\\\\
+This paper explores one of the fundamental ideas upon which a large portion of the proposed research is based.
+Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \cite{graph amplifiers, birth-death amplifiers, cooperation on graphs}.
+Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \cite{evolution on graphs, birth-death amplifiers}; these are known as amplifiers of selection.
+While other topologies are known to decrease this likelihood, suppressors of selection.
+Properties such as distribution of edge weights, edge directionaility \cite{birth-death amplifiers}, and self-loops are also shown to greatly impact fixation probabilities.
+\\\\
+As shown by Pavlogiannis, Tkadlec, Chatterjee, \& Nowak \cite{graph amplifiers}, not only can fixation probabilities be amplified by tuning the properties of a graph topology, but can be constructed arbitrarily.
+This construction process involves adjusting edge weights to create two sections: a central hub, a series of branches.
+The hub is constructed such that the nodes within it are tightly coupled, thus increasing the likelihood an advantageous strategy will fixate.
+Then propagating through the branches, fixating on the entire graph.
+
+
+\pagebreak
+\section{Research Ideas}
+With a method for constructing graphs that are arbitrary amplfiers of selection, my primary aim is to leverage this ability to create an evolutionary algorithm that supports generative agents with high fitness.
+\\\\
+Use methods discussed in \textit{Evolutionary mixed games in structured populations: Cooperation and the benefits of heterogeneity}.
+By randomly selecting the game in which agents partake (snow drift, prisoner's dilemma), there is a proportional increase in population heterogeneity which increases cooperation.
+In terms of a generative evolutionary algorithm, by using multiple fitness functions, randomly chosen, tested against all, or simply a subset of fitness functions, to determine overall fitness of an individual.
+
+\pagebreak
+\section{Log}
+
+\subsection{22 Jan 2019}
+
+I met with Jon McCormack yesterday to discuss potential project ideas and where to begin with my research.
+Before the meeting I was able to
+
+\section{Example Citations}
+\cite{novak indirect reciprocity}
+\cite{leading eight}
+\cite{leading eight,novak indirect reciprocity,social norms small scale society}
+
+\pagebreak
+
+\begin{thebibliography}{9}
+
+\bibitem{graph amplifiers}
+Pavlogiannis, A., Tkadlec, J., Chatterjee, K., \& Nowak, M. A. (2018). Construction of arbitrarily strong amplifiers of natural selection using evolutionary graph theory. \textit{Communications Biology, 1}(1), 71.
+
+\bibitem{evolution on graphs}
+Lieberman, E., Hauert, C., \& Nowak, M. A. (2005). Evolutionary dynamics on graphs. \textit{Nature, 433}(7023), 312.
+	
+\bibitem{novak indirect reciprocity}
+Martin A. Novak, Karl Sigmund, (2005) 
+\textit{Evolution of indirect reciprocity}. 
+Nature.
+
+\bibitem{}
+Amaral, M. A., Wardil, L., Perc, M., \& da Silva, J. K. (2016). Evolutionary mixed games in structured populations: Cooperation and the benefits of heterogeneity. 
+\textit{Physical Review E, 93}(4), 042304.
+
+\bibitem{cooperation on graphs}
+Ohtsuki, H., Hauert, C., Lieberman, E., \& Nowak, M. A. (2006). A simple rule for the evolution of cooperation on graphs and social networks. \textit{Nature}, 441(7092), 502.
+
+\bibitem{social norms small scale society} 
+Fernando P. Santos, Francisco C. Santos, Jorge M. Pacheco, (2016) 
+Social Norms of Cooperation in Small-Scale Societies.
+\textit{PLOS Computational Biology}.
+
+\bibitem{birth-death amplifiers}
+Hindersin, L., \& Traulsen, A. (2015). Most undirected random graphs are amplifiers of selection for birth-death dynamics, but suppressors of selection for death-birth dynamics.
+\textit{PLoS computational biology, 11}(11), e1004437.
+
+\bibitem{leading eight}
+Hisashi Ohtsuki, Yoh Iwasa, (2005) 
+The leading eight: Social norms that can maintain cooperation by indirect reciprocity.
+\textit{Journal of Theoretical Biology}.
+
+
+\end{thebibliography}
+\end{document}
