@@ -46,7 +46,7 @@
 \tableofcontents
 \pagebreak
 \section{Research Notes}
-There exist methods for manipulating graph topologies such that the resulting evolutionary system increases the likelihood with which high fitness individuals fixate \cite{graph amplifiersr, birth-death amplifiers}.
+There exist methods for manipulating graph topologies such that the resulting evolutionary system increases the likelihood with which high fitness individuals fixate \cite{graph amplifiers, birth-death amplifiers}.
 This process involves numerous system factors: edge weighting, birth-death initialisation, 
 \\\\
 The main paper on which I am aiming to base my research on is that by Pavlogiannis, Tkadlec, Chatterjee \& Nowak \cite{graph amplifiers}, which among other things, shows evidence of increasing fixation probabilities of advantageous mutants by structuring graph topologies according to a simple heuristic.
@@ -55,8 +55,7 @@ By doing so, and increasing weights directed towards the hub of a graph, the top
 \\\\
 
 \section{Papers/Books}
-\subsection{\cite{graph amplifiers} Creating arbitrarily strong amplifiers of natural selection on graphs}
-\\\\
+\subsection{Creating arbitrarily strong amplifiers of natural selection on graphs \cite{graph amplifiers}}
 This paper explores one of the fundamental ideas upon which a large portion of the proposed research is based.
 Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \cite{graph amplifiers, birth-death amplifiers, cooperation on graphs}.
 Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \cite{evolution on graphs, birth-death amplifiers}; these are known as amplifiers of selection.
@@ -64,9 +63,13 @@ While other topologies are known to decrease this likelihood, suppressors of sel
 Properties such as distribution of edge weights, edge directionaility \cite{birth-death amplifiers}, and self-loops are also shown to greatly impact fixation probabilities.
 \\\\
 As shown by Pavlogiannis, Tkadlec, Chatterjee, \& Nowak \cite{graph amplifiers}, not only can fixation probabilities be amplified by tuning the properties of a graph topology, but can be constructed arbitrarily.
-This construction process involves adjusting edge weights to create two sections: a central hub, a series of branches.
+This construction process involves adjusting edge weights to create two sections: a central hub, and a series of branches.
 The hub is constructed such that the nodes within it are tightly coupled, thus increasing the likelihood an advantageous strategy will fixate.
 Then propagating through the branches, fixating on the entire graph.
+This amplification is however dependant on the graph having both directed edges, and self loops.
+Undirected edges have been shown to inherently suppress mutant fixation \cite{birth-death amplifiers}.
+While self loops do not themselves amplify selection in graph topologies, they are a property required to construct an arbitrary amplifier of selection.
+
 
 
 \pagebreak
@@ -76,19 +79,26 @@ With a method for constructing graphs that are arbitrary amplfiers of selection,
 Use methods discussed in \textit{Evolutionary mixed games in structured populations: Cooperation and the benefits of heterogeneity}.
 By randomly selecting the game in which agents partake (snow drift, prisoner's dilemma), there is a proportional increase in population heterogeneity which increases cooperation.
 In terms of a generative evolutionary algorithm, by using multiple fitness functions, randomly chosen, tested against all, or a subset, to determine an individual's overall fitness.
+\\\\
+\subsection{Generative Evolutionary Algorithms}
+\begin{itemize}
+	\item Using traditional evolutionary algorithms to generate image generation neural network weight (been done before).
+	\item Vary fitness functions based on graph location: certain node clusters will have a given fitness function that differs from another.
+	An issue arising from this is that we have smaller populations evolving within themselves.
+	If an outside enters a cluster, its fitness in the new population will be, with high probability, extremely low.
+	In the proceeding selection iteration, it will most likely be killed by an insider.
+	
+\end{itemize}
+
 
 \pagebreak
 \section{Log}
 
-\subsection{22 Jan 2019}
+\subsection{21-28 Jan 2019}
 
 I met with Jon McCormack yesterday to discuss potential project ideas and where to begin with my research.
 Before the meeting I was able to
 
-\section{Example Citations}
-\cite{novak indirect reciprocity}
-\cite{leading eight}
-\cite{leading eight,novak indirect reciprocity,social norms small scale society}
 
 \pagebreak
 
