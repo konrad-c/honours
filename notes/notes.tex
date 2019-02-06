@@ -126,6 +126,49 @@
 	
 \end{itemize}
 
+\section{Literature Summary}
+
+\subsubsection{Interactive evolution of equations for procedural models \cite{sims}}
+
+Sims introduces a method for generating images by using Lisp expressions as individual genotypes for use in an evolutionary process.
+This method is introduced as extremely extensible in comparison to commonly used genotype expressions: fixed length strings, parameter collections, etc.
+The method for mutation involves the parsing of Lisp expressions as a tree structure which then adjusted according to the following rules:
+\begin{itemize}
+	\item "Any node can mutate into a new random expression."
+	\item "If the node is a scalar value, it can be adjusted by the addition of some random amount."
+	\item "If the node is a vector it can be adjusted by adding random amounts to each element."
+	\item "If the node is a function, it can mutate into a different function."
+	\item "An expression can become the argument to a new random function."
+	\item "An argument to a function can jump out and become the new value for that node."
+	\item "A node can become a copy of another node from the parent expression."
+\end{itemize}
+Sims discusses the method by which two individuals in a population mate.
+This involves the random swap a single node from each parent.
+If this process results in an invalid genotype (Lisp expression) then the crossover is performed "until a legal expression results".
+The method of "Genetic cross dissolves" is introduced as a smooth transitional operator of reproduction.
+\\\\
+The genotype representation and its corresponding mating/mutation procedure is shown to produce some truly remarkable images through a user-supervised evolutionary process.
+This involves the user selecting "one or more of [the generated images] for mutation and/or mating to produce the next generation, and the process repeats".
+
+\subsubsection{Evolutionary image synthesis using a model of aesthetics \cite{aesthetic measures}}
+
+The overarching goal of this research is to investigate the use of multiple aesthetic fitness functions for unsupervised image generation using genetic programming.
+Those used involved the distribution of colours in the generated images.
+An existing image is used to determine the frequency distribution of colours as a target which is used as the first of two objective fitness functions.
+The second uses knowledge that the colour gradients in fine art tends towards a normal distribution.
+\\\\
+The mathematical model of aesthetics, as discussed here, bases its colour gradient fitness function on the hypothesis that said normal distribution of colour gradients "has been an implicit aesthetic ideal of many painters throughout history".
+\\\\
+The method used for generating images as part of the algorithm is a slight variation of that developed by Sims \cite{sims}.
+\\\\
+This research concludes that the use of "Ralph's bell curve response model" has an aesthetically beneficial impact on the generated images.
+When omitting the fitness function measuring deviation from the normal distribution of colour gradients, the images produced are resultantly "chaotic or bland, artificial, mathematical, and rarely appealing".
+When using solely the colour gradient fitness function, without a target frequency distribution, the highest fitness individuals tended toward a "narrow bandwidth of RGB space".
+Resulting in images that were "not very interesting to the human eye".
+Target images with a colour frequency distribution that inherently have a high deviation from the normal colour gradient distribution that resulted in "creative tension" were noted as producing "the most surprising results".
+
+
+
 \section{Research Notes}
 There exist methods for manipulating graph topologies such that the resulting evolutionary system increases the likelihood with which high fitness individuals fixate \cite{graph amplifiers, birth-death amplifiers}.
 This process involves numerous system factors: edge weighting, birth-death initialisation, 
@@ -182,7 +225,6 @@ Before the meeting I was able to
 
 
 \pagebreak
-
 \begin{thebibliography}{9}
 
 \bibitem{graph amplifiers}
@@ -190,32 +232,23 @@ Pavlogiannis, A., Tkadlec, J., Chatterjee, K., \& Nowak, M. A. (2018). Construct
 
 \bibitem{evolution on graphs}
 Lieberman, E., Hauert, C., \& Nowak, M. A. (2005). Evolutionary dynamics on graphs. \textit{Nature, 433}(7023), 312.
-	
-\bibitem{novak indirect reciprocity}
-Martin A. Novak, Karl Sigmund, (2005) 
-\textit{Evolution of indirect reciprocity}. 
-Nature.
 
-\bibitem{}
+\bibitem{mixed games}
 Amaral, M. A., Wardil, L., Perc, M., \& da Silva, J. K. (2016). Evolutionary mixed games in structured populations: Cooperation and the benefits of heterogeneity. 
 \textit{Physical Review E, 93}(4), 042304.
 
 \bibitem{cooperation on graphs}
 Ohtsuki, H., Hauert, C., Lieberman, E., \& Nowak, M. A. (2006). A simple rule for the evolution of cooperation on graphs and social networks. \textit{Nature}, 441(7092), 502.
 
-\bibitem{social norms small scale society} 
-Fernando P. Santos, Francisco C. Santos, Jorge M. Pacheco, (2016) 
-Social Norms of Cooperation in Small-Scale Societies.
-\textit{PLOS Computational Biology}.
-
 \bibitem{birth-death amplifiers}
 Hindersin, L., \& Traulsen, A. (2015). Most undirected random graphs are amplifiers of selection for birth-death dynamics, but suppressors of selection for death-birth dynamics.
 \textit{PLoS computational biology, 11}(11), e1004437.
 
-\bibitem{leading eight}
-Hisashi Ohtsuki, Yoh Iwasa, (2005) 
-The leading eight: Social norms that can maintain cooperation by indirect reciprocity.
-\textit{Journal of Theoretical Biology}.
+\bibitem{aesthetic measures}
+Ross, B. J., Ralph, W., \& Zong, H. (2006, July). Evolutionary image synthesis using a model of aesthetics. In \textit{Evolutionary Computation}, 2006. CEC 2006. IEEE Congress on (pp. 1087-1094). IEEE.
+
+\bibitem{sims}
+Sims, K. (1993). Interactive evolution of equations for procedural models. \textit{The Visual Computer, 9}(8), 466-476.
 
 
 \end{thebibliography}
