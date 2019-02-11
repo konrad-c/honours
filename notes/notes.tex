@@ -48,13 +48,6 @@
 \pagebreak
 \section{Reading List}
 \begin{itemize}
-	\item Ross, B. J., Ralph, W., \& Zong, H. (2006, July). Evolutionary image synthesis using a model of aesthetics. In Evolutionary Computation, 2006. CEC 2006. IEEE Congress on (pp. 1087-1094). IEEE.
-	\\
-	\url{http://axon.cs.byu.edu/Dan/673/papers/ross.pdf}
-	
-	\item Machado, P., \& Cardoso, A. (2000, April). NEvAr–the assessment of an evolutionary art tool. In Proceedings of the AISB00 Symposium on Creative \& Cultural Aspects and Applications of AI \& Cognitive Science, Birmingham, UK (Vol. 456).
-	\\
-	\url{https://cdv.dei.uc.pt/wp-content/uploads/2014/03/mc00.pdf}
 	
 	\item Cagnoni, S., Lutton, E., \& Olague, G. (Eds.). (2007). Genetic and evolutionary computation for image processing and analysis. New York: Hindawi Publishing Corporation.
 	\\
@@ -168,18 +161,7 @@ Resulting in images that were "not very interesting to the human eye".
 Target images with a colour frequency distribution that inherently have a high deviation from the normal colour gradient distribution that resulted in "creative tension" were noted as producing "the most surprising results".
 
 
-
-\section{Research Notes}
-There exist methods for manipulating graph topologies such that the resulting evolutionary system increases the likelihood with which high fitness individuals fixate \cite{graph amplifiers, birth-death amplifiers}.
-This process involves numerous system factors: edge weighting, birth-death initialisation, 
-\\\\
-The main paper on which I am aiming to base my research on is that by Pavlogiannis, Tkadlec, Chatterjee \& Nowak \cite{graph amplifiers}, which among other things, shows evidence of increasing fixation probabilities of advantageous mutants by structuring graph topologies according to a simple heuristic.
-This involves logically separating a directed graph topology into two parts: a hub, and branches.
-By doing so, and increasing weights directed towards the hub of a graph, the topology is able to maximise migration activitiy toward a centralised hub, and thus increase the likelihood of fixation for advantageous mutants.
-\\\\
-
-\section{Papers/Books}
-\subsection{Creating arbitrarily strong amplifiers of natural selection on graphs \cite{graph amplifiers}}
+\subsubsection{Creating arbitrarily strong amplifiers of natural selection on graphs \cite{graph amplifiers}}
 This paper explores one of the fundamental ideas upon which a large portion of the proposed research is based.
 Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \cite{graph amplifiers, birth-death amplifiers, cooperation on graphs}.
 Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \cite{evolution on graphs, birth-death amplifiers}; these are known as amplifiers of selection.
@@ -194,6 +176,26 @@ This amplification is however dependant on the graph having both directed edges,
 Undirected edges have been shown to inherently suppress mutant fixation \cite{birth-death amplifiers}.
 While self loops do not themselves amplify selection in graph topologies, they are a property required to construct an arbitrary amplifier of selection.
 
+
+\subsubsection{NEvAr–the assessment of an evolutionary art tool \cite{nevar}}
+This research was pivotal in the investigation of interactive evolutionary (IE) methods of generating images.
+The NEvAr program relies on the user being a key determinant of an individual's fitness.
+The program's basis is such that there exist multiple parallel populations.
+Each population is evolved through the user's direct interaction which involves the selection of individuals for crossover.
+Migration from one population to another can be instigated by the user, allowing for new populations to be created from a selection of high fitness individuals rather than at random.
+\\\\
+NEvAr puts a large focus on the end-user experience involved in the process of generating art, mentioning explicitly that the generation of 'interesting' images "is irrelevant from the artistic point of view".
+However it is noted that with a lack of experience, as with any tool, the results were "disappointing".
+As a result, the focus goes to creating a process through which the user may increase the number of "promising" images.
+This process follows a four stage structure: "Discovery, Exploration, Selection and Refinement".
+\begin{quotation}
+In NEvAr, the artist is no longer responsible for the creation of the idea, she/he is responsible for the recognition of promising concepts.
+\end{quotation}
+
+Also discussed is the idea of Seeding a population with an image selected by the user.
+This involves the selection images with a high similarity to that chosen by the user in order to initialise a population with high relative fitness given a target outcome.
+The similarity metric used involves compression complexity, forgoing the standard RMSE similarity metric due to a number of shortcomings.
+Both JPEG and Fractal image compression complexity are used in order to mitigate the inadequacy of JPEG for images with stark colour transitions; and benefit from Fractal compression with highly self-similar images.
 
 
 \pagebreak
@@ -212,16 +214,11 @@ In terms of a generative evolutionary algorithm, by using multiple fitness funct
 	If an outside enters a cluster, its fitness in the new population will be, with high probability, extremely low.
 	In the proceeding selection iteration, it will most likely be killed by an insider.
 	
+	\item Using a genotype definition that follows the methods introduced by \cite{sims}, it may be possible to create high aesthetic fitness individuals by using RMSE/compression complexity difference from a target image. 
+	This may result in individuals with a Lisp expression genotype that generate images created in non-deterministic ways.
+	With a collection of individuals evolved in this manner, similarly to \cite{nevar}, a high fitness population can be initialised for further interactive evolution.
+	
 \end{itemize}
-
-
-\pagebreak
-\section{Log}
-
-\subsection{21-28 Jan 2019}
-
-I met with Jon McCormack yesterday to discuss potential project ideas and where to begin with my research.
-Before the meeting I was able to
 
 
 \pagebreak
@@ -249,6 +246,9 @@ Ross, B. J., Ralph, W., \& Zong, H. (2006, July). Evolutionary image synthesis u
 
 \bibitem{sims}
 Sims, K. (1993). Interactive evolution of equations for procedural models. \textit{The Visual Computer, 9}(8), 466-476.
+
+\bibitem{nevar}
+Machado, P., \& Cardoso, A. (2000, April). NEvAr–the assessment of an evolutionary art tool. In \textit{Proceedings of the AISB00 Symposium on Creative \& Cultural Aspects and Applications of AI \& Cognitive Science}, Birmingham, UK (Vol. 456).
 
 
 \end{thebibliography}
