@@ -19,7 +19,7 @@
 		\vspace*{1cm}
 		
 		\LARGE
-		\textbf{TITLE}
+		\textbf{Honours Research Notes}
 		
 		\vspace{2cm}
 		\Large
@@ -27,8 +27,6 @@
 		\textbf{Konrad Cybulski}
 		
 		\vfill
-		
-		Honours Research Notes
 		
 		\vspace{0.8cm}
 		
@@ -145,7 +143,7 @@ The method of "Genetic cross dissolves" is introduced as a smooth transitional o
 The genotype representation and its corresponding mating/mutation procedure is shown to produce some truly remarkable images through a user-supervised evolutionary process.
 This involves the user selecting "one or more of [the generated images] for mutation and/or mating to produce the next generation, and the process repeats".
 
-\subsubsection{Evolutionary image synthesis using a model of aesthetics \cite{aesthetic measures}}
+\subsubsection{Evolutionary image synthesis using a model of aesthetics \cite{aesthetic-measures}}
 
 The overarching goal of this research is to investigate the use of multiple aesthetic fitness functions for unsupervised image generation using genetic programming.
 Those used involved the distribution of colours in the generated images.
@@ -163,20 +161,20 @@ Resulting in images that were "not very interesting to the human eye".
 Target images with a colour frequency distribution that inherently have a high deviation from the normal colour gradient distribution that resulted in "creative tension" were noted as producing "the most surprising results".
 
 
-\subsubsection{Creating arbitrarily strong amplifiers of natural selection on graphs \cite{graph amplifiers}}
+\subsubsection{Creating arbitrarily strong amplifiers of natural selection on graphs \cite{graph-amplifiers}}
 
 This paper explores one of the fundamental ideas upon which a large portion of the proposed research is based.
-Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \cite{graph amplifiers, birth-death amplifiers, cooperation on graphs}.
-Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \cite{evolution on graphs, birth-death amplifiers}; these are known as amplifiers of selection.
+Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \cite{graph-amplifiers, birth-death-amplifiers, cooperation-on-graphs}.
+Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \cite{lieberman2005evolutionary, birth-death-amplifiers}; these are known as amplifiers of selection.
 While other topologies are known to decrease this likelihood, suppressors of selection.
-Properties such as distribution of edge weights, edge directionaility \cite{birth-death amplifiers}, and self-loops are also shown to greatly impact fixation probabilities.
+Properties such as distribution of edge weights, edge directionaility \cite{birth-death-amplifiers}, and self-loops are also shown to greatly impact fixation probabilities.
 \\\\
-As shown by Pavlogiannis, Tkadlec, Chatterjee, \& Nowak \cite{graph amplifiers}, not only can fixation probabilities be amplified by tuning the properties of a graph topology, but can be constructed arbitrarily.
+As shown by Pavlogiannis, Tkadlec, Chatterjee, \& Nowak \cite{graph-amplifiers}, not only can fixation probabilities be amplified by tuning the properties of a graph topology, but can be constructed arbitrarily.
 This construction process involves adjusting edge weights to create two sections: a central hub, and a series of branches.
 The hub is constructed such that the nodes within it are tightly coupled, thus increasing the likelihood an advantageous strategy will fixate.
 Then propagating through the branches, fixating on the entire graph.
 This amplification is however dependant on the graph having both directed edges, and self loops.
-Undirected edges have been shown to inherently suppress mutant fixation \cite{birth-death amplifiers}.
+Undirected edges have been shown to inherently suppress mutant fixation \cite{birth-death-amplifiers}.
 While self loops do not themselves amplify selection in graph topologies, they are a property required to construct an arbitrary amplifier of selection.
 
 
@@ -205,16 +203,16 @@ Both JPEG and Fractal image compression complexity are used in order to mitigate
 \pagebreak
 \section{Research Ideas}
 \begin{itemize}
-	\item Leverage the methods discussed in \cite{graph amplifiers} to construct graphs that are arbitrarily strong amplfiers of selection, to create an evolutionary algorithm that supports generative agents with high fitness.
+	\item Leverage the methods discussed in \cite{graph-amplifiers, } to construct graphs that are arbitrarily strong amplfiers of selection, to create an evolutionary algorithm that supports generative agents with high fitness.
 	This can use genotype definitions introduced by \cite{sims}, and tested on a number of well known amplifiers.
 	
-	\item As shown in \cite{mixed games}, randomly selecting the game in which individuals partake (snow drift, prisoner's dilemma), rates of cooperation increase proportionallly to the population heterogeneity.
-	In the context of generating images using evolutionary methods, multiple aesthetic measures as target fitness functions for evolutionary image generation has shown to enhance aesthetic appeal \cite{aesthetic measures}.
+	\item As shown in \cite{mixed-games}, randomly selecting the game in which individuals partake (snow drift, prisoner's dilemma), rates of cooperation increase proportionallly to the population heterogeneity.
+	In the context of generating images using evolutionary methods, multiple aesthetic measures as target fitness functions for evolutionary image generation has shown to enhance aesthetic appeal \cite{aesthetic-measures}.
 	A slight variation of this may be to vary the fitness function with which an individual is measured.
 	This may involve the random selection of one or more fitness functions in comparison to the use of all.
 	
 	\item Vary fitness functions based on graph location: certain node clusters will have a given fitness function that differs from another.
-	This may link itself to \cite{mixed games} as increasing heterogeneity within the generative population may increase the overall fitness associated with the aesthetic measures of the generated images.
+	This may link itself to \cite{mixed-games} as increasing heterogeneity within the generative population may increase the overall fitness associated with the aesthetic measures of the generated images.
 	An issue arising from this is that we have smaller populations evolving within themselves.
 	If an outside enters a cluster, its fitness in the new population will be, with high probability, extremely low.
 	In the proceeding selection iteration, it will most likely be killed by an insider.
@@ -224,36 +222,9 @@ Both JPEG and Fractal image compression complexity are used in order to mitigate
 	With a collection of individuals evolved in this manner, similarly to \cite{nevar}, a high fitness population can be initialised for further interactive evolution.
 \end{itemize}
 
-
 \pagebreak
-\begin{thebibliography}{9}
 
-\bibitem{graph amplifiers}
-Pavlogiannis, A., Tkadlec, J., Chatterjee, K., \& Nowak, M. A. (2018). Construction of arbitrarily strong amplifiers of natural selection using evolutionary graph theory. \textit{Communications Biology, 1}(1), 71.
+\bibliographystyle{plain}
+\bibliography{references}
 
-\bibitem{evolution on graphs}
-Lieberman, E., Hauert, C., \& Nowak, M. A. (2005). Evolutionary dynamics on graphs. \textit{Nature, 433}(7023), 312.
-
-\bibitem{mixed games}
-Amaral, M. A., Wardil, L., Perc, M., \& da Silva, J. K. (2016). Evolutionary mixed games in structured populations: Cooperation and the benefits of heterogeneity. 
-\textit{Physical Review E, 93}(4), 042304.
-
-\bibitem{cooperation on graphs}
-Ohtsuki, H., Hauert, C., Lieberman, E., \& Nowak, M. A. (2006). A simple rule for the evolution of cooperation on graphs and social networks. \textit{Nature}, 441(7092), 502.
-
-\bibitem{birth-death amplifiers}
-Hindersin, L., \& Traulsen, A. (2015). Most undirected random graphs are amplifiers of selection for birth-death dynamics, but suppressors of selection for death-birth dynamics.
-\textit{PLoS computational biology, 11}(11), e1004437.
-
-\bibitem{aesthetic measures}
-Ross, B. J., Ralph, W., \& Zong, H. (2006, July). Evolutionary image synthesis using a model of aesthetics. In \textit{Evolutionary Computation}, 2006. CEC 2006. IEEE Congress on (pp. 1087-1094). IEEE.
-
-\bibitem{sims}
-Sims, K. (1993). Interactive evolution of equations for procedural models. \textit{The Visual Computer, 9}(8), 466-476.
-
-\bibitem{nevar}
-Machado, P., \& Cardoso, A. (2000, April). NEvAr–the assessment of an evolutionary art tool. In \textit{Proceedings of the AISB00 Symposium on Creative \& Cultural Aspects and Applications of AI \& Cognitive Science}, Birmingham, UK (Vol. 456).
-
-
-\end{thebibliography}
 \end{document}
