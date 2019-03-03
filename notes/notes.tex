@@ -126,6 +126,7 @@
 Sims introduces a method for generating images by using Lisp expressions as individual genotypes for use in an evolutionary process.
 This method is introduced as extremely extensible in comparison to commonly used genotype expressions: fixed length strings, parameter collections, etc.
 The method for mutation involves the parsing of Lisp expressions as a tree structure which then adjusted according to the following rules:
+
 \begin{itemize}
 	\item "Any node can mutate into a new random expression."
 	\item "If the node is a scalar value, it can be adjusted by the addition of some random amount."
@@ -135,6 +136,7 @@ The method for mutation involves the parsing of Lisp expressions as a tree struc
 	\item "An argument to a function can jump out and become the new value for that node."
 	\item "A node can become a copy of another node from the parent expression."
 \end{itemize}
+
 Sims discusses the method by which two individuals in a population mate.
 This involves the random swap a single node from each parent.
 If this process results in an invalid genotype (Lisp expression) then the crossover is performed "until a legal expression results".
@@ -162,6 +164,7 @@ Target images with a colour frequency distribution that inherently have a high d
 
 
 \subsubsection{Creating arbitrarily strong amplifiers of natural selection on graphs \cite{graph amplifiers}}
+
 This paper explores one of the fundamental ideas upon which a large portion of the proposed research is based.
 Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \cite{graph amplifiers, birth-death amplifiers, cooperation on graphs}.
 Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \cite{evolution on graphs, birth-death amplifiers}; these are known as amplifiers of selection.
@@ -178,6 +181,7 @@ While self loops do not themselves amplify selection in graph topologies, they a
 
 
 \subsubsection{NEvAr–the assessment of an evolutionary art tool \cite{nevar}}
+
 This research was pivotal in the investigation of interactive evolutionary (IE) methods of generating images.
 The NEvAr program relies on the user being a key determinant of an individual's fitness.
 The program's basis is such that there exist multiple parallel populations.
@@ -200,16 +204,17 @@ Both JPEG and Fractal image compression complexity are used in order to mitigate
 
 \pagebreak
 \section{Research Ideas}
-With a method for constructing graphs that are arbitrary amplfiers of selection, my primary aim is to leverage this ability to create an evolutionary algorithm that supports generative agents with high fitness.
-\\\\
-Use methods discussed in \textit{Evolutionary mixed games in structured populations: Cooperation and the benefits of heterogeneity}.
-By randomly selecting the game in which agents partake (snow drift, prisoner's dilemma), there is a proportional increase in population heterogeneity which increases cooperation.
-In terms of a generative evolutionary algorithm, by using multiple fitness functions, randomly chosen, tested against all, or a subset, to determine an individual's overall fitness.
-\\\\
-\subsection{Generative Evolutionary Algorithms}
 \begin{itemize}
-	\item Using traditional evolutionary algorithms to generate image generation neural network weight (been done before).
+	\item Leverage the methods discussed in \cite{graph amplifiers} to construct graphs that are arbitrarily strong amplfiers of selection, to create an evolutionary algorithm that supports generative agents with high fitness.
+	This can use genotype definitions introduced by \cite{sims}, and tested on a number of well known amplifiers.
+	
+	\item As shown in \cite{mixed games}, randomly selecting the game in which individuals partake (snow drift, prisoner's dilemma), rates of cooperation increase proportionallly to the population heterogeneity.
+	In the context of generating images using evolutionary methods, multiple aesthetic measures as target fitness functions for evolutionary image generation has shown to enhance aesthetic appeal \cite{aesthetic measures}.
+	A slight variation of this may be to vary the fitness function with which an individual is measured.
+	This may involve the random selection of one or more fitness functions in comparison to the use of all.
+	
 	\item Vary fitness functions based on graph location: certain node clusters will have a given fitness function that differs from another.
+	This may link itself to \cite{mixed games} as increasing heterogeneity within the generative population may increase the overall fitness associated with the aesthetic measures of the generated images.
 	An issue arising from this is that we have smaller populations evolving within themselves.
 	If an outside enters a cluster, its fitness in the new population will be, with high probability, extremely low.
 	In the proceeding selection iteration, it will most likely be killed by an insider.
@@ -217,7 +222,6 @@ In terms of a generative evolutionary algorithm, by using multiple fitness funct
 	\item Using a genotype definition that follows the methods introduced by \cite{sims}, it may be possible to create high aesthetic fitness individuals by using RMSE/compression complexity difference from a target image. 
 	This may result in individuals with a Lisp expression genotype that generate images created in non-deterministic ways.
 	With a collection of individuals evolved in this manner, similarly to \cite{nevar}, a high fitness population can be initialised for further interactive evolution.
-	
 \end{itemize}
 
 
