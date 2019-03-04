@@ -128,6 +128,8 @@ Both JPEG and Fractal image compression complexity are used in order to mitigate
 
 \subsubsection{Maintaining population diversity in evolutionary art using structured populations \cite{distributed-evolutionary-art}}
 
+
+
 \subsubsection{Life’s what you make: Niche construction and evolutionary art \cite{niche-reproduction}}
 
 Looks at increasing both the quality and diversity of individuals by the introduction of environment dependent reproduction.
@@ -174,8 +176,11 @@ Children thus not only inherit the genetic preference, but are likely born into 
 	They offer the idea that individuals have credit which allows time for the adaption of new migrants to a potentially drastically different environments.
 	This may alleviate some problems associated with multiple fitness functions across spacially separated subpopulations.
 	However I believe the issue of migrants coming to an early death is due to the lack of continuity between fitness functions.
-	This issue may be addressed by using metrics that accept varying numbers of hyperparameters in order to create a malleable fitness function.
+	This issue may be addressed by using metrics that accept varying numbers of hyperparameters in order to create a fitness function that is both easily transformed and continuous.
 	By creating a smoother transition for migrants between islands, there is greater fixation potential for individuals with high quality and diversity.
+	
+	\item Using the Fireworks Algorithm (FA) \cite{fireworks} for searching the problems space associated with evolving generative art.
+	There exist variations on the original algorithm proposed in \cite{fireworks} which both increase performance \cite{fireworks-adaptive, fireworks-enhanced, fireworks-cooperative}, and reduce implementational complexity \cite{fireworks-bare-bones}.
 	
 	
 \end{itemize}
