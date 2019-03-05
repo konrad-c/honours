@@ -135,16 +135,24 @@ Both JPEG and Fractal image compression complexity are used in order to mitigate
 Looks at increasing both the quality and diversity of individuals by the introduction of environment dependent reproduction.
 The case study used involves a population of agents that leave ink on a canvas as they move in the environment.
 These agents have a limited genotype of floating point alleles including: 
-- Curvature (rate of curve)
-- Irrationality (rate with which curvature may be changed)
-- Fecundity (the probability of reproduction at any time step)
-- Mortality (the probability of death at any time step)
-- Offset (the angle children go when born).
+\begin{itemize}
+	\item Curvature (rate of curve)
+	\item Irrationality (rate with which curvature may be changed)
+	\item Fecundity (the probability of reproduction at any time step)
+	\item Mortality (the probability of death at any time step)
+	\item Offset (the angle children go when born).
+\end{itemize}
 Each individual has an allele in its genotype describing environmental preference, which in the given case study relates to ink density preference in the surrounding environment.
 This is incorporated into the existing model by means of reproduction probability as a function of current environmental properties and individual preference.
 Therefore individuals are more likely to produce offspring when in a favorable environment. 
 Children thus not only inherit the genetic preference, but are likely born into an environment that they will prefer.
 
+\subsubsection{Effects of mutation compared to crossover on fitness in evolutionary computing}
+
+While in a large number of studies, both mutation and crossover are used to transition from the current generation's population to the next, as shown in \cite{mutation-vs-crossover, mutation-vs-crossover-revised} the overall difference associated with selecting one method over the other is often "statistically insignificant".
+Crossover however did show to be more successful than mutation in the context of large populations \cite{mutation-vs-crossover-revised}.
+Given that historically genetic programming approaches to evolutionary computing "suggests that [it] works without mutation" \cite[p.~77]{intro-to-evolutionary-computing} due to crossover's thorough shuffling ability, the comparative advantage of crossover in large populations seems less of a surprise.
+However it is concluded that the comparative advantage of one over the other is "often statistically insignificant" \cite[p.~3]{mutation-vs-crossover-revised} 
 
 \pagebreak
 \section{Research Ideas}
@@ -177,10 +185,17 @@ Children thus not only inherit the genetic preference, but are likely born into 
 	This may alleviate some problems associated with multiple fitness functions across spacially separated subpopulations.
 	However I believe the issue of migrants coming to an early death is due to the lack of continuity between fitness functions.
 	This issue may be addressed by using metrics that accept varying numbers of hyperparameters in order to create a fitness function that is both easily transformed and continuous.
-	By creating a smoother transition for migrants between islands, there is greater fixation potential for individuals with high quality and diversity.
+	By creating a smoother transition for migrants between islands, there is greater fixation potential for individuals with high fitness while maintaining diversity.
 	
 	\item Using the Fireworks Algorithm (FA) \cite{fireworks} for searching the problems space associated with evolving generative art.
 	There exist variations on the original algorithm proposed in \cite{fireworks} which both increase performance \cite{fireworks-adaptive, fireworks-enhanced, fireworks-cooperative}, and reduce implementational complexity \cite{fireworks-bare-bones}.
+	The current state-of-the-art FA using a number of cooperative strategies \cite{fireworks-cooperative} in addition to techniques that increase quality-diversity (QD) of potential solutions.
+	FA has been mostly used in problem domains where the genotype space is continuous however some recent studies have investigated the application of a discretized FA \cite{fireworks-discrete-combinatorial, fireworks-discrete-tsp}.
+	Research into evolutionary art often uses genotype crossover heavily when using techniques introduced by \cite{sims}.
+	However due to being primarily a Particle Swam Optimization (PSO) algorithm, the FA does not incorporate crossover.
+	There is research to support that any benefit associated with exclusive use of either crossover or mutation is often "statistically insignificant" \cite{mutation-vs-crossover,mutation-vs-crossover-revised}.
+	As a result, using FA in the context of evolutionary art using genotype expressions such as those introduced by \cite{sims} may be promising.
+	
 	
 	
 \end{itemize}
