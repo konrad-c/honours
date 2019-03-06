@@ -128,6 +128,26 @@ Both JPEG and Fractal image compression complexity are used in order to mitigate
 
 \subsubsection{Maintaining population diversity in evolutionary art using structured populations \cite{distributed-evolutionary-art}}
 
+There exist numerous techniques for increasing the diversity of a population in evolutionary algorithms.
+Many of these involve the hyperparameter optimisation, and altering methods of mutation, crossover, and reproduction.
+Another method for addressing diversity, and creating algorithms with a high quality-diversity (QD), is with methods of structuring population distribution.
+This research investigates the use structured populations in the context of evolutionary art, particularly two models:
+\begin{itemize}
+	\item \textbf{Island Model (IM)}: evolving a series of subpopulations using traditional evolutionary techniqes, with periodic migration of individuals between populations.
+	\item \textbf{Cellular Evolutionary Algorithm (CEA)}: structuring the population in a grid, and performing indiviudal selection in a neighbourhood of varying sizes.
+\end{itemize}
+Target metrics of genotype and phenotype distance, are calculated using the algorithms proposed by \cite{genotype-diversity-metric} and \cite{phenotype-diversity-metric} respectively.
+A single target aesthetic metric is used to determine individual fitness: \textit{Ralph \& Ross Bell Curve} \cite{aesthetic-measures}.
+\\\\
+This research does find a significant positive effect on both genotype and phenotype diversity in comparison to the panmictic baseline.
+With respect to fitness however, only the CEA was seen to accelerate the fitness progression within the population.
+Model hyperparameters that most increase diversity are further disussed.
+The IM has a series of highly dependent hyperparameters such as island size and number, in addition to migration size and interval.
+The degree to which these parameters impact overall quality and diversity metrics is not explored in detail.
+\\\\
+
+\subsubsection{Distributed Evolutionary Algorithms}
+
 
 
 \subsubsection{Life’s what you make: Niche construction and evolutionary art \cite{niche-reproduction}}
