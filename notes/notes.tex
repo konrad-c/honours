@@ -1,9 +1,20 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{pifont}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{natbib}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+
 \usepackage{graphicx}
 \usepackage{scrextend}
 \usepackage{wrapfig}
@@ -13,259 +24,292 @@
 
 \begin{document}
 	
-\begin{titlepage}
-	\begin{center}
-		\vspace*{1cm}
-		
-		\LARGE
-		\textbf{Honours Research Notes}
-		
-		\vspace{2cm}
-		\Large
-		
-		\textbf{Konrad Cybulski}
-		
-		\vfill
-		
-		\vspace{0.8cm}
-		
-		\includegraphics[width=0.4\textwidth]{images/monash_emblem.jpg}
-		
-		\large
-		Faculty of Information Technology\\
-		Monash University\\
-		Australia\\
-		\today
-		
-	\end{center}
-\end{titlepage}
-
-\pagebreak
-\tableofcontents
-\pagebreak
-
-\section{Literature Summary}
-
-\subsubsection{Interactive evolution of equations for procedural models \cite{sims}}
-
-Sims introduces a method for generating images by using Lisp expressions as individual genotypes for use in an evolutionary process.
-This method is introduced as extremely extensible in comparison to commonly used genotype expressions: fixed length strings, parameter collections, etc.
-The method for mutation involves the parsing of Lisp expressions as a tree structure which then adjusted according to the following rules:
-
-\begin{itemize}
-	\item "Any node can mutate into a new random expression."
-	\item "If the node is a scalar value, it can be adjusted by the addition of some random amount."
-	\item "If the node is a vector it can be adjusted by adding random amounts to each element."
-	\item "If the node is a function, it can mutate into a different function."
-	\item "An expression can become the argument to a new random function."
-	\item "An argument to a function can jump out and become the new value for that node."
-	\item "A node can become a copy of another node from the parent expression."
-\end{itemize}
-
-Sims discusses the method by which two individuals in a population mate.
-This involves the random swap a single node from each parent.
-If this process results in an invalid genotype (Lisp expression) then the crossover is performed "until a legal expression results".
-The method of "Genetic cross dissolves" is introduced as a smooth transitional operator of reproduction.
-\\\\
-The genotype representation and its corresponding mating/mutation procedure is shown to produce some truly remarkable images through a user-supervised evolutionary process.
-This involves the user selecting "one or more of [the generated images] for mutation and/or mating to produce the next generation, and the process repeats".
-
-\subsubsection{Evolutionary image synthesis using a model of aesthetics \cite{aesthetic-measures}}
-
-The overarching goal of this research is to investigate the use of multiple aesthetic fitness functions for unsupervised image generation using genetic programming.
-Those used involved the distribution of colours in the generated images.
-An existing image is used to determine the frequency distribution of colours as a target which is used as the first of two objective fitness functions.
-The second uses knowledge that the colour gradients in fine art tends towards a normal distribution.
-\\\\
-The mathematical model of aesthetics, as discussed here, bases its colour gradient fitness function on the hypothesis that said normal distribution of colour gradients "has been an implicit aesthetic ideal of many painters throughout history".
-\\\\
-The method used for generating images as part of the algorithm is a slight variation of that developed by Sims \cite{sims}.
-\\\\
-This research concludes that the use of "Ralph's bell curve response model" has an aesthetically beneficial impact on the generated images.
-When omitting the fitness function measuring deviation from the normal distribution of colour gradients, the images produced are resultantly "chaotic or bland, artificial, mathematical, and rarely appealing".
-When using solely the colour gradient fitness function, without a target frequency distribution, the highest fitness individuals tended toward a "narrow bandwidth of RGB space".
-Resulting in images that were "not very interesting to the human eye".
-Target images with a colour frequency distribution that inherently have a high deviation from the normal colour gradient distribution that resulted in "creative tension" were noted as producing "the most surprising results".
-
-
-\subsubsection{Creating arbitrarily strong amplifiers of natural selection on graphs \cite{graph-amplifiers}}
-
-This paper explores one of the fundamental ideas upon which a large portion of the proposed research is based.
-Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \cite{graph-amplifiers, birth-death-amplifiers, cooperation-on-graphs}.
-Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \cite{lieberman2005evolutionary, birth-death-amplifiers}; these are known as amplifiers of selection.
-While other topologies are known to decrease this likelihood, suppressors of selection.
-Properties such as distribution of edge weights, edge directionaility \cite{birth-death-amplifiers}, and self-loops are also shown to greatly impact fixation probabilities.
-\\\\
-As shown by Pavlogiannis, Tkadlec, Chatterjee, \& Nowak \cite{graph-amplifiers}, not only can fixation probabilities be amplified by tuning the properties of a graph topology, but can be constructed arbitrarily.
-This construction process involves adjusting edge weights to create two sections: a central hub, and a series of branches.
-The hub is constructed such that the nodes within it are tightly coupled, thus increasing the likelihood an advantageous strategy will fixate.
-Then propagating through the branches, fixating on the entire graph.
-This amplification is however dependant on the graph having both directed edges, and self loops.
-Undirected edges have been shown to inherently suppress mutant fixation \cite{birth-death-amplifiers}.
-While self loops do not themselves amplify selection in graph topologies, they are a property required to construct an arbitrary amplifier of selection.
-
-
-\subsubsection{NEvAr–the assessment of an evolutionary art tool \cite{nevar}}
-
-This research was pivotal in the investigation of interactive evolutionary (IE) methods of generating images.
-The NEvAr program relies on the user being a key determinant of an individual's fitness.
-The program's basis is such that there exist multiple parallel populations.
-Each population is evolved through the user's direct interaction which involves the selection of individuals for crossover.
-Migration from one population to another can be instigated by the user, allowing for new populations to be created from a selection of high fitness individuals rather than at random.
-\\\\
-NEvAr puts a large focus on the end-user experience involved in the process of generating art, mentioning explicitly that the generation of 'interesting' images "is irrelevant from the artistic point of view".
-However it is noted that with a lack of experience, as with any tool, the results were "disappointing".
-As a result, the focus goes to creating a process through which the user may increase the number of "promising" images.
-This process follows a four stage structure: "Discovery, Exploration, Selection and Refinement".
-\begin{quotation}
-In NEvAr, the artist is no longer responsible for the creation of the idea, she/he is responsible for the recognition of promising concepts.
-\end{quotation}
-
-Also discussed is the idea of Seeding a population with an image selected by the user.
-This involves the selection images with a high similarity to that chosen by the user in order to initialise a population with high relative fitness given a target outcome.
-The similarity metric used involves compression complexity, forgoing the standard RMSE similarity metric due to a number of shortcomings.
-Both JPEG and Fractal image compression complexity are used in order to mitigate the inadequacy of JPEG for images with stark colour transitions; and benefit from Fractal compression with highly self-similar images.
-
-\subsubsection{Maintaining population diversity in evolutionary art using structured populations \cite{distributed-evolutionary-art}}
-
-There exist numerous techniques for increasing the diversity of a population in evolutionary algorithms.
-Many of these involve the hyperparameter optimisation, and altering methods of mutation, crossover, and reproduction.
-Another method for addressing diversity, and creating algorithms with a high quality-diversity (QD), is with methods of structuring population distribution.
-This research investigates the use structured populations in the context of evolutionary art, particularly two models:
-\begin{itemize}
-	\item \textbf{Island Model (IM)}: evolving a series of subpopulations using traditional evolutionary techniqes, with periodic migration of individuals between populations.
-	\item \textbf{Cellular Evolutionary Algorithm (CEA)}: structuring the population in a grid, and performing indiviudal selection in a neighbourhood of varying sizes.
-\end{itemize}
-Target metrics of genotype and phenotype distance, are calculated using the algorithms proposed by \cite{genotype-diversity-metric} and \cite{phenotype-diversity-metric} respectively.
-A single target aesthetic metric is used to determine individual fitness: \textit{Ralph \& Ross Bell Curve} \cite{aesthetic-measures}.
-\\\\
-This research does find a significant positive effect on both genotype and phenotype diversity in comparison to the panmictic baseline.
-With respect to fitness however, only the CEA was seen to accelerate the fitness progression within the population.
-Model hyperparameters that most increase diversity are further disussed.
-The IM has a series of highly dependent hyperparameters such as island size and number, in addition to migration size and interval.
-The degree to which these parameters impact overall quality and diversity metrics is not explored in detail.
-\\\\
-
-\subsubsection{Distributed Evolutionary Algorithms}
-
-
-
-\subsubsection{Life’s what you make: Niche construction and evolutionary art \cite{niche-reproduction}}
-
-Looks at increasing both the quality and diversity of individuals by the introduction of environment dependent reproduction.
-The case study used involves a population of agents that leave ink on a canvas as they move in the environment.
-These agents have a limited genotype of floating point alleles including: 
-\begin{itemize}
-	\item Curvature (rate of curve)
-	\item Irrationality (rate with which curvature may be changed)
-	\item Fecundity (the probability of reproduction at any time step)
-	\item Mortality (the probability of death at any time step)
-	\item Offset (the angle children go when born).
-\end{itemize}
-Each individual has an allele in its genotype describing environmental preference, which in the given case study relates to ink density preference in the surrounding environment.
-This is incorporated into the existing model by means of reproduction probability as a function of current environmental properties and individual preference.
-Therefore individuals are more likely to produce offspring when in a favorable environment. 
-Children thus not only inherit the genetic preference, but are likely born into an environment that they will prefer.
-
-\subsubsection{Effects of mutation compared to crossover on fitness in evolutionary computing}
-
-While in a large number of studies, both mutation and crossover are used to transition from the current generation's population to the next, as shown in \cite{mutation-vs-crossover, mutation-vs-crossover-revised} the overall difference associated with selecting one method over the other is often "statistically insignificant".
-Crossover however did show to be more successful than mutation in the context of large populations \cite{mutation-vs-crossover-revised}.
-Given that historically genetic programming approaches to evolutionary computing "suggests that [it] works without mutation" \cite[p.~77]{intro-to-evolutionary-computing} due to crossover's thorough shuffling ability, the comparative advantage of crossover in large populations seems less of a surprise.
-However it is concluded that the comparative advantage of one over the other is "often statistically insignificant" \cite[p.~3]{mutation-vs-crossover-revised} 
-
-\pagebreak
-\section{Research Ideas}
-\begin{itemize}
-	\item Leverage the methods discussed in \cite{graph-amplifiers} to construct graphs that are arbitrarily strong amplfiers of selection, to create an evolutionary algorithm that supports generative agents with high fitness.
-	This can use genotype definitions introduced by \cite{sims}, and tested on a number of well known amplifiers.
+	\begin{titlepage}
+		\begin{center}
+			\vspace*{1cm}
+			
+			\LARGE
+			\textbf{Honours Research Notes}
+			
+			\vspace{2cm}
+			\Large
+			
+			\textbf{Konrad Cybulski}
+			
+			\vfill
+			
+			\vspace{0.8cm}
+			
+			\large
+			Faculty of Information Technology\\
+			Monash University\\
+			Australia\\
+			\today
+			
+		\end{center}
+	\end{titlepage}
 	
-	\item As shown in \cite{mixed-games}, randomly selecting the game in which individuals partake (snow drift, prisoner's dilemma), rates of cooperation increase proportionallly to the population heterogeneity.
-	In the context of generating images using evolutionary methods, multiple aesthetic measures as target fitness functions for evolutionary image generation has shown to enhance aesthetic appeal \cite{aesthetic-measures}.
-	A slight variation of this may be to vary the fitness function with which an individual is measured.
-	This may involve the random selection of one or more fitness functions in comparison to the use of all.
+	\pagebreak
+	\tableofcontents
+	\pagebreak
 	
-	\item Vary fitness functions based on graph location: certain node clusters will have a given fitness function that differs from another.
-	This may link itself to \cite{mixed-games} as increasing heterogeneity within the generative population may increase the overall fitness associated with the aesthetic measures of the generated images.
-	An issue arising from this is that we have smaller populations evolving within themselves.
-	If an outside enters a cluster, its fitness in the new population will be, with high probability, extremely low.
-	In the proceeding selection iteration, it will most likely be killed by an insider.
+	\section{Literature Summary}
 	
-	\item Using a genotype definition that follows the methods introduced by \cite{sims}, it may be possible to create high aesthetic fitness individuals by using RMSE/compression complexity difference from a target image. 
-	This may result in individuals with a Lisp expression genotype generating images that closely resemble human-made artwork and imagery.
-	With a collection of individuals evolved in this manner, similarly to \cite{nevar}, a high fitness population can be initialised for further interactive evolution.
+	\subsubsection{Interactive evolution of equations for procedural models \citep{sims}}
 	
-	\item Genotype definitions for image generation introduced by Sims \cite{sims} involve the application of a Lisp expression to a series of coordinates \textbf{(x, y)} of the generated image.
-	This results in an individual generating images in a deterministic way.
-	Has there been any research for creating individuals that use higher order generative expressions?
-	For example if we allow every genotype to accept three inputs: \textbf{x} and \textbf{y} coordinates, and an arbitrary seed value.
+	Sims introduces a method for generating images by using Lisp expressions as individual genotypes for use in an evolutionary process.
+	This method is introduced as extremely extensible in comparison to commonly used genotype expressions: fixed length strings, parameter collections, etc.
+	The method for mutation involves the parsing of Lisp expressions as a tree structure which then adjusted according to the following rules:
 	
-	\item In the \textit{Further Work} section of \cite{distributed-evolutionary-art} the authors discuss using different fitness functions on each island in the distributed model.
-	They offer the idea that individuals have credit which allows time for the adaption of new migrants to a potentially drastically different environments.
-	This may alleviate some problems associated with multiple fitness functions across spacially separated subpopulations.
-	However I believe the issue of migrants coming to an early death is due to the lack of continuity between fitness functions.
-	This issue may be addressed by using metrics that accept varying numbers of hyperparameters in order to create a fitness function that is both easily transformed and continuous.
-	By creating a smoother transition for migrants between islands, there is greater fixation potential for individuals with high fitness while maintaining diversity.
+	\begin{itemize}
+		\item "Any node can mutate into a new random expression."
+		\item "If the node is a scalar value, it can be adjusted by the addition of some random amount."
+		\item "If the node is a vector it can be adjusted by adding random amounts to each element."
+		\item "If the node is a function, it can mutate into a different function."
+		\item "An expression can become the argument to a new random function."
+		\item "An argument to a function can jump out and become the new value for that node."
+		\item "A node can become a copy of another node from the parent expression."
+	\end{itemize}
 	
-	\item Using the Fireworks Algorithm (FA) \cite{fireworks} for searching the problems space associated with evolving generative art.
-	There exist variations on the original algorithm proposed in \cite{fireworks} which both increase performance \cite{fireworks-adaptive, fireworks-enhanced, fireworks-cooperative}, and reduce implementational complexity \cite{fireworks-bare-bones}.
-	The current state-of-the-art FA using a number of cooperative strategies \cite{fireworks-cooperative} in addition to techniques that increase quality-diversity (QD) of potential solutions.
-	FA has been mostly used in problem domains where the genotype space is continuous however some recent studies have investigated the application of a discretized FA \cite{fireworks-discrete-combinatorial, fireworks-discrete-tsp}.
-	Research into evolutionary art often uses genotype crossover heavily when using techniques introduced by \cite{sims}.
-	However due to being primarily a Particle Swam Optimization (PSO) algorithm, the FA does not incorporate crossover.
-	There is research to support that any benefit associated with exclusive use of either crossover or mutation is often "statistically insignificant" \cite{mutation-vs-crossover,mutation-vs-crossover-revised}.
-	As a result, using FA in the context of evolutionary art using genotype expressions such as those introduced by \cite{sims} may be promising.
+	Sims discusses the method by which two individuals in a population mate.
+	This involves the random swap a single node from each parent.
+	If this process results in an invalid genotype (Lisp expression) then the crossover is performed "until a legal expression results".
+	The method of "Genetic cross dissolves" is introduced as a smooth transitional operator of reproduction.
+	\\\\
+	The genotype representation and its corresponding mating/mutation procedure is shown to produce some truly remarkable images through a user-supervised evolutionary process.
+	This involves the user selecting "one or more of [the generated images] for mutation and/or mating to produce the next generation, and the process repeats".
 	
-	\item Research conducted in \cite{graph-amplifiers} shows that graphs can be constructed that are arbitrarily strong amplifiers of fitness.
-	In many fields, particularly evolutionary art, the notion of quality-diversity (QD) plays an important role.
-	QD is key to balancing the rate of exploration and exploitation in any EA, PSO and other stochastic optimisation algorithms.
-	Is it possible to use the findings of \cite{graph-amplifiers} to construct graph topologies that amplify quality and diversity within the population.
+	\subsubsection{Evolutionary image synthesis using a model of aesthetics \citep{aesthetic-measures}}
 	
-\end{itemize}
-
-\pagebreak
-
-\section{Meeting Notes}
-
-This section is for notes relating to each meeting between Jon McCormack and Konrad Cybulski. To include both pre- and post-meeting thoughts, ideas, reflections, further investigation, action points, etc.
-\\\\
-
-\begin{center} \textbf{Monday 11 March 2019 (2019-03-11)} \end{center} 
-\textbf{Pre-meeting}
-\\
-The research proposal is due for submission on Friday 12 April at 3pm.
-It is marked on the following criteria:
-\begin{itemize}
-	\item Formulation of research questions/aims
-	\item Review of the relevant literature and existing works as background of the proposed project
-	\item Description of research design/methodology/method(s) used
-	\item Discussion of (expected) outcomes and (potential) contributions
-	\item Communication skills
-\end{itemize}
-I have been looking into the area of evolutionary art as a primary focus, with investigation into related areas of evolutionary computing.
-I have a list of potential research ideas, particularly a series of directions I would be happy to take with my research.
-Two idea that interest me most include distributed populations for evolving QD art, and applying the fireworks algorithm to evolutionary art.
-\\\\
-In terms of distributed populations for evolving art, research on arbitrary amplfiers of selection \cite{graph-amplifiers} in addition to using a distributed Island Model \cite{distributed-evolutionary-art} may be a good starting point.
-I feel that I still need to continue reading into the use of aesthetic measures for the unsupervised evolution of images.
-If we aim to take this direction, what else should I look into, start doing, etc?
-\\\\
-Is it worth looking into applying the FA (and variatons e.g. CoFFWA) to evolutionary art?
-Some research has been done into using FA on discrete datasets such as the TSP and scheduling problems.
-As an honours project this may be too limited in scope?
-\\\\
-\textbf{Action Items}
-\\
-Use Overleaf for Latex source control. \\
-Share GitHub and Overleaf jon.mccormack@monash.edu. 
-Write half a page detailing what I'm interested in looking at. (Why, how, what is your plan? Go into a good amount of detail)
-Send this to Jon one or two days before next meeting (18 March 2019).
-If I have multiple points of interest, write a half page for each which we can further narrow down.
-
-
-\pagebreak
-
-\bibliographystyle{plain}
-\bibliography{references}
-
+	The overarching goal of this research is to investigate the use of multiple aesthetic fitness functions for unsupervised image generation using genetic programming.
+	Those used involved the distribution of colours in the generated images.
+	An existing image is used to determine the frequency distribution of colours as a target which is used as the first of two objective fitness functions.
+	The second uses knowledge that the colour gradients in fine art tends towards a normal distribution.
+	\\\\
+	The mathematical model of aesthetics, as discussed here, bases its colour gradient fitness function on the hypothesis that said normal distribution of colour gradients "has been an implicit aesthetic ideal of many painters throughout history".
+	\\\\
+	The method used for generating images as part of the algorithm is a slight variation of that developed by Sims \citep{sims}.
+	\\\\
+	This research concludes that the use of "Ralph's bell curve response model" has an aesthetically beneficial impact on the generated images.
+	When omitting the fitness function measuring deviation from the normal distribution of colour gradients, the images produced are "chaotic or bland, artificial, mathematical, and rarely appealing".
+	When using solely the colour gradient fitness function, without a target frequency distribution, the highest fitness individuals tended toward a "narrow bandwidth of RGB space".
+	Resulting in images that were "not very interesting to the human eye".
+	Target images with a colour frequency distribution that inherently have a high deviation from the normal colour gradient distribution that resulted in "creative tension" were noted as producing "the most surprising results".
+	
+	
+	\subsubsection{Creating arbitrarily strong amplifiers of natural selection on graphs \citep{graph-amplifiers}}
+	
+	This paper explores one of the fundamental ideas upon which a large portion of the proposed research is based.
+	Graph topology has been shown to have a large impact on the rate of fixation for advantageous mutants \citep{graph-amplifiers, birth-death-amplifiers, cooperation-on-graphs}.
+	Numerous graph structures have been found that increase the likelihood of fixation above levels expected for a well-mixed population \citep{lieberman2005evolutionary, birth-death-amplifiers}; these are known as amplifiers of selection.
+	While other topologies are known to decrease this likelihood, suppressors of selection.
+	Properties such as distribution of edge weights, edge directionality \citep{birth-death-amplifiers}, and self-loops are also shown to greatly impact fixation probabilities.
+	\\\\
+	As shown by Pavlogiannis, Tkadlec, Chatterjee, \& Nowak \citep{graph-amplifiers}, not only can fixation probabilities be amplified by tuning the properties of a graph topology, but can be constructed arbitrarily.
+	This construction process involves adjusting edge weights to create two sections: a central hub, and a series of branches.
+	The hub is constructed such that the nodes within it are tightly coupled, thus increasing the likelihood an advantageous strategy will fixate.
+	Then propagating through the branches, fixating on the entire graph.
+	This amplification is however dependant on the graph having both directed edges, and self loops.
+	Undirected edges have been shown to inherently suppress mutant fixation \citep{birth-death-amplifiers}.
+	While self loops do not themselves amplify selection in graph topologies, they are a property required to construct an arbitrary amplifier of selection.
+	
+	
+	\subsubsection{NEvAr–the assessment of an evolutionary art tool \citep{nevar}}
+	
+	This research was pivotal in the investigation of interactive evolutionary (IE) methods of generating images.
+	The NEvAr program relies on the user being a key determinant of an individual's fitness.
+	The program's basis is such that there exist multiple parallel populations.
+	Each population is evolved through the user's direct interaction which involves the selection of individuals for crossover.
+	Migration from one population to another can be instigated by the user, allowing for new populations to be created from a selection of high fitness individuals rather than at random.
+	\\\\
+	NEvAr puts a large focus on the end-user experience involved in the process of generating art, mentioning explicitly that the generation of 'interesting' images "is irrelevant from the artistic point of view".
+	However it is noted that with a lack of experience, as with any tool, the results were "disappointing".
+	As a result, the focus goes to creating a process through which the user may increase the number of "promising" images.
+	This process follows a four stage structure: "Discovery, Exploration, Selection and Refinement".
+	\begin{quotation}
+		In NEvAr, the artist is no longer responsible for the creation of the idea, she/he is responsible for the recognition of promising concepts.
+	\end{quotation}
+	
+	Also discussed is the idea of Seeding a population with an image selected by the user.
+	This involves the selection images with a high similarity to that chosen by the user in order to initialize a population with high relative fitness given a target outcome.
+	The similarity metric used involves compression complexity, forgoing the standard RMSE similarity metric due to a number of shortcomings.
+	Both JPEG and Fractal image compression complexity are used in order to mitigate the inadequacy of JPEG for images with stark colour transitions; and benefit from Fractal compression with highly self-similar images.
+	
+	\subsubsection{Maintaining population diversity in evolutionary art using structured populations \citep{distributed-evolutionary-art}}
+	
+	There exist numerous techniques for increasing the diversity of a population in evolutionary algorithms.
+	Many of these involve the hyperparameter optimisation, and altering methods of mutation, crossover, and reproduction.
+	Another method for addressing diversity, and creating algorithms with a high quality-diversity (QD), is with methods of structuring population distribution.
+	This research investigates the use structured populations in the context of evolutionary art, particularly two models:
+	\begin{itemize}
+		\item \textbf{Island Model (IM)}: evolving a series of subpopulations using traditional evolutionary techniques, with periodic migration of individuals between populations.
+		\item \textbf{Cellular Evolutionary Algorithm (CEA)}: structuring the population in a grid, and performing individual selection in a neighbourhood of varying sizes.
+	\end{itemize}
+	Target metrics of genotype and phenotype distance, are calculated using the algorithms proposed by \citep{genotype-diversity-metric} and \citep{phenotype-diversity-metric} respectively.
+	A single target aesthetic metric is used to determine individual fitness: \textit{Ralph \& Ross Bell Curve} \citep{aesthetic-measures}.
+	\\\\
+	This research does find a significant positive effect on both genotype and phenotype diversity in comparison to the panmictic baseline.
+	With respect to fitness however, only the CEA was seen to accelerate the fitness progression within the population.
+	Model hyperparameters that most increase diversity are further discussed.
+	The IM has a series of highly dependent hyperparameters such as island size and number, in addition to migration size and interval.
+	The degree to which these parameters impact overall quality and diversity metrics is not explored in detail.
+	
+	\subsubsection{Life’s what you make: Niche construction and evolutionary art \citep{niche-reproduction}}
+	
+	Looks at increasing both the quality and diversity of individuals by the introduction of environment dependent reproduction.
+	The case study used involves a population of agents that leave ink on a canvas as they move in the environment.
+	These agents have a limited genotype of floating point alleles including: 
+	\begin{itemize}
+		\item Curvature (rate of curve)
+		\item Irrationality (rate with which curvature may be changed)
+		\item Fecundity (the probability of reproduction at any time step)
+		\item Mortality (the probability of death at any time step)
+		\item Offset (the angle children go when born).
+	\end{itemize}
+	Each individual has an allele in its genotype describing environmental preference, which in the given case study relates to ink density preference in the surrounding environment.
+	This is incorporated into the existing model by means of reproduction probability as a function of current environmental properties and individual preference.
+	Therefore individuals are more likely to produce offspring when in a favorable environment. 
+	Children thus not only inherit the genetic preference, but are likely born into an environment that they will prefer.
+	
+	\subsubsection{Effects of mutation compared to crossover on fitness in evolutionary computing}
+	
+	While in a large number of studies, both mutation and crossover are used to transition from the current generation's population to the next, as shown in \citep{mutation-vs-crossover, mutation-vs-crossover-revised} the overall difference associated with selecting one method over the other is often "statistically insignificant".
+	Crossover however did show to be more successful than mutation in the context of large populations \citep{mutation-vs-crossover-revised}.
+	Given that historically genetic programming approaches to evolutionary computing "suggests that [it] works without mutation" \citep[p.~77]{intro-to-evolutionary-computing} due to crossover's thorough shuffling ability, the comparative advantage of crossover in large populations seems less of a surprise.
+	However it is concluded that the comparative advantage of one over the other is "often statistically insignificant" \citep[p.~3]{mutation-vs-crossover-revised} 
+	
+	\section{Research Ideas}
+	\begin{itemize}
+		
+		\item As shown in \citep{mixed-games}, randomly selecting the game in which individuals partake (snow drift, prisoner's dilemma), rates of cooperation increase proportionallly to the population heterogeneity.
+		In the context of generating images using evolutionary methods, multiple aesthetic measures as target fitness functions for evolutionary image generation has shown to enhance aesthetic appeal \citep{aesthetic-measures}.
+		A slight variation of this may be to vary the fitness function with which an individual is measured.
+		This may involve the random selection of one or more fitness functions in comparison to the use of all.
+		
+		\item Vary fitness functions based on graph location: certain node clusters will have a given fitness function that differs from another.
+		This may link itself to \citep{mixed-games} as increasing heterogeneity within the generative population may increase the overall fitness associated with the aesthetic measures of the generated images.
+		An issue arising from this is that we have smaller populations evolving within themselves.
+		If an outside enters a cluster, its fitness in the new population will be, with high probability, extremely low.
+		In the proceeding selection iteration, it will most likely be killed by an insider.
+		
+		\item Using a genotype definition that follows the methods introduced by \citep{sims}, it may be possible to create high aesthetic fitness individuals by using RMSE/compression complexity difference from a target image. 
+		This may result in individuals with a Lisp expression genotype generating images that closely resemble human-made artwork and imagery.
+		With a collection of individuals evolved in this manner, similarly to \citep{nevar}, a high fitness population can be initialized for further interactive evolution.
+		
+		\item Genotype definitions for image generation introduced by Sims \citep{sims} involve the application of a Lisp expression to a series of coordinates \textbf{(x, y)} of the generated image.
+		This results in an individual generating images in a deterministic way.
+		Has there been any research for creating individuals that use higher order generative expressions?
+		For example if we allow every genotype to accept three inputs: \textbf{x} and \textbf{y} coordinates, and an arbitrary seed value.
+		
+		\item In the \textit{Further Work} section of \citep{distributed-evolutionary-art} the authors discuss using different fitness functions on each island in the distributed model.
+		They offer the idea that individuals have credit which allows time for the adaption of new migrants to a potentially drastically different environments.
+		This may alleviate some problems associated with multiple fitness functions across spatially separated sub-populations.
+		However I believe the issue of migrants coming to an early death is due to the lack of continuity between fitness functions.
+		This issue may be addressed by using metrics that accept varying numbers of hyper-parameters in order to create a fitness function that is both easily transformed and continuous.
+		By creating a smoother transition for migrants between islands, there is greater fixation potential for individuals with high fitness while maintaining diversity.
+		
+		\item Using the Fireworks Algorithm (FA) \citep{fireworks} for searching the problems space associated with evolving generative art.
+		There exist variations on the original algorithm proposed in \citep{fireworks} which both increase performance \citep{fireworks-adaptive, fireworks-enhanced, fireworks-cooperative}, and reduce implementation complexity \citep{fireworks-bare-bones}.
+		The current state-of-the-art FA using a number of cooperative strategies \citep{fireworks-cooperative} in addition to techniques that increase quality-diversity (QD) of potential solutions.
+		FA has been mostly used in problem domains where the genotype space is continuous however some recent studies have investigated the application of a discrete FA \citep{fireworks-discrete-combinatorial, fireworks-discrete-tsp}.
+		Research into evolutionary art often uses genotype crossover heavily when using techniques introduced by \citep{sims}.
+		However due to being primarily a Particle Swam Optimization (PSO) algorithm, the FA does not incorporate crossover.
+		There is research to support that any benefit associated with exclusive use of either crossover or mutation is often "statistically insignificant" \citep{mutation-vs-crossover,mutation-vs-crossover-revised}.
+		As a result, using FA in the context of evolutionary art using genotype expressions such as those introduced by \citep{sims} may be promising.
+		
+		\item Self-organizing graph topology.
+		This would involve evolving graphs as individuals which have the ability of change their structure over time (e.g. add/remove node or edge).
+		This may have already been done by \citep{mabu2007graph}
+		
+		\item Performing multi-objective optimization through population structuring with spatially distributed objective-weighted fitness functions.
+		If we have an N-objective optimization problem, then we can create an N-dimensional Island Model structure.
+		The idea is to have a different fitness function on each island, that is merely a weighted sum of single-objectives according to the .
+		By having an $N \times M$ fitness space
+		
+	\end{itemize}
+	
+	\section{Refining Potential Research Aims}
+	
+	After meeting with Jon this week (11 March 2019) he made apparent the impending need to choose a specific area of research in which I will focus.
+	He briefly mentioned countless areas of generative evolutionary computing in which I could focus my attention.
+	Since each aspect of the generative and evolutionary process is broad in and of itself, I should pick a single sub-domain.
+	Examples of sub-domains to choose from:
+	\begin{itemize}
+		\item Aesthetic measures for unsupervised evolution of images.
+		Particularly focusing on some of the dissonance that currently exists between used aesthetic measures, and their accuracy in determing how \textit{aesthetic} and image is deemed by people.
+		\item Use of graphs in evolutionary algorithms to increase both diversity of solutions in addition to solution quality.
+		This relates heavily to \citep{distributed-evolutionary-art}.
+		\item Generative method.
+		Genotype definition for generation.
+		Some research has looked into multi-level generative processes in which individuals generate agents which themselves synthesise images.
+		Using genetic programming for designing neural network architectures.
+		\item Looking into increasing quality-diversity metrics. \textbf{Extremely broad}
+	\end{itemize}
+	
+	
+	\pagebreak
+	
+	\section{Meeting Notes}
+	
+	This section is for notes relating to each meeting between Jon McCormack and Konrad Cybulski. To include both pre- and post-meeting thoughts, ideas, reflections, further investigation, action points, etc.
+	\\\\
+	
+	\begin{center} \textbf{Monday 11 March 2019 (2019-03-11)} \end{center} 
+	\textbf{Pre-meeting}
+	\\
+	The research proposal is due for submission on Friday 12 April at 3pm.
+	It is marked on the following criteria:
+	\begin{itemize}
+		\item Formulation of research questions/aims
+		\item Review of the relevant literature and existing works as background of the proposed project
+		\item Description of research design/methodology/method(s) used
+		\item Discussion of (expected) outcomes and (potential) contributions
+		\item Communication skills
+	\end{itemize}
+	I have been looking into the area of evolutionary art as a primary focus, with investigation into related areas of evolutionary computing.
+	I have a list of potential research ideas, particularly a series of directions I would be happy to take with my research.
+	Two ideas that interest me most include distributed populations for evolving QD art, and applying the fireworks algorithm to evolutionary art.
+	\\\\
+	In terms of distributed populations for evolving art, research on arbitrary amplifiers of selection \citep{graph-amplifiers} in addition to using a distributed Island Model \citep{distributed-evolutionary-art} may be a good starting point.
+	I feel that I still need to continue reading into the use of aesthetic measures for the unsupervised evolution of images.
+	If we aim to take this direction, what else should I look into, start doing, etc?
+	\\\\
+	Is it worth looking into applying the FA (and variations e.g. CoFFWA) to evolutionary art?
+	Some research has been done into using FA on discrete data sets such as the TSP and scheduling problems.
+	As an honours project this may be too limited in scope?
+	\\\\
+	\textbf{Action Items}
+	\\
+	\begin{todolist}
+		\item[\done] Use Overleaf for Latex source control.
+		\item[\done] Share GitHub and Overleaf jon.mccormack@monash.edu. 
+		\item[\done] Write half a page detailing what I'm interested in looking at. (Why, how, what is your plan? Go into a good amount of detail). 
+		Send this to Jon one or two days before next meeting (18 March 2019).
+		If I have multiple points of interest, write a half page for each which we can further narrow down.
+	\end{todolist}
+	
+	\begin{center} \textbf{Monday 18 March 2019 (2019-03-18)} \end{center} 
+	\textbf{Pre-meeting}
+	After having some trouble deciding on a domain in which to focus my attention, I feel quite positive choosing the area of fostering genetic diversity in structured populations.
+	Specifically on the use of graphs for population structuring, this allows me to leverage some quite recent findings into amplifiers of fitness \citep{graph-amplifiers} in conjunction with research performed into maintaining genetic diversity through spatially structured populations performed by \citep{distributed-evolutionary-art}.
+	The main focus for this meeting is to narrow down my ultimate topic of research with which to continue, and further write my proposal, literature review, etc.
+	I've written a short and concise summary of my current topic of interest with some justification and a brief plan of further work.
+	\\\\
+	Regardless of if it is decided that I work on this topic or another, my priority will shifts to the proposal given its relatively close deadline.
+	Then I have questions relating to the order in which I complete the proposal: aims, background, methodology, expected outcomes/contributions.
+	My general assumption would be that I should really be iteratively building each of these sections in parallel, with a slightly heavier focus on the background and outcomes/aims.
+	Since I would expect the methodology to arise in a more coherent manner from the background and outcomes.
+	\\\\
+	\textbf{Notes}
+	Any notes to make during the meeting
+	\\\\
+	\textbf{Action Items}
+	\begin{todolist}
+		\item 
+	\end{todolist}
+	\pagebreak
+	
+	\bibliographystyle{plain}
+	\bibliography{references}
+	
 \end{document}
