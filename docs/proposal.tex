@@ -15,8 +15,12 @@
 \section{Introduction}
 
 In the domain of creative artificial intelligence and evolutionary art, the desire exists for processes that produce imagery that is not only visually appealing, but images that exhibit abstract and emotive characteristics.
-There exists extensive research on the production of realistic, and target label accurate images such as work by \citet{nguyen2015innovation} using quality-diverse (QD) algorithms in combination with deep neural networks (DNN), or \citet{bao2017cvae} that uses a variational generative adversarial network (GAN) architecture.
-Recent work by \citet{tan2017artgan} has explored techniques for synthesizing artwork according to a target artist or genre through the use of a GAN architecture with highly accurate and creative results.
+There exists extensive research on the production of realistic, and target label accurate images.
+The use of quality-diverse (QD) algorithms in combination with deep neural network (DNN) image classifiers were used by \citet{nguyen2015innovation} to generate images with high classification accuracy from pre-trained DNN.
+\citet{bao2017cvae} exmplifies recent use of variational generative adversarial network (GAN) architectures for the generation of realistic images from fine-grained target labels.
+GANs have shown their use in text-to-image synthesis \citep{reed2016generative, zhang2017stackgan}, producing realistic images reflecting the detailed description from which they are generated.
+With regard to creative image generation, \citet{tan2017artgan} explored techniques for synthesizing artwork with more abstract characteristics.
+Through the use of a target artist or genre, the generative network produced images that were highly abstract and stylistically accurate.
 
 Little exploration however has been done on incorporating emotion into the process of art and image generation.
 \citet{ali2017emotional} explored the idea of \textit{emotion transfer}, using techniques such as image emotion assignment, and color/style transfer with the aim of altering image composition to reach a target emotion.
@@ -77,7 +81,7 @@ Common GAN application has involved the generation of realistic images, such as 
 \citet{tan2017artgan} has explored the generation of art according to target genre and artist.
 Where throughout the training process,
 
-\subsection{Deep neural networks for image classification and fitness evaluation}
+\subsection{Generative adversarial networks}
 Deep neural networks (DNN) have grown tremendously in popularity in the domain of image generation, and classification, and the accuracy with which they perform.
 
 Research by \citet{burton1998genetic} showed that a genetic algorithm composing music benefited from fitness evaluation that relied on phenotype clustering, favoring those that showed diversity from existing clusters.
