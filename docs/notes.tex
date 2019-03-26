@@ -228,22 +228,35 @@
 		
 	\end{itemize}
 	
-	\section{Refining Potential Research Aims}
-	
-	After meeting with Jon this week (11 March 2019) he made apparent the impending need to choose a specific area of research in which I will focus.
-	He briefly mentioned countless areas of generative evolutionary computing in which I could focus my attention.
-	Since each aspect of the generative and evolutionary process is broad in and of itself, I should pick a single sub-domain.
-	Examples of sub-domains to choose from:
+	\section{Promoting genetic diversity through graph-based population structuring}
+	Research conducted by \citet{graph-amplifiers} shows that graphs can be constructed that are arbitrarily strong amplifiers of fitness.
+	In many fields, particularly evolutionary art, the notion of quality-diversity (QD) becomes key when the desired outcome is not simply a single high quality solution, but a diverse collection.
+	This involves balancing the rate of exploration and exploitation in any EA, PSO or other stochastic optimization algorithm.
+	My primary interest in this area involves investigating graph topologies that amplify population quality and diversity.
+	This would primarily leverage the findings of \citet{graph-amplifiers}, in addition to research into genetic diversity in Cellular Evolutionary Algorithms (CEA) and population structuring according to the Island Model (IM).
+	\\\\
+	Research into migration topologies in the IM has investigated the impact of structures on solution quality and convergence rates in great depth \citep{rucinski2010impact}.
+	I would initially focus on investigating how some common topologies (scale-free networks, grid, ring, etc.) affect genetic diversity for a number of common GA benchmarks.
+	It would be of interest to see if the effects of various migration topologies on quality and convergence closely reflect those of a cellular graph structure.
+	In order to investigate the effect of network topology on genetic diversity, a number of factors for investigation must be scoped:
 	\begin{itemize}
-		\item Aesthetic measures for unsupervised evolution of images.
-		Particularly focusing on some of the dissonance that currently exists between used aesthetic measures, and their accuracy in determing how \textit{aesthetic} and image is deemed by people.
-		\item Use of graphs in evolutionary algorithms to increase both diversity of solutions in addition to solution quality.
-		This relates heavily to \citep{distributed-evolutionary-art}.
-		\item Generative method.
-		Genotype definition for generation.
-		Some research has looked into multi-level generative processes in which individuals generate agents which themselves synthesise images.
-		Using genetic programming for designing neural network architectures.
-		\item Looking into increasing quality-diversity metrics. \textbf{Extremely broad}
+		\item Measures of genetic diversity
+		\item Network topology selection
+		\item Benchmark problems (general optimization, QD, etc.)
+		\item Birth-death process
+		\item Single/multiple objective optimization
+	\end{itemize}
+	The type of genetic algorithm used has a large effect on solution quality and convergence in the IM \citep{rucinski2010impact}.
+	Since this proposed research aims to evolve populations in a network, investigation is required into methods for selection and reproduction when individuals have structured relationships.
+	An extensive investigation into the use graphs for evolutionary algorithms was performed by \citet{bryden2006graph} and has been used as a basis for further research into the impact of population structure in evolutionary algorithms \citep{spector2006trivial, payne2009evolutionary}.
+	\\\\
+	Progression of topics for background/literature review:
+	\begin{itemize}
+		\item Importance of genetic diversity in evolutionary computing including specific use cases and benchmark problems.
+		\item Existing methods for improving genetic diversity; both implicitly and explicitly.
+		\item Methods for fitness amplification and their effect on diversity; the balance between exploration-exploitation.
+		\item Use of population structures in evolutionary computing (Island Model, Cellular Evolutionary Algorithm, Graphs, Niches, etc.)
+		\item Effect of population structures on solution quality, rate of convergence, and genetic diversity.
 	\end{itemize}
 	
 	
@@ -252,7 +265,6 @@
 	\section{Meeting Notes}
 	
 	This section is for notes relating to each meeting between Jon McCormack and Konrad Cybulski. To include both pre- and post-meeting thoughts, ideas, reflections, further investigation, action points, etc.
-	\\\\
 	
 	\begin{center} \textbf{Monday 11 March 2019 (2019-03-11)} \end{center} 
 	\textbf{Pre-meeting}
@@ -279,7 +291,6 @@
 	As an honours project this may be too limited in scope?
 	\\\\
 	\textbf{Action Items}
-	\\
 	\begin{todolist}
 		\item[\done] Use Overleaf for Latex source control.
 		\item[\done] Share GitHub and Overleaf jon.mccormack@monash.edu. 
@@ -287,7 +298,7 @@
 		Send this to Jon one or two days before next meeting (18 March 2019).
 		If I have multiple points of interest, write a half page for each which we can further narrow down.
 	\end{todolist}
-	
+	\pagebreak
 	\begin{center} \textbf{Monday 18 March 2019 (2019-03-18)} \end{center} 
 	\textbf{Pre-meeting}
 	After having some trouble deciding on a domain in which to focus my attention, I feel quite positive choosing the area of fostering genetic diversity in structured populations.
@@ -301,15 +312,42 @@
 	Since I would expect the methodology to arise in a more coherent manner from the background and outcomes.
 	\\\\
 	\textbf{Notes}
-	Any notes to make during the meeting
+	If goal is a theoretical outcome, ultimately look at applications. Performance, axiomatic assumptions that this makes, can we predict performance and is that supported by experimental.
+	General purpose applications: optimisation, search.
+	Preferably application-driven.
+	Introduction to bring up: why is this important, motivational argument, what is the specific area.
 	\\\\
 	\textbf{Action Items}
 	\begin{todolist}
-		\item 
+		\item[\done] Articulate aims clearly
+		\item Book: How to solve it, no free lunch theorem, essentials of metaheuristics (https://cs.gmu.edu/~sean/book/metaheuristics/Essentials.pdf)
+		
+		\item Not to focus on what's necessarily the \textit{optimal} solution. But to focus on how the evolutionary dynamics within the population to 
 	\end{todolist}
 	\pagebreak
 	
-	\bibliographystyle{plain}
+	\begin{center} \textbf{Monday 25 March 2019 (2019-03-25)} \end{center} 
+	
+	\textbf{Notes}
+	Think a lot about the motivation, particularly don't try to make the generation of art more \textit{accurate}. Look at making the process of generating art more \textbf{interesting}.
+	
+	The combination of aesthetic measures and DNN image classifiers which recognize objects will not produce particularly interesting images, at best they may just produce images that look more like a \textit{dog} or a \textit{boat}.
+	\\\\
+	\textbf{Action Items}
+	\begin{todolist}
+		\item Look into the research paper about aesthetic measures in evolutionary art as well as the psychology relating to such measures:\\
+		\textit{https://www.hindawi.com/journals/complexity/2019/3495962/}
+		\item Read through papers sent by Jon on Slack
+	\end{todolist}
+	\textbf{Post-meeting}
+	Perhaps it could be interesting to use MAP-Elites and a discriminatory NN to generate images of a certain emotion. This would involve investigating the ability to classify the emotion of an image for which would form the basis for the discriminator; then using some simple text analysis to convert a series of descriptive words to a target emotion vector and then use that as the basis for a MAP-Elites generative process.
+	Research has been done into the synthesis of images according to a description of the desired image \citep{reed2016generative}.
+	Using a data set comprised of birds, flowers, and their respective descriptions, \citet{reed2016generative} were able to produce highly accurate images.
+	\citet{mathews2016senticap} investigates the incorporation of sentiment in the generative process for captioning images.
+	The results showed that the architecture was able to produce, with high accuracy, captions that were at least as descriptive, with the target sentiment (positive/negative).
+	
+	
+	\bibliographystyle{plainnat}
 	\bibliography{references}
 	
 \end{document}
