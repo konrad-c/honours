@@ -1,6 +1,17 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
+\usepackage{pifont}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+	\hspace{-2.5pt}}
+
 \title{Generating artwork according to an emotional profile}
 \author{Konrad Cybulski}
 \date{March 2019}
@@ -98,9 +109,24 @@ Recent work by \citet{nguyen2015deep} and \citet{nguyen2015innovation} has used 
 
 \section{Methodology}
 
+\begin{todolist}
+	\item Emotion profile representation
+	\item System architecture (training/evaluation method)
+		\subitem Generator: input type (related to emotion profile representation)
+		\subitem Generator: base architecture e.g. use ArtGAN \citep{tan2017artgan}
+		\subitem Discriminator: use output image's emotion classification and difference to target as part of accuracy evaluation
+	\item Any interaction made between human and generator
+\end{todolist}
+
 
 \section{Expected Outcomes \& Contributions}
 
+The outcomes of this project will include a generative system with which art can be synthesized according to a target emotional profile.
+This system will be the combination of methods for the representation of emotion for use in a generative model, and an architecture with which such a model can be trained.
+Due to the exploratory nature of the project with respect to both system architecture and emotional profile representation, this research will have tested and analyzed various options and any comparative differences.
+
+The proposed generative system will be used to create a collection of art, categorised by the target emotional profile with which they were seeded.
+The verification proposed involves the public exhibition of produced images, providing feedback to the generative process and pairing the generated images with a human assigned emotion label for use in any further system training.
 
 
 \bibliographystyle{apalike}
