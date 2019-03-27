@@ -12,7 +12,7 @@
 \newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
 	\hspace{-2.5pt}}
 
-\title{Generating artwork according to an emotional profile}
+\title{Synthesizing emotion-driven art}
 \author{Konrad Cybulski}
 \date{March 2019}
 
@@ -22,6 +22,7 @@
 \begin{document}
 	
 \maketitle
+
 
 \section{Introduction}
 
@@ -40,21 +41,6 @@ The classification of an image's affective emotion, the emotion with which a vie
 \citet{kim2018building} produced a classifier for recognizing the emotion attributed to an image.
 This was done through the application of a DNN to decompose an image to a two-dimensional feature vector (valence and arousal) representing the image's emotion mapped to a continuous plane (see Figure \ref{fig:valence-arousal}).
 
-========================================
-
-The work conducted by \citet{tan2017artgan} aimed to create a process by which artwork could be generated with more abstract characteristics. 
-Through the use of a target artist or genre, and a respective discriminator assigned label, the generative network was able to produce images that were stylistically similar to the desired artist or genre.
-
-There has been extensive research however into the synthesis of visually appealing and aesthetic images using evolutionary algorithms.
-With human-guided evolution \citep{nevar} the process of fitness evaluation relies entirely on both subjective appeal, and unquantifiable metrics.
-Quantifiably estimating the aesthetic appeal of an image has been studied by \citet{den2010comparing, den2010using, den2011evolving} with varying results.
-A number of metrics such as image compression complexity, distribution of color gradients, fractal dimension, and contrast have shown to improve the quality of images generated through an unsupervised evolutionary process \citep{den2014investigating}.
-
-========================================
-
-Discuss the paper \citet{johnson2019understanding} which looks at the dissonance between aesthetic measures used in evolutionary art and the distributions of features ratings given by humans.
-
-========================================
 
 \section{Aims}
 
@@ -65,6 +51,7 @@ This will investigate both the efficacy with which a generative system can creat
 
 In order to test, and verify the output of such a system, generated images will be exhibited to explore their emotional effect on humans, and any dissonance between the intended, and resulting emotional profile.
 This will further verify the accuracy with which an emotional profile can be synthesized into affective artwork with such an architecture.
+
 
 \section{Background}
 
@@ -90,7 +77,6 @@ The introduction of the generative adversarial network architecture (GAN) by \ci
 Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesized to fine-detailed target labels such as bird species' and actors.
 \citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
 \citet{tan2017artgan} has explored the generation of art according to target genre and artist.
-Where throughout the training process,
 
 \subsection{Generative adversarial networks}
 Deep neural networks (DNN) have grown tremendously in popularity in the domain of image generation, and classification, and the accuracy with which they perform.
@@ -107,14 +93,28 @@ Recent work by \citet{nguyen2015deep} and \citet{nguyen2015innovation} has used 
 	\label{fig:valence-arousal}
 \end{figure}
 
+The area of image emotion and sentiment classification has been explored in a number of ways, primarily through image feature analysis derived from art and psychological factors \citep{machajdik2010affective}; and more recently using techniques such as deep neural networks \citep{chen2015learning, kim2018building}.
+Feature extraction and analysis has been used for various applications such as measuring aesthetic appeal \citep{den2010using,den2010comparing,den2011evolving} and as an emotional feature vector for sentiment classification \citep{machajdik2010affective}.
+Due to the artistic and psychological underpinnings used by \citet{machajdik2010affective}, the low-level features extracted from images can be understood at a high level.
+The relationship between an image's emotion and its core artistic components such as balance, harmony, and variety was further explored by \citet{zhao2014exploring}, which uses a comparably small feature vector to \citet{machajdik2010affective}, resulting however in a 5\% classification increase to state-of-the-art approaches at the time.
+
+Deep neural networks in this domain provide less transparency to the process with which emotions and sentiment are classified compared to feature analysis.
+
+
 \section{Methodology}
 
 \begin{todolist}
 	\item Emotion profile representation
+	\begin{todolist}
+		\item Discrete feature vector
+		\item Continuous valence-arousal space
+	\end{todolist}
 	\item System architecture (training/evaluation method)
-		\subitem Generator: input type (related to emotion profile representation)
-		\subitem Generator: base architecture e.g. use ArtGAN \citep{tan2017artgan}
-		\subitem Discriminator: use output image's emotion classification and difference to target as part of accuracy evaluation
+	\begin{todolist}
+		\item Generator: input type (related to emotion profile representation)
+		\item Generator: base architecture e.g. use ArtGAN \citep{tan2017artgan}
+		\item Discriminator: use output image's emotion classification and difference to target as part of accuracy evaluation
+	\end{todolist}
 	\item Any interaction made between human and generator
 \end{todolist}
 
