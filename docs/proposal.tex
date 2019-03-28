@@ -73,17 +73,13 @@ This genotype expression has been used in numerous further research into the pro
 This research primarily used the observation of \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend towards normal.
 While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing art without human interaction.
 
-The introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to be completely unsupervised.
+Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to be completely unsupervised.
 Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesized to fine-detailed target labels such as bird species' and actors.
 \citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
 \citet{tan2017artgan} has explored the generation of art according to target genre and artist.
 
 \subsection{Generative adversarial networks}
-Deep neural networks (DNN) have grown tremendously in popularity in the domain of image generation, and classification, and the accuracy with which they perform.
-
-Research by \citet{burton1998genetic} showed that a genetic algorithm composing music benefited from fitness evaluation that relied on phenotype clustering, favoring those that showed diversity from existing clusters.
-
-Recent work by \citet{nguyen2015deep} and \citet{nguyen2015innovation} has used pre-trained DNN image classifiers for fitness evaluation throughout the evolutionary process.
+Deep neural networks (DNN) have grown tremendously in popularity within the domain of image generation, and classification.
 	
 \subsection{Image emotion recognition}
 	
@@ -113,9 +109,12 @@ Deep neural networks in this domain provide less transparency to the process wit
 	\begin{todolist}
 		\item Generator: input type (related to emotion profile representation)
 		\item Generator: base architecture e.g. use ArtGAN \citep{tan2017artgan}
-		\item Discriminator: use output image's emotion classification and difference to target as part of accuracy evaluation
+		\item Discriminator: use output image's emotion classification and error from target emotional profile as error function (autoencoder method)
+		\item Discriminator: use image label as target emotional profile and use standard logistic discrimination.
+		\item Discriminator: general 
 	\end{todolist}
-	\item Any interaction made between human and generator
+	\item Any interaction made between human and generator e.g. text-to-image synthesis using text emotion classification fed through to the generative model.
+	
 \end{todolist}
 
 
