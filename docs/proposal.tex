@@ -56,6 +56,10 @@ This will further verify the accuracy with which an emotional profile can be syn
 \section{Background}
 
 \subsection{Unsupervised image synthesis}
+\begin{todolist}
+	\item Image generation methods explored: evolutionary algorithms, neural networks, line drawing, etc.
+	\item Measuring \textit{goodness} of a generated image: realism, abstractness, aesthetic appeal, etc.
+\end{todolist}
 
 \begin{figure}[h!]
 	\includegraphics[width=\textwidth]{images/sims-interactive-image-generation.png}
@@ -79,9 +83,22 @@ Common GAN application has involved the generation of realistic images, such as 
 \citet{tan2017artgan} has explored the generation of art according to target genre and artist.
 
 \subsection{Generative adversarial networks}
+\begin{todolist}
+	\item What is the generative adversarial network, and differences in common architectures
+	\item Why are GANs advantageous over the use of target feature analysis (aesthetics, etc.)
+	\item Text-to-image
+	\item Style transfer \& image-to-image
+\end{todolist}
+
 Deep neural networks (DNN) have grown tremendously in popularity within the domain of image generation, and classification.
+
 	
 \subsection{Image emotion recognition}
+\begin{todolist}
+	\item Sentiment classification: text \& images.
+	\item Emotion classification in images: facial expression, general imagery.
+	\item Methods of classifying emotion in images: single target emotion, discrete categorical likelihood, decomposition into continuous vector (valence-arousal).
+\end{todolist}
 	
 \begin{figure}[h!]
 	\includegraphics[width=0.75\textwidth]{images/valence-arousal-grid.png}
@@ -111,7 +128,6 @@ Deep neural networks in this domain provide less transparency to the process wit
 		\item Generator: base architecture e.g. use ArtGAN \citep{tan2017artgan}
 		\item Discriminator: use output image's emotion classification and error from target emotional profile as error function (autoencoder method)
 		\item Discriminator: use image label as target emotional profile and use standard logistic discrimination.
-		\item Discriminator: general 
 	\end{todolist}
 	\item Any interaction made between human and generator e.g. text-to-image synthesis using text emotion classification fed through to the generative model.
 	
