@@ -155,7 +155,10 @@ Such a model is used explicity by \citet{ali2017emotional} as a target emotion p
 The dataset created by \citet{mohammad2018wikiart} uses this representation of emotion to label the artwork available on WikiArt, and given it's relevance to both the domain of art, and emotion, this will be the representation first investigated.
 
 The circumplex model of emotion will be investigated further with both the WikiArt Emotion dataset, which will use the valence-arousal (VA) decomposition presented by \citet{kim2018building} to evaluate the VA equivalence for each artwork.
-The process to convert the existing dataset, with a floating-point vector defining the emotional profile of a given image, to a VA definition, 
+The process to convert the existing dataset's floating-point vector labels for emotion, to their respective VA values will involve applying the VA decomposition network to each of the dataset's images.
+Having both original vector and VA labels allows a direct comparison of the system's performance with both representations.
+A dataset has been created by \citet{zhao2016predicting} in which over 1,400,000 images are labelled according to the valence, arousal, and dominance values using image description text analysis.
+This dataset can be used in training a VA 
 
 \subsection{GAN Architecture}
 
