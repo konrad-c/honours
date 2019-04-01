@@ -67,15 +67,16 @@ This will further verify the accuracy with which an emotional profile can be syn
 	\label{fig:sims}
 \end{figure}
 
-The area of evolutionary art and image generation has been explored for many years.
-Some of the first \textit{human-in-the-loop} systems such as \textit{NEvAr} \citep{nevar} produced greatly impressive images leveraging methods introduced and exemplified by \citet{sims} such as those shown in Figure \ref{fig:sims}.
+The area of image and art generation has been explored through various avenues.
+Some of the first \textit{human-in-the-loop} systems such as \textit{NEvAr} \citep{nevar} produced greatly impressive images  through evolutionary techniques.
+Evolutionary art leveraged methods introduced and exemplified by \citet{sims} such as those shown in Figure \ref{fig:sims}.
 \citet{sims} proposed using \textit{Lisp} expressions for genotype definitions, which accepted a coordinate (x, y) which could be evaluated into a grayscale or RGB value, thus producing images.
-This genotype expression has been used in numerous further research into the process of both supervised and unsupervised image synthesis \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
+This genotype expression has been used in numerous further research into the process of both supervised and unsupervised image synthesis through evolutionary techniques \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
 
-\citet{sims} and \citet{nevar} were able to produce images with visually striking characteristics, despite the slow nature of the interactive process.
-\citet{aesthetic-measures} investigated the use of measures of aesthetics for fitness evaluation in artificially evolving images.
-This research primarily used the observation of \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend towards normal.
-While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing art without human interaction.
+Despite the slow nature of the interactive process, \citet{sims} and \citet{nevar} were able to produce images with visually striking characteristics.
+\citet{aesthetic-measures} investigated measures of aesthetics for fitness evaluation in artificially evolving images.
+This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend towards normal.
+While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing imagery without human interaction.
 
 Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to be completely unsupervised.
 Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesized to fine-detailed target labels such as bird species' and actors.
@@ -134,6 +135,31 @@ Image databases with singular emotion labels, and adjective-noun pairs (ANP) hav
 	\item Any interaction made between human and generator e.g. text-to-image synthesis using text emotion classification fed through to the generative model.
 	
 \end{todolist}
+
+The method with which this scope of work will be executed is divided into its components, which through composition form an end-to-end process for generating emotive art.
+
+\subsection{Datasets}
+There exist a few datasets in which non-facial images have labels of their affective emotion on the viewer.
+One particularly of interest to this research is the \textit{WikiArt Emotions} dataset \citep{mohammad2018wikiart} in which images of artwork were labelled with an emotional profile.
+Each of the more than 4000 images in the dataset has an associated vector representing the proportion of viewers assignign a given emotion to the artwork.
+Emotions such as gratitude, happiness, anger, and arrogance are represented among the twenty emotions assigned to the images.
+Along with their respective emotional profile, each image is classified according to its artistic category (Impressionism, Baroque, etc.) and other desirable measures such as viewer rating, artwork title, artist name, and year of creation.
+Due to the level of detail relating to each artwork's affective emotional profile, and its classified style and category, this dataset will be investigated initially for creating the generative system detailed below.
+
+\subsection{Emotion profile representation}
+The method with which an emotional classification can be represented has been investigated as mentioned in the background section.
+With options ranging from a single target label (happy, sad, etc.), to the continuous two-dimensional circumplex model (valence-arousal) representation first introduced by \citet{russell1980circumplex}.
+A model for representing emotion commonly used in classification tasks is that of a single label target, due its simplicity.
+However due to the subjectivity involved with the emotional classification of an image, a floating-point vector models the relative proportions with which an image's emotion is classified.
+Such a model is used explicity by \citet{ali2017emotional} as a target emotion profile, and is the representation used by \citep{mohammad2018wikiart} due to statistical methods used in gathering data.
+The dataset created by \citet{mohammad2018wikiart} uses this representation of emotion to label the artwork available on WikiArt, and given it's relevance to both the domain of art, and emotion, this will be the representation first investigated.
+
+The circumplex model of emotion will be investigated further with both the WikiArt Emotion dataset, which will use the valence-arousal (VA) decomposition presented by \citet{kim2018building} to evaluate the VA equivalence for each artwork.
+The process to convert the existing dataset, with a floating-point vector defining the emotional profile of a given image, to a VA definition, 
+
+\subsection{GAN Architecture}
+
+
 
 
 \section{Expected Outcomes \& Contributions}
