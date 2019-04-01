@@ -136,12 +136,10 @@ Image databases with singular emotion labels, and adjective-noun pairs (ANP) hav
 	
 \end{todolist}
 
-The method with which this scope of work will be executed is divided into its components, which through composition form an end-to-end process for generating emotive art.
-
 \subsection{Datasets}
 There exist a few datasets in which non-facial images have labels of their affective emotion on the viewer.
 One particularly of interest to this research is the \textit{WikiArt Emotions} dataset \citep{mohammad2018wikiart} in which images of artwork were labelled with an emotional profile.
-Each of the more than 4000 images in the dataset has an associated vector representing the proportion of viewers assignign a given emotion to the artwork.
+Each of the more than 4000 images in the dataset has an associated vector representing the proportion of viewers assigning a given emotion to the artwork.
 Emotions such as gratitude, happiness, anger, and arrogance are represented among the twenty emotions assigned to the images.
 Along with their respective emotional profile, each image is classified according to its artistic category (Impressionism, Baroque, etc.) and other desirable measures such as viewer rating, artwork title, artist name, and year of creation.
 Due to the level of detail relating to each artwork's affective emotional profile, and its classified style and category, this dataset will be investigated initially for creating the generative system detailed below.
@@ -151,18 +149,20 @@ The method with which an emotional classification can be represented has been in
 With options ranging from a single target label (happy, sad, etc.), to the continuous two-dimensional circumplex model (valence-arousal) representation first introduced by \citet{russell1980circumplex}.
 A model for representing emotion commonly used in classification tasks is that of a single label target, due its simplicity.
 However due to the subjectivity involved with the emotional classification of an image, a floating-point vector models the relative proportions with which an image's emotion is classified.
-Such a model is used explicity by \citet{ali2017emotional} as a target emotion profile, and is the representation used by \citep{mohammad2018wikiart} due to statistical methods used in gathering data.
+Such a model is used explicitly by \citet{ali2017emotional} as a target emotion profile, and is the representation used by \citep{mohammad2018wikiart} due to statistical methods used in gathering data.
 The dataset created by \citet{mohammad2018wikiart} uses this representation of emotion to label the artwork available on WikiArt, and given it's relevance to both the domain of art, and emotion, this will be the representation first investigated.
 
 The circumplex model of emotion will be investigated further with both the WikiArt Emotion dataset, which will use the valence-arousal (VA) decomposition presented by \citet{kim2018building} to evaluate the VA equivalence for each artwork.
 The process to convert the existing dataset's floating-point vector labels for emotion, to their respective VA values will involve applying the VA decomposition network to each of the dataset's images.
 Having both original vector and VA labels allows a direct comparison of the system's performance with both representations.
 A dataset has been created by \citet{zhao2016predicting} in which over 1,400,000 images are labelled according to the valence, arousal, and dominance values using image description text analysis.
-This dataset can be used in training a VA 
+This dataset can be used in training an predictor architecture according to \citet{kim2018building} that can determine the VA values of a given image.
+This can then be applied to both the WikiArt dataset,and extended to a larger number of images available on WikiArt.
 
-\subsection{GAN Architecture}
-
-
+\subsection{Generative architecture}
+The architecture through which images will be generated represents a core component of the entire creative system.
+\citet{tan2017artgan} specifies a GAN architecture which allows the propagation of a target style vector, and a process through which the assigned discriminator style label can be backpropagated to the generator network.
+Using such an architecture further allows the incorporation of emotion into the generator input.
 
 
 \section{Expected Outcomes \& Contributions}
