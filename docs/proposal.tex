@@ -138,6 +138,7 @@ The application of generative systems in the domain of affective computing, part
 \section{Methodology}
 
 \begin{todolist}
+	\item[\done] Datasets
 	\item Emotion profile representation
 	\begin{todolist}
 		\item Discrete feature vector
@@ -155,12 +156,17 @@ The application of generative systems in the domain of affective computing, part
 \end{todolist}
 
 \subsection{Datasets}
+
 There exist a few datasets in which non-facial images have labels of their affective emotion on the viewer.
-One particularly of interest to this research is the \textit{WikiArt Emotions} dataset \citep{mohammad2018wikiart} in which images of artwork were labelled with an emotional profile.
-Each of the more than 4000 images in the dataset has an associated vector representing the proportion of viewers assigning a given emotion to the artwork.
-Emotions such as gratitude, happiness, anger, and arrogance are represented among the twenty emotions assigned to the images.
-Along with their respective emotional profile, each image is classified according to its artistic category (Impressionism, Baroque, etc.) and other desirable measures such as viewer rating, artwork title, artist name, and year of creation.
-Due to the level of detail relating to each artwork's affective emotional profile, and its classified style and category, this dataset will be investigated initially for creating the generative system detailed below.
+Produced recently by \citep{zhao2016predicting} is a compilation of 1.4 million images from \textit{Flickr}, each assigned with a respective valence, arousal, and dominance (VAD) according to the circumplex model of emotion \citep{russell1980circumplex, bradley1994measuring}.
+The assigned values are derived from the analysis of each images textual description according to the methods described by \citet{warriner2013norms}.
+Additionally within the dataset are respective VAD values for the comments written by other users.
+This dataset has been chosen due to its large volume of data, and the method in which each VAD value is assigned.
+As detailed in \citet{zhao2016predicting}, the method for assigning values to each image involved the computational analysis of an image's description, in addition to a human filtering step to ensure the relative accuracy and validity of the assigned values.
+
+As previously discussed, there exist issues with the circumplex model of emotion.
+There exist shortcomings particularly in both its ability to capture more complex emotion, and the ease with which humans are able to convert felt emotions to a continuous space.
+The value in using such a large dataset is to overcome any potential error or inaccuracy associated with the assigned VAD values.
 
 \subsection{Emotion profile representation}
 The method with which an emotional classification can be represented has been investigated as mentioned in the background section.
