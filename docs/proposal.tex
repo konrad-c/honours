@@ -29,29 +29,31 @@
 In the domain of creative artificial intelligence and evolutionary art, the desire exists for processes that produce imagery that is not only visually appealing, but images that exhibit abstract and emotive characteristics.
 There exists extensive research on the production of realistic, and target label accurate images.
 The use of quality-diverse (QD) algorithms in combination with deep neural network (DNN) image classifiers were used by \citet{nguyen2015innovation} to generate images with high classification accuracy from pre-trained DNN.
-\citet{bao2017cvae} exmplifies recent use of variational generative adversarial network (GAN) architectures for the generation of realistic images from fine-grained target labels.
+\citet{bao2017cvae} exemplifies recent use of variational generative adversarial network (GAN) architectures for the generation of realistic images from fine-grained target labels.
 GANs have shown their use in text-to-image synthesis \citep{reed2016generative, zhang2017stackgan}, producing realistic images reflecting the detailed description from which they are generated.
-With regard to creative image generation, \citet{tan2017artgan} explored techniques for synthesizing artwork with more abstract characteristics.
+With regard to creative image generation, \citet{tan2017artgan} explored techniques for synthesising artwork with more abstract characteristics.
 Through the use of a target artist or genre, the generative network produced images that were highly abstract and stylistically accurate.
 
 Little exploration however has been done on incorporating emotion into the process of art and image generation.
-\citet{ali2017emotional} explored the idea of \textit{emotion transfer}, using techniques such as image emotion assignment, and color/style transfer with the aim of altering image composition to reach a target emotion.
-Examples given use a target profile, with varying levels of emotions such as joy, anger, and fear, to alter the image's color composition.
+\citet{ali2017emotional} explored the idea of \textit{emotion transfer}, using techniques such as image emotion assignment, and colour/style transfer with the aim of altering image composition to reach a target emotion.
+Examples given use a target profile, with varying levels of emotions such as joy, anger, and fear, to alter the image's colour composition.
 The classification of an image's affective emotion, the emotion with which a viewer classifies the image, has been explored in various works \citep{machajdik2010affective, chen2015learning, kim2018building}.
-\citet{kim2018building} produced a classifier for recognizing the emotion attributed to an image.
+\citet{kim2018building} produced a classifier for recognising the emotion attributed to an image.
 This was done through the application of a DNN to decompose an image to a two-dimensional feature vector (valence and arousal) representing the image's emotion mapped to a continuous plane (see Figure \ref{fig:valence-arousal}).
+
+\section{Motivation}
+
 
 
 \section{Aims}
-
-The aim of this research is to explore the synthesis of artwork with a target emotional profile.
-Primarily leveraging work by \citet{tan2017artgan} and \citet{kim2018building} to produce a generative architecture whose output not only has desirable abstract characteristics, but shows emotive capabilities.
-The proposed system would generate an image that satisfies a set of emotions provided.
-This will investigate both the efficacy with which a generative system can create emotive images, as well as give insight into the properties attributed to various emotions portrayed in image form.
-
-In order to test, and verify the output of such a system, generated images will be exhibited to explore their emotional effect on humans, and any dissonance between the intended, and resulting emotional profile.
-This will further verify the accuracy with which an emotional profile can be synthesized into affective artwork with such an architecture.
-
+The aim of this research is to better understand the visual patterns associated with various emotions conveyed in images.
+This will primarily leverage image emotion recognition architectures explored by \citet{kim2018building}, in combination with the dataset produced by \citet{zhao2016predicting} containing over 1.4 million images with assigned valence, arousal, and dominance levels derived from their descriptions.
+Producing an architecture with which valence-arousal (VA) values can be assigned to images forms the basis for this research.
+Such a platform allows further exploration into the way in which it assigns VA values to more complex, multi-faceted and multi-layered images, and the efficacy with which this is done.
+Furthermore this process, and the patterns learned by it can be better understood through the use of generative processes which maximise given target features in a quality-diverse way \citep{nguyen2015innovation, nguyen2015deep}, or through a generative adversarial approach \citep{tan2017artgan}.
+In the context of this research, such features include valence, arousal, dominance, happiness, sadness, etc.
+This will allow a great understanding of the visual patterns that such an architecture learns, and any psychological or artistic parallels that can be drawn.
+The combination of such a generative system with a classifier of emotion can be further extended to domains such as generative art and text-to-image synthesis, with the focus of emotion-driven image generation.
 
 \section{Background}
 
