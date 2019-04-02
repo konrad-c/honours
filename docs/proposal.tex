@@ -38,35 +38,7 @@ The complexity of such a continuous representation of emotion has been extended 
 
 The domain of emotion classification has had a particular focus on facial expressions and text \citep{cambria2016affective, warriner2013norms}.
 Image emotion classifiers have been explored \citep{kim2018building, machajdik2010affective, chen2015learning, chen2014deepsentibank} yet their use has been limited.
-While humans ability to recognise, label, and discuss the emotive content of an image is not lacking, the understanding of computational classifiers is.
-
-
-
-
-In the domain of creative artificial intelligence and evolutionary art, the desire exists for processes that produce imagery that is not only visually appealing, but images that exhibit abstract and emotive characteristics.
-There exists extensive research on the production of realistic, and target label accurate images.
-The use of quality-diverse (QD) algorithms in combination with deep neural network (DNN) image classifiers were used by \citet{nguyen2015innovation} to generate images with high classification accuracy from pre-trained DNN.
-\citet{bao2017cvae} exemplifies recent use of variational generative adversarial network (GAN) architectures for the generation of realistic images from fine-grained target labels.
-GANs have shown their use in text-to-image synthesis \citep{reed2016generative, zhang2017stackgan}, producing realistic images reflecting the detailed description from which they are generated.
-With regard to creative image generation, \citet{tan2017artgan} explored techniques for synthesising artwork with more abstract characteristics.
-Through the use of a target artist or genre, the generative network produced images that were highly abstract and stylistically accurate.
-
-Little exploration however has been done on incorporating emotion into the process of art and image generation.
-\citet{ali2017emotional} explored the idea of \textit{emotion transfer}, using techniques such as image emotion assignment, and colour/style transfer with the aim of altering image composition to reach a target emotion.
-Examples given use a target profile, with varying levels of emotions such as joy, anger, and fear, to alter the image's colour composition.
-The classification of an image's affective emotion, the emotion with which a viewer classifies the image, has been explored in various works \citep{machajdik2010affective, chen2015learning, kim2018building}.
-\citet{kim2018building} produced a classifier for recognising the emotion attributed to an image.
-This was done through the application of a DNN to decompose an image to a two-dimensional feature vector (valence and arousal) representing the image's emotion mapped to a continuous plane (see Figure \ref{fig:valence-arousal}).
-
-Recent work by \citet{nguyen2015innovation} in evolutionary image generation has aimed to address the desire for a system that not only produces visually appealing images, but a diverse collection.
-To address the need for a high quality, yet diverse solution space in related optimisation domains, algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed.
-The use of such QD algorithms has shown great promise in its efficiency and accuracy on a number of hard optimisation problems \citep{pugh2016quality} such as maze navigation \citep{lehman2011abandoning}.
-\citet{nguyen2015deep} and \citet{nguyen2015innovation} use MAP-Elites in conjunction with a pre-trained deep neural network (DNN) image classifier by assigning individual fitness according to the accuracy with which a generated image is classified.
-This process enables exploration into the inner workings of the DNN classifier by uncovering visual patterns that maximise the confidence with which an image is labelled.
-\citet{nguyen2015deep} leverages such an architecture to show shallowness with which an image classifier recognises images: recognising alternating yellow and black lines as a \textit{school bus}.
-
-
-\section{Motivation}
+While humans ability to recognise, label, and discuss the emotive content of an image is not lacking, the capability to computationally classify image emotion, and the underlying patterns learnt by such classifiers is.
 
 
 
@@ -124,7 +96,7 @@ Image databases with singular emotion labels, and adjective-noun pairs (ANP) hav
 	\label{fig:sims}
 \end{figure}
 
-Generative systems have been explored in various domains through numerous techniques.
+Generative systems have been explored in various domains with numerous techniques.
 Examples range from the generation of images and art using evolutionary methods \citep{sims, nevar}, to the synthesis of text to describe a given image through the use of deep neural networks \citep{mathews2016senticap}.
 Some of the first \textit{human-in-the-loop} image synthesis systems such as \textit{NEvAr} \citep{nevar} produced greatly impressive images through evolutionary techniques.
 Evolutionary art leveraged methods introduced and exemplified by \citet{sims} such as those shown in Figure \ref{fig:sims}.
@@ -139,14 +111,26 @@ While the images produced through this method did not meet the level of intricac
 Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to be completely unsupervised.
 Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesised to fine-detailed target labels such as bird species' and actors.
 \citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
-\citet{tan2017artgan} has explored the generation of art according to target genre and artist.
+Such an architecture has been applied to the area of art synthesis by \citet{tan2017artgan} in which images were generated according to a target genre and artist.
+Learning from a dataset of countless artworks under various categories, styles, and artists, it was hugely successful in generating images that were stylistically similar to existing art of the target artist/genre.
+Due to the competitive relationship of the generator and discriminator networks, the patterns learned by the discriminator propagate through the generator network.
+The discriminator network of the GAN architecture aims to learn patterns and styles from the dataset on which it is trained in order to discriminate between the generated and existing images.
+As a result, the images generated tend to resemble closely those in the training dataset, which represents a benefit in successfully producing images closely matching the target domain, and a detriment with regard to the networks potential creativity.
 
 
-As mentioned by \citet{nguyen2015innovation} in the context of an \textit{Innovation Engine}, high fitness individuals for a given target classification label (e.g. water tower, volcano, dome, etc.) often arise from varying fitness individuals in a different domain.
-The example shown by \citet{nguyen2015innovation} shows the path taken by numerous images descending from the classification of \textit{abaya} with 47\% confidence.
-A \textit{volcano} (99\%)  image descended from a \textit{castle} image (4\%), a \textit{planetarium} (95\%) from a \textit{boathouse} (10\%), a \textit{beacon} (96\%) from a \textit{cocker spaniel} (2\%).
-The evolutionary trajectory of individuals does not resemble the path taken in common genetic algorithms, where high fitness individuals arise from the exploitation of a local optima.
-The evolutionary path in this context conflicts with the findings of \citet{mouret2015illuminating} in which the MAP-Elites algorithm applied to neural network optimisation resulted in the fittest individuals arising due to mutations of their direct parents in the feature-space.
+Recent work by \citet{nguyen2015innovation} and \citet{nguyen2015deep} investigated the use of quality-diverse algorithms for image generation particularly to better understand the patterns learned by deep neural network image classifiers.
+Quality-diverse (QD) evolutionary algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed to address the need for a high quality, yet diverse solution space in related optimisation domains.
+The use of such QD algorithms has shown great promise in its efficiency and accuracy on a number of hard optimisation problems \citep{pugh2016quality} such as maze navigation \citep{lehman2011abandoning}.
+\citet{nguyen2015deep} and \citet{nguyen2015innovation} use MAP-Elites in conjunction with a pre-trained deep neural network (DNN) image classifier; assigning individual image fitness according to the accuracy with which it is classified.
+Using the MAP-Elites framework in this context, each dimension of the feature-space represents a classification label, and as such the generated images allow the exploration of label representative patterns and shapes learnt by the classifier.
+\citet{nguyen2015deep} leverages such an architecture to show the shallowness with which an image classifier recognises images.
+Assigning the label of \textit{school bus} to alternating yellow and black lines is a prime example of the way such a network has learnt to differentiate one class from the others.
+Thus enabling exploration into the inner workings of the DNN classifier by uncovering features that maximise the separation of one label to another.
+In contrast, \citet{nguyen2015innovation} uses the same architecture to explore the novelty-driven evolutionary path taken by generated images and the potential for such a system in the field of content synthesis.
+While the conclusions derived from \citet{nguyen2015innovation} and \citet{nguyen2015deep} contrast greatly, the quality-diverse generative method used to understand the visual components learnt by the classifier show such an architecture's exploratory abilities.
+
+
+
 
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis is limited.
 \textit{Emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
