@@ -160,7 +160,7 @@ The application of generative systems in the domain of affective computing, part
 There exist a few datasets in which non-facial images have labels of their affective emotion on the viewer.
 Produced recently by \citep{zhao2016predicting} is a compilation of 1.4 million images from \textit{Flickr}, each assigned with a respective valence, arousal, and dominance (VAD) according to the circumplex model of emotion \citep{russell1980circumplex, bradley1994measuring}.
 The assigned values are derived from the analysis of each images textual description according to the methods described by \citet{warriner2013norms}.
-Additionally within the dataset are respective VAD values for the comments written by other users.
+This dataset also contains the assigned categorical emotion according to the VAD values, and comments written by viewers for each image along with their derived VAD values.
 This dataset has been chosen due to its large volume of data, and the method in which each VAD value is assigned.
 As detailed in \citet{zhao2016predicting}, the method for assigning values to each image involved the computational analysis of an image's description, in addition to a human filtering step to ensure the relative accuracy and validity of the assigned values.
 
@@ -168,20 +168,17 @@ As previously discussed, there exist issues with the circumplex model of emotion
 There exist shortcomings particularly in both its ability to capture more complex emotion, and the ease with which humans are able to convert felt emotions to a continuous space.
 The value in using such a large dataset is to overcome any potential error or inaccuracy associated with the assigned VAD values.
 
-\subsection{Emotion profile representation}
-The method with which an emotional classification can be represented has been investigated as mentioned in the background section.
-With options ranging from a single target label (happy, sad, etc.), to the continuous two-dimensional circumplex model (valence-arousal) representation first introduced by \citet{russell1980circumplex}.
-A model for representing emotion commonly used in classification tasks is that of a single label target, due its simplicity.
-However due to the subjectivity involved with the emotional classification of an image, a floating-point vector models the relative proportions with which an image's emotion is classified.
-Such a model is used explicitly by \citet{ali2017emotional} as a target emotion profile, and is the representation used by \citep{mohammad2018wikiart} due to statistical methods used in gathering data.
-The dataset created by \citet{mohammad2018wikiart} uses this representation of emotion to label the artwork available on WikiArt, and given it's relevance to both the domain of art, and emotion, this will be the representation first investigated.
 
-The circumplex model of emotion will be investigated further with both the WikiArt Emotion dataset, which will use the valence-arousal (VA) decomposition presented by \citet{kim2018building} to evaluate the VA equivalence for each artwork.
-The process to convert the existing dataset's floating-point vector labels for emotion, to their respective VA values will involve applying the VA decomposition network to each of the dataset's images.
-Having both original vector and VA labels allows a direct comparison of the system's performance with both representations.
-A dataset has been created by \citet{zhao2016predicting} in which over 1,400,000 images are labelled according to the valence, arousal, and dominance values using image description text analysis.
-This dataset can be used in training an predictor architecture according to \citet{kim2018building} that can determine the VA values of a given image.
-This can then be applied to both the WikiArt dataset,and extended to a larger number of images available on WikiArt.
+\subsection{Emotion representation and prediction}
+Method for representing emotion in this research have been limited to three options based on the dataset: a single categorical label (happy, sad, etc.); a two-dimensional circumplex model (valence-arousal); and a three-dimensional circumplex model (valence-arousal-dominance).
+A model commonly used for representing emotion in classification tasks is that of a single categorical label, due its simplicity.
+While this model represents a reductionist view of emotion, omitting a great deal of complexity, it will be the emotional representation used in this investigation.
+Investigating the applicability of this simplistic model enables comparison between categorical and continuous representations of emotion explored in this work.
+The more complex models investigated in this research include both the two and three dimensional circumplex models: valence-arousal, and valence-arousal-dominance respectively.
+Each of these three models will be used as the classification/regression target of a deep neural network (DNN) model.
+
+The DNN model architectures tested will base itself off commonly used techniques such as those explored by \citet{kim2018building, chen2015learning}.
+This technique involves the repurposing of pre-trained DNN image classifiers by replacing or altering final layers to the desired output shape and proceeding with further training in the given problem domain.
 
 \subsection{Generative architecture}
 The architecture through which images will be generated represents a core component of the entire creative system.
