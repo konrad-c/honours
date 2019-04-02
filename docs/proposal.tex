@@ -26,6 +26,23 @@
 
 \section{Introduction}
 
+For centuries artists have been extremely talented at creating pieces of artwork that convey a range of emotions to those who view them.
+Extensive research has been conducted into how visual features affect humans emotionally and how these can be used to predict and detect the emotional content of images and text \citep{machajdik2010affective, zhao2014exploring}.
+Due to the subjective and qualitative nature of human emotion, assigning a quantitative measure of emotion to an image is no easy task.
+Furthermore the ability to computationally recognise the emotional content of an image has wide-ranging applications from classifying posts on social media, to the creation of images, text, and even physical spaces in an emotionally quantifiable way.
+
+Methods for representing emotion in a quantifiable way has been explored thoroughly in the domain of psychology and medicine, with continuous multi-dimensional representations being used in lieu of a single emotional label \citep{russell1980circumplex}.
+The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with it.
+Such a continuous model is not without flaw, failing to accurately capture more complex emotions that often represent concurrent conflicting sides of a given axis \citep{larsen1992promises}.
+The complexity of such a continuous representation of emotion has been extended by \citet{bradley1994measuring} through the addition of a third dimension: dominance; which is particularly of interest within social dynamics.
+
+The domain of emotion classification has had a particular focus on facial expressions and text \citep{cambria2016affective, warriner2013norms}.
+Image emotion classifiers have been explored \citep{kim2018building, machajdik2010affective, chen2015learning, chen2014deepsentibank} yet their use has been limited.
+While humans ability to recognise, label, and discuss the emotive content of an image is not lacking, the understanding of computational classifiers is.
+
+
+
+
 In the domain of creative artificial intelligence and evolutionary art, the desire exists for processes that produce imagery that is not only visually appealing, but images that exhibit abstract and emotive characteristics.
 There exists extensive research on the production of realistic, and target label accurate images.
 The use of quality-diverse (QD) algorithms in combination with deep neural network (DNN) image classifiers were used by \citet{nguyen2015innovation} to generate images with high classification accuracy from pre-trained DNN.
@@ -40,6 +57,14 @@ Examples given use a target profile, with varying levels of emotions such as joy
 The classification of an image's affective emotion, the emotion with which a viewer classifies the image, has been explored in various works \citep{machajdik2010affective, chen2015learning, kim2018building}.
 \citet{kim2018building} produced a classifier for recognising the emotion attributed to an image.
 This was done through the application of a DNN to decompose an image to a two-dimensional feature vector (valence and arousal) representing the image's emotion mapped to a continuous plane (see Figure \ref{fig:valence-arousal}).
+
+Recent work by \citet{nguyen2015innovation} in evolutionary image generation has aimed to address the desire for a system that not only produces visually appealing images, but a diverse collection.
+To address the need for a high quality, yet diverse solution space in related optimisation domains, algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed.
+The use of such QD algorithms has shown great promise in its efficiency and accuracy on a number of hard optimisation problems \citep{pugh2016quality} such as maze navigation \citep{lehman2011abandoning}.
+\citet{nguyen2015deep} and \citet{nguyen2015innovation} use MAP-Elites in conjunction with a pre-trained deep neural network (DNN) image classifier by assigning individual fitness according to the accuracy with which a generated image is classified.
+This process enables exploration into the inner workings of the DNN classifier by uncovering visual patterns that maximise the confidence with which an image is labelled.
+\citet{nguyen2015deep} leverages such an architecture to show shallowness with which an image classifier recognises images: recognising alternating yellow and black lines as a \textit{school bus}.
+
 
 \section{Motivation}
 
@@ -57,52 +82,15 @@ The combination of such a generative system with a classifier of emotion can be 
 
 \section{Background}
 
-\subsection{Unsupervised image synthesis}
-\begin{todolist}
-	\item Image generation methods explored: evolutionary algorithms, neural networks, line drawing, etc.
-	\item Measuring \textit{goodness} of a generated image: realism, abstractness, aesthetic appeal, etc.
-\end{todolist}
 
-\begin{figure}[h!]
-	\includegraphics[width=\textwidth]{images/sims-interactive-image-generation.png}
-	\caption{Images generated through the process of interactive evolution introduced by \citet{sims}}
-	\label{fig:sims}
-\end{figure}
 
-The area of image and art generation has been explored through various avenues.
-Some of the first \textit{human-in-the-loop} systems such as \textit{NEvAr} \citep{nevar} produced greatly impressive images  through evolutionary techniques.
-Evolutionary art leveraged methods introduced and exemplified by \citet{sims} such as those shown in Figure \ref{fig:sims}.
-\citet{sims} proposed using \textit{Lisp} expressions for genotype definitions, which accepted a coordinate (x, y) which could be evaluated into a grayscale or RGB value, thus producing images.
-This genotype expression has been used in numerous further research into the process of both supervised and unsupervised image synthesis through evolutionary techniques \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
-
-Despite the slow nature of the interactive process, \citet{sims} and \citet{nevar} were able to produce images with visually striking characteristics.
-\citet{aesthetic-measures} investigated measures of aesthetics for fitness evaluation in artificially evolving images.
-This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend towards normal.
-While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing imagery without human interaction.
-
-Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to be completely unsupervised.
-Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesized to fine-detailed target labels such as bird species' and actors.
-\citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
-\citet{tan2017artgan} has explored the generation of art according to target genre and artist.
-
-\subsection{Generative adversarial networks}
-\begin{todolist}
-	\item What is the generative adversarial network, and differences in common architectures
-	\item Why are GANs advantageous over the use of target feature analysis (aesthetics, etc.)
-	\item Text-to-image
-	\item Style transfer \& image-to-image
-\end{todolist}
-
-Deep neural networks (DNN) have grown tremendously in popularity within the domain of image generation, and classification.
-
-	
 \subsection{Image emotion recognition}
 \begin{todolist}
 	\item Sentiment classification: text \& images.
 	\item Emotion classification in images: facial expression, general imagery.
 	\item Methods of classifying emotion in images: single target emotion, discrete categorical likelihood, decomposition into continuous vector (valence-arousal).
 \end{todolist}
-	
+
 \begin{figure}[h!]
 	\includegraphics[width=0.75\textwidth]{images/valence-arousal-grid.png}
 	\caption{Distribution of emotions associated with levels of valence and arousal determined by DNN classifier produced by \citet{kim2018building}}
@@ -117,6 +105,51 @@ The relationship between an image's emotion and its core artistic components suc
 Deep neural networks in this domain provide less transparency to the process with which emotions and sentiment are classified compared to feature analysis.
 The emotional content of an image can be decomposed in various ways.
 Image databases with singular emotion labels, and adjective-noun pairs (ANP) have been used for the training of deep neural network classifiers \citep{chen2014deepsentibank, yang2018visual} with up to 200\% performance gains over support vector machine classifiers.
+
+
+\subsection{Computational image synthesis}
+\begin{todolist}
+	\item Image generation methods explored: evolutionary algorithms, neural networks, line drawing, etc.
+	\item Measuring \textit{goodness} of a generated image: realism, abstractness, aesthetic appeal, etc.
+	
+	\item What is the generative adversarial network, and differences in common architectures
+	\item Why are GANs advantageous over the use of target feature analysis (aesthetics, etc.)
+	\item Text-to-image
+	\item Style transfer \& image-to-image
+\end{todolist}
+
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{images/sims-interactive-image-generation.png}
+	\caption{Images generated through the process of interactive evolution introduced by \citet{sims}}
+	\label{fig:sims}
+\end{figure}
+
+Generative systems have been explored in various domains through numerous techniques.
+Examples range from the generation of images and art using evolutionary methods \citep{sims, nevar}, to the synthesis of text to describe a given image through the use of deep neural networks \citep{mathews2016senticap}.
+Some of the first \textit{human-in-the-loop} image synthesis systems such as \textit{NEvAr} \citep{nevar} produced greatly impressive images through evolutionary techniques.
+Evolutionary art leveraged methods introduced and exemplified by \citet{sims} such as those shown in Figure \ref{fig:sims}.
+\citet{sims} proposed using \textit{Lisp} expressions for genotype definitions, which accepted a coordinate (x, y) which could be evaluated into a grayscale or RGB value producing images.
+This genotype expression has been used in numerous further research into the process of both supervised and unsupervised image synthesis through evolutionary techniques \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
+
+Despite the slow nature of the interactive process, \citet{sims} and \citet{nevar} were able to produce images with visually striking characteristics.
+\citet{aesthetic-measures} investigated measures of aesthetics for fitness evaluation in artificially evolving images.
+This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend towards normal.
+While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing imagery without human interaction.
+
+Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to be completely unsupervised.
+Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesised to fine-detailed target labels such as bird species' and actors.
+\citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
+\citet{tan2017artgan} has explored the generation of art according to target genre and artist.
+
+
+As mentioned by \citet{nguyen2015innovation} in the context of an \textit{Innovation Engine}, high fitness individuals for a given target classification label (e.g. water tower, volcano, dome, etc.) often arise from varying fitness individuals in a different domain.
+The example shown by \citet{nguyen2015innovation} shows the path taken by numerous images descending from the classification of \textit{abaya} with 47\% confidence.
+A \textit{volcano} (99\%)  image descended from a \textit{castle} image (4\%), a \textit{planetarium} (95\%) from a \textit{boathouse} (10\%), a \textit{beacon} (96\%) from a \textit{cocker spaniel} (2\%).
+The evolutionary trajectory of individuals does not resemble the path taken in common genetic algorithms, where high fitness individuals arise from the exploitation of a local optima.
+The evolutionary path in this context conflicts with the findings of \citet{mouret2015illuminating} in which the MAP-Elites algorithm applied to neural network optimisation resulted in the fittest individuals arising due to mutations of their direct parents in the feature-space.
+
+The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis is limited.
+\textit{Emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
 
 
 \section{Methodology}
