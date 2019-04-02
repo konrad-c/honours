@@ -12,7 +12,7 @@
 \newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
 	\hspace{-2.5pt}}
 
-\title{Synthesizing emotive art}
+\title{Exploring emotional representation in deep neural network image emotion classifiers}
 \author{Konrad Cybulski}
 \date{March 2019}
 
@@ -31,30 +31,32 @@ Extensive research has been conducted into how visual features affect humans emo
 Due to the subjective and qualitative nature of human emotion, assigning a quantitative measure of emotion to an image is no easy task.
 Furthermore the ability to computationally recognise the emotional content of an image has wide-ranging applications from classifying posts on social media, to the creation of images, text, and even physical spaces in an emotionally quantifiable way.
 
-Methods for representing emotion in a quantifiable way has been explored thoroughly in the domain of psychology and medicine, with continuous multi-dimensional representations being used in lieu of a single emotional label \citep{russell1980circumplex}.
-The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with it.
-Such a continuous model is not without flaw, failing to accurately capture more complex emotions that often represent concurrent conflicting sides of a given axis \citep{larsen1992promises}.
-The complexity of such a continuous representation of emotion has been extended by \citet{bradley1994measuring} through the addition of a third dimension: dominance; which is particularly of interest within social dynamics.
+Methods for quantifiably representing emotion have been explored thoroughly in the domain of psychology, with continuous multi-dimensional models being used in lieu of a single emotional label .
+The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with it \citep{russell1980circumplex}.
+Such a continuous model is not without flaw, failing to accurately capture more complex emotional states, often those that represent concurrent conflicting sides of a given axis \citep{larsen1992promises}.
+The complexity of such a continuous representation of emotion has been investigated in depth and extended in various ways such as by \citet{bradley1994measuring}, through the addition of a third dimension: dominance; which is particularly of interest within social dynamics.
 
 The domain of emotion classification has had a particular focus on facial expressions and text \citep{cambria2016affective, warriner2013norms}.
 Image emotion classifiers have been explored \citep{kim2018building, machajdik2010affective, chen2015learning, chen2014deepsentibank} yet their use has been limited.
 While humans ability to recognise, label, and discuss the emotive content of an image is not lacking, the capability to computationally classify image emotion, and the underlying patterns learnt by such classifiers is.
 
-
+As with the use of deep neural network image classifiers such as ResNet, AlexNet, and Inception, the shapes and patterns learnt by such deep learning systems are difficult to extract.
+Recent work has looked at the use of quality-diverse generative algorithms with such deep classifiers \citep{nguyen2015deep, nguyen2015innovation}.
+The underlying patterns learned by the classifier can be surfaced by synthesising images that maximise various desirable features.
+This method allowed the exploration of images to which the classifier assigns a given label such as \textit{school bus} or \textit{lighthouse}, enabling a deeper understanding of the visual characteristics inherent to each class.
 
 \section{Aims}
 The aim of this research is to better understand the visual patterns associated with various emotions conveyed in images.
 This will primarily leverage image emotion recognition architectures explored by \citet{kim2018building}, in combination with the dataset produced by \citet{zhao2016predicting} containing over 1.4 million images with assigned valence, arousal, and dominance levels derived from their descriptions.
 Producing an architecture with which valence-arousal (VA) values can be assigned to images forms the basis for this research.
-Such a platform allows further exploration into the way in which it assigns VA values to more complex, multi-faceted and multi-layered images, and the efficacy with which this is done.
-Furthermore this process, and the patterns learned by it can be better understood through the use of generative processes which maximise given target features in a quality-diverse way \citep{nguyen2015innovation, nguyen2015deep}, or through a generative adversarial approach \citep{tan2017artgan}.
+Such a platform allows enables the exploration into how VA values are assigned to more complex, multi-faceted and multi-layered images, and the efficacy with which this is done.
+Furthermore this process, and the patterns learned by it will be better understood through the use of generative processes which maximise given target features in a quality-diverse way \citep{nguyen2015innovation, nguyen2015deep}, or through a generative adversarial approach \citep{tan2017artgan}.
 In the context of this research, such features include valence, arousal, dominance, happiness, sadness, etc.
 This will allow a great understanding of the visual patterns that such an architecture learns, and any psychological or artistic parallels that can be drawn.
-The combination of such a generative system with a classifier of emotion can be further extended to domains such as generative art and text-to-image synthesis, with the focus of emotion-driven image generation.
+The combination of such a generative system with a classifier of emotion can be further extended to domains such as generative art and text-to-image synthesis, with a focus on emotion-driven image generation.
+
 
 \section{Background}
-
-
 
 \subsection{Image emotion recognition}
 \begin{todolist}
@@ -81,8 +83,8 @@ Image databases with singular emotion labels, and adjective-noun pairs (ANP) hav
 
 \subsection{Computational image synthesis}
 \begin{todolist}
-	\item Image generation methods explored: evolutionary algorithms, neural networks, line drawing, etc.
-	\item Measuring \textit{goodness} of a generated image: realism, abstractness, aesthetic appeal, etc.
+	\item[\done] Image generation methods explored: evolutionary algorithms, neural networks, line drawing, etc.
+	\item[\done] Measuring \textit{goodness} of a generated image: realism, abstractness, aesthetic appeal, etc.
 	
 	\item What is the generative adversarial network, and differences in common architectures
 	\item Why are GANs advantageous over the use of target feature analysis (aesthetics, etc.)
@@ -108,7 +110,7 @@ Despite the slow nature of the interactive process, \citet{sims} and \citet{neva
 This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend towards normal.
 While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing imagery without human interaction.
 
-Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to be completely unsupervised.
+Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to depend only on collecting a sufficiently large dataset.
 Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesised to fine-detailed target labels such as bird species' and actors.
 \citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
 Such an architecture has been applied to the area of art synthesis by \citet{tan2017artgan} in which images were generated according to a target genre and artist.
@@ -116,7 +118,6 @@ Learning from a dataset of countless artworks under various categories, styles, 
 Due to the competitive relationship of the generator and discriminator networks, the patterns learned by the discriminator propagate through the generator network.
 The discriminator network of the GAN architecture aims to learn patterns and styles from the dataset on which it is trained in order to discriminate between the generated and existing images.
 As a result, the images generated tend to resemble closely those in the training dataset, which represents a benefit in successfully producing images closely matching the target domain, and a detriment with regard to the networks potential creativity.
-
 
 Recent work by \citet{nguyen2015innovation} and \citet{nguyen2015deep} investigated the use of quality-diverse algorithms for image generation particularly to better understand the patterns learned by deep neural network image classifiers.
 Quality-diverse (QD) evolutionary algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed to address the need for a high quality, yet diverse solution space in related optimisation domains.
@@ -130,9 +131,7 @@ In contrast, \citet{nguyen2015innovation} uses the same architecture to explore 
 While the conclusions derived from \citet{nguyen2015innovation} and \citet{nguyen2015deep} contrast greatly, the quality-diverse generative method used to understand the visual components learnt by the classifier show such an architecture's exploratory abilities.
 
 
-
-
-The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis is limited.
+The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
 \textit{Emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
 
 
