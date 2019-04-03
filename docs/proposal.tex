@@ -158,18 +158,22 @@ Initial investigation into the classification of image emotion will involve the 
 Further feature extraction and ensemble methods may be explored, particularly those investigated by \citet{kim2018building}, \citet{chen2015learning}, and \citet{chen2015learning}.
 
 \subsection{Generative architecture for model exploration}
-A model for either categorical classification or multi-dimensional regression, according to the given emotion representation, enables exploration of the desired feature-space.
+In order to explore and better understand the underlying patterns and shapes learnt by the predictor network, a generative architecture is required which allows the generation of images throughout a desired feature-space.
+In a categorical representation model, the associated feature-space is defined as the coordinate space spanned by the softmax output of the classifier.
+And that of the multi-dimensional regression model is spanned by the valence-arousal-dominance coordinate space.
 The process by which features in the categorical emotion model will be explored involves methods introduced by \citet{nguyen2015deep,nguyen2015innovation}.
 This process uses the previously discussed quality-diverse MAP-Elites algorithm.
-Generating images according to the fitness function defined by the accuracy with which it is classified by the DNN, and storing individuals in the feature-space defined by the classes.
-This process will result in a multi-dimensional feature-space in which each dimension represents a given emotion categorisation, divided into \textit{N} bins within which a generated image's classification accuracy falls.
-The result is a collection of images spread throughout the emotion feature-space.
+Generating images according to the fitness function defined by the accuracy with which it is classified, and storing individuals in the feature-space matrix.
+This process will result in a multi-dimensional space in which each dimension represents a given emotion categorisation, divided into \textit{N} bins each with an image that aims to satisfy the emotions with which it was classified.
 
-In the multi-dimensional regression variant, where the given image's VA/VAD values are computed, the feature-space is two or three dimensional, however there is no self-evident objective function for a generative framework to maximise.
-Unlike the categorical classification accuracy used by \citet{nguyen2015deep,nguyen2015innovation}, a regression model bears no equivalent objective function.
-As a result the associated VA/VAD feature-space will be explored using a conditional generative adversarial approach similar to that of \citet{tan2017artgan} and \citet{gauthier2014conditional}.
-This technique involves the input of some condition, in some representation, to both generator and discriminator networks alongside their standard inputs.
-The conditional GAN approach allows the generation of images conditioning on a point in the feature-space, with the associated objective function of discrimination accuracy.
+In the multi-dimensional regression variant, where the given image's VA/VAD values are computed, categorical classification accuracy cannot be used as an objective function.
+As a result the associated feature-space will be explored using a conditional generative approach similar to that of \citet{tan2017artgan} and \citet{gauthier2014conditional}.
+With respect to generative adversarial networks, this technique involves the input of a condition vector (target VA/VAD) to both generator and discriminator networks alongside their standard inputs.
+In doing so a generator can be trained that aims to minimise error between the target condition, and that predicted by the pre-trained regression network.
+This conditional generative framework can also be used in the categorical representation.
+
+While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to explore DNN image classifiers involved the MAP-Elites algorithm, the task of generating images that maximise an objective function given an input condition can be completed with a conditional GAN approach.
+The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
 
 
 \section{Expected Outcomes \& Contributions}
