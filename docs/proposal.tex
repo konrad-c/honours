@@ -66,6 +66,7 @@ The combination of such a generative system with a classifier of emotion can be 
 \end{todolist}
 
 \begin{figure}[h!]
+	\centering
 	\includegraphics[width=0.75\textwidth]{images/valence-arousal-grid.png}
 	\caption{Distribution of emotions associated with levels of valence and arousal determined by DNN classifier produced by \citet{kim2018building}}
 	\label{fig:valence-arousal}
@@ -82,15 +83,6 @@ Image databases with singular emotion labels, and adjective-noun pairs (ANP) hav
 
 
 \subsection{Computational image synthesis}
-\begin{todolist}
-	\item[\done] Image generation methods explored: evolutionary algorithms, neural networks, line drawing, etc.
-	\item[\done] Measuring \textit{goodness} of a generated image: realism, abstractness, aesthetic appeal, etc.
-	
-	\item What is the generative adversarial network, and differences in common architectures
-	\item Why are GANs advantageous over the use of target feature analysis (aesthetics, etc.)
-	\item Text-to-image
-	\item Style transfer \& image-to-image
-\end{todolist}
 
 \begin{figure}[h!]
 	\includegraphics[width=\textwidth]{images/sims-interactive-image-generation.png}
@@ -137,24 +129,6 @@ The application of generative systems in the domain of affective computing, part
 
 \section{Methodology}
 
-\begin{todolist}
-	\item[\done] Datasets
-	\item Emotion profile representation
-	\begin{todolist}
-		\item Discrete feature vector
-		\item Continuous valence-arousal space
-	\end{todolist}
-	\item System architecture (training/evaluation method)
-	\begin{todolist}
-		\item Generator: input type (related to emotion profile representation)
-		\item Generator: base architecture e.g. use ArtGAN \citep{tan2017artgan}
-		\item Discriminator: use output image's emotion classification and error from target emotional profile as error function (autoencoder method)
-		\item Discriminator: use image label as target emotional profile and use standard logistic discrimination.
-	\end{todolist}
-	\item Any interaction made between human and generator e.g. text-to-image synthesis using text emotion classification fed through to the generative model.
-	
-\end{todolist}
-
 \subsection{Datasets}
 
 There exist a few datasets in which non-facial images have labels of their affective emotion on the viewer.
@@ -177,10 +151,13 @@ Investigating the applicability of this simplistic model enables comparison betw
 The more complex models investigated in this research include both the two and three dimensional circumplex models: valence-arousal, and valence-arousal-dominance respectively.
 Each of these three models will be used as the classification/regression target of a deep neural network (DNN) model.
 
-The DNN model architectures tested will base itself off commonly used techniques such as those explored by \citet{kim2018building, chen2015learning}.
-This technique involves the repurposing of pre-trained DNN image classifiers by replacing or altering final layers to the desired output shape and proceeding with further training in the given problem domain.
+The DNN model architectures tested will be based on commonly used techniques such as those explored by \citet{kim2018building, chen2015learning}.
+This technique, known as transfer learning, involves the repurposing of pre-trained DNN image classifiers by replacing or feeding through the final layers to another network with the desired output shape and proceeding with further training in the given problem domain.
+Initial investigation into the classification of image emotion will involve the use of such pre-trained DNN classifiers as ResNet, AlexNet, Inception, and VGGNet.
+Further feature extraction and ensemble methods may be explored, particularly those investigated by \citet{kim2018building}, \citet{chen2015learning}, and \citet{chen2015learning}.
 
-\subsection{Generative architecture}
+\subsection{Generative architecture for model exploration}
+
 The architecture through which images will be generated represents a core component of the entire creative system.
 \citet{tan2017artgan} specifies a GAN architecture which allows the propagation of a target style vector, and a process through which the assigned discriminator style label can be backpropagated to the generator network.
 Using such an architecture further allows the incorporation of emotion into the generator input.
