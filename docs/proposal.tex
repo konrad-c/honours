@@ -174,17 +174,19 @@ This conditional generative framework can also be used in the categorical repres
 
 While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to explore DNN image classifiers involved the MAP-Elites algorithm, the task of generating images that maximise an objective function given an input condition can be completed with a conditional GAN approach.
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
+Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate no prior learning into the process.
+However there exists the possibility of investigating the use of prior generative learning such as that used by \citet{nguyen2016synthesizing}.
 
 
 \section{Expected Outcomes \& Contributions}
 
-The outcomes of this project will include a generative system with which art can be synthesised according to a target emotional profile.
-This system will be the combination of methods for the representation of emotion for use in a generative model, and an architecture with which such a model can be trained.
-Due to the exploratory nature of the project with respect to both system architecture and emotional profile representation, this research will have tested and analyzed various options and any comparative differences.
+The initial outcome of this project is an image emotion classification system.
+Multiple types of emotional representation are explored with reference to the classifier, both the categorical and continuous multi-dimensional representation of valence, arousal, and dominance.
+Comparisons between the accuracy and efficacy of both representations with respect to the classification domain will be explored.
 
-The proposed generative system will be used to create a collection of art, categorised by the target emotional profile with which they were seeded.
-The verification proposed involves the public exhibition of produced images, providing feedback to the generative process and pairing the generated images with a human assigned emotion label for use in any further system training.
-
+The primary outcome of this research is the creation of a generative system with which the visual patterns and characteristics learned by such a deep image classifier can be explored.
+Such a generative system will explore various methods as discussed in \textit{Methodology} and produce comparisons between them
+The content produced by the generative system in order to better understand the visual components learnt by the classifier will be qualitatively analysed in both a technical, artistic and psychological context.
 
 \bibliographystyle{apalike}
 \bibliography{references}
