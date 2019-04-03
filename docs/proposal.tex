@@ -16,7 +16,7 @@
 \author{Konrad Cybulski}
 \date{March 2019}
 
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{graphicx}
 
 \begin{document}
@@ -63,6 +63,7 @@ The combination of such a generative system with a classifier of emotion can be 
 	\item Sentiment classification: text \& images.
 	\item Emotion classification in images: facial expression, general imagery.
 	\item Methods of classifying emotion in images: single target emotion, discrete categorical likelihood, decomposition into continuous vector (valence-arousal).
+	\item Discuss paper by \citet{gauthier2014conditional} on conditional GAN and relate to \citet{tan2017artgan} who leverages this technique.
 \end{todolist}
 
 \begin{figure}[h!]
@@ -157,15 +158,23 @@ Initial investigation into the classification of image emotion will involve the 
 Further feature extraction and ensemble methods may be explored, particularly those investigated by \citet{kim2018building}, \citet{chen2015learning}, and \citet{chen2015learning}.
 
 \subsection{Generative architecture for model exploration}
+A model for either categorical classification or multi-dimensional regression, according to the given emotion representation, enables exploration of the desired feature-space.
+The process by which features in the categorical emotion model will be explored involves methods introduced by \citet{nguyen2015deep,nguyen2015innovation}.
+This process uses the previously discussed quality-diverse MAP-Elites algorithm.
+Generating images according to the fitness function defined by the accuracy with which it is classified by the DNN, and storing individuals in the feature-space defined by the classes.
+This process will result in a multi-dimensional feature-space in which each dimension represents a given emotion categorisation, divided into \textit{N} bins within which a generated image's classification accuracy falls.
+The result is a collection of images spread throughout the emotion feature-space.
 
-The architecture through which images will be generated represents a core component of the entire creative system.
-\citet{tan2017artgan} specifies a GAN architecture which allows the propagation of a target style vector, and a process through which the assigned discriminator style label can be backpropagated to the generator network.
-Using such an architecture further allows the incorporation of emotion into the generator input.
+In the multi-dimensional regression variant, where the given image's VA/VAD values are computed, the feature-space is two or three dimensional, however there is no self-evident objective function for a generative framework to maximise.
+Unlike the categorical classification accuracy used by \citet{nguyen2015deep,nguyen2015innovation}, a regression model bears no equivalent objective function.
+As a result the associated VA/VAD feature-space will be explored using a conditional generative adversarial approach similar to that of \citet{tan2017artgan} and \citet{gauthier2014conditional}.
+This technique involves the input of some condition, in some representation, to both generator and discriminator networks alongside their standard inputs.
+The conditional GAN approach allows the generation of images conditioning on a point in the feature-space, with the associated objective function of discrimination accuracy.
 
 
 \section{Expected Outcomes \& Contributions}
 
-The outcomes of this project will include a generative system with which art can be synthesized according to a target emotional profile.
+The outcomes of this project will include a generative system with which art can be synthesised according to a target emotional profile.
 This system will be the combination of methods for the representation of emotion for use in a generative model, and an architecture with which such a model can be trained.
 Due to the exploratory nature of the project with respect to both system architecture and emotional profile representation, this research will have tested and analyzed various options and any comparative differences.
 
