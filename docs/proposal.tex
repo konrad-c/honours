@@ -55,23 +55,23 @@ In the context of this research, such features include valence, arousal, dominan
 This will allow a great understanding of the visual patterns that such an architecture learns, and any psychological or artistic parallels that can be drawn.
 The combination of such a generative system with a classifier of emotion can be further extended to domains such as generative art and text-to-image synthesis, with a focus on emotion-driven image generation.
 
+\subsection{Research questions}
+
+\begin{itemize}
+	\item How does quantitative emotion representation affect convolutional neural network classifiers of image emotion?
+	\item What class-differentiating visual patterns and characteristics are learned by such classifiers?
+	\item How do such visual characteristics learnt by an image emotion classifier relate to known psychological and artistic understandings of image emotion?
+\end{itemize}
+
 
 \section{Background}
 
 \subsection{Image emotion recognition}
 \begin{todolist}
-	\item Sentiment classification: text \& images.
 	\item Emotion classification in images: facial expression, general imagery.
 	\item Methods of classifying emotion in images: single target emotion, discrete categorical likelihood, decomposition into continuous vector (valence-arousal).
 	\item Discuss paper by \citet{gauthier2014conditional} on conditional GAN and relate to \citet{tan2017artgan} who leverages this technique.
 \end{todolist}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.75\textwidth]{images/valence-arousal-grid.png}
-	\caption{Distribution of emotions associated with levels of valence and arousal determined by DNN classifier produced by \citet{kim2018building}}
-	\label{fig:valence-arousal}
-\end{figure}
 
 The area of image emotion and sentiment classification has been explored in a number of ways, primarily through image feature analysis derived from art and psychological factors \citep{machajdik2010affective}; and more recently using techniques such as deep neural networks \citep{chen2015learning, kim2018building}.
 Feature extraction and analysis has been used for various applications such as measuring aesthetic appeal \citep{den2010using,den2010comparing,den2011evolving} and as an emotional feature vector for sentiment classification \citep{machajdik2010affective}.
@@ -81,6 +81,35 @@ The relationship between an image's emotion and its core artistic components suc
 Deep neural networks in this domain provide less transparency to the process with which emotions and sentiment are classified compared to feature analysis.
 The emotional content of an image can be decomposed in various ways.
 Image databases with singular emotion labels, and adjective-noun pairs (ANP) have been used for the training of deep neural network classifiers \citep{chen2014deepsentibank, yang2018visual} with up to 200\% performance gains over support vector machine classifiers.
+
+Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis from images.
+Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
+The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
+Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
+
+Sentiment is typically represented as a binary classification of either positive or negative \citep{yang2018visual, chen2014deepsentibank}.
+Facial and image emotion classification however face a higher complexity problem, where research has typically focused on a subset of potential emotions ranging in size from 7 \citep{ali2017emotional}, 8 \citep{machajdik2010affective}, 11 \citep{wangarttalk}, and even 19 \citep{mohammad2018wikiart}.
+Other methods for representing emotion include use of the circumplex model of affective emotion \citep{russell1980circumplex, bradley1994measuring}.
+This model represents emotion as a continuous multi-dimensional space.
+The original definition by \citet{russell1980circumplex} introduces a two-dimensional space defined by valence, and arousal.
+Valence represents the positive and negative aspect of an emotion; arousal, the excitatory component.
+In such a model, each emotion label used in common categorical classification resides within the space as seen in \ref{fig:valence-arousal}.
+The circumplex model has been applied and extended in various ways.
+The addition of a third dimension, dominance, introduced by \citet{bradley1994measuring} allowed the representation of emotion relating to feelings of situational control.
+Despite the increased freedom of representation in a continuous space, problems exist with the circumplex model \citep{larsen1992promises}.
+Some of the key issues with such a model is its dichotomous nature, resulting in a comparative failure to capture more complex emotions, particularly emotional states representing conflicting sides of a dimension.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.75\textwidth]{images/valence-arousal-grid.png}
+	\caption{Distribution of emotions associated with levels of valence and arousal determined by DNN classifier produced by \citet{kim2018building}}
+	\label{fig:valence-arousal}
+\end{figure}
+
+The use of continuous emotion representations, particularly relating to the circumplex model have been explored in image emotion recognition tasks \citep{kim2018building, zhao2016predicting, zhao2017continuous}.
+Regression models produced to predict the valence-arousal (VA) values of given images have shown high accuracy on various datasets.
+In leveraging pre-trained image classification networks through transfer learning, even smaller datasets (10,000 images) can have high accuracy classification results \citep{kim2018building}.
+
 
 
 \subsection{Computational image synthesis}
@@ -176,6 +205,9 @@ While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation}
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
 Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate no prior learning into the process.
 However there exists the possibility of investigating the use of prior generative learning such as that used by \citet{nguyen2016synthesizing}.
+
+\subsection{Potential difficulties}
+
 
 
 \section{Expected Outcomes \& Contributions}
