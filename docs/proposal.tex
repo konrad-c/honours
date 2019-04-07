@@ -45,7 +45,7 @@ Recent work has looked at the use of quality-diverse generative algorithms with 
 The underlying patterns learned by the classifier can be surfaced by synthesising images that maximise various desirable features.
 This method allowed the exploration of images to which the classifier assigns a given label such as \textit{school bus} or \textit{lighthouse}, enabling a deeper understanding of the visual characteristics inherent to each class.
 
-\section{Aims and Motivation }
+\section{Aims and Motivation}
 The aim of this research is to better understand the visual patterns associated with various emotions conveyed in images.
 This will primarily leverage image emotion recognition architectures explored by \citet{kim2018building}, in combination with the dataset produced by \citet{zhao2016predicting} containing over 1.4 million images with assigned valence, arousal, and dominance levels derived from their descriptions.
 Producing an architecture with which valence-arousal (VA) values can be assigned to images forms the basis for this research.
@@ -59,6 +59,7 @@ The combination of such a generative system with a classifier of emotion can be 
 
 \begin{itemize}
 	\item How does quantitative emotion representation affect convolutional neural network classifiers of image emotion?
+	\item How does performance of such image emotion classifiers differ between categorical and continuous representations of emotion?
 	\item What class-differentiating visual patterns and characteristics are learned by such classifiers?
 	\item How do such visual characteristics learnt by an image emotion classifier relate to known psychological and artistic understandings of image emotion?
 \end{itemize}
@@ -67,11 +68,6 @@ The combination of such a generative system with a classifier of emotion can be 
 \section{Background}
 
 \subsection{Image emotion recognition}
-\begin{todolist}
-	\item Emotion classification in images: facial expression, general imagery.
-	\item Methods of classifying emotion in images: single target emotion, discrete categorical likelihood, decomposition into continuous vector (valence-arousal).
-	\item Discuss paper by \citet{gauthier2014conditional} on conditional GAN and relate to \citet{tan2017artgan} who leverages this technique.
-\end{todolist}
 
 The area of image emotion and sentiment classification has been explored in a number of ways, primarily through image feature analysis derived from art and psychological factors \citep{machajdik2010affective}; and more recently using techniques such as deep neural networks \citep{chen2015learning, kim2018building}.
 Feature extraction and analysis has been used for various applications such as measuring aesthetic appeal \citep{den2010using,den2010comparing,den2011evolving} and as an emotional feature vector for sentiment classification \citep{machajdik2010affective}.
@@ -153,12 +149,14 @@ Assigning the label of \textit{school bus} to alternating yellow and black lines
 Thus enabling exploration into the inner workings of the DNN classifier by uncovering features that maximise the separation of one label to another.
 In contrast, \citet{nguyen2015innovation} uses the same architecture to explore the novelty-driven evolutionary path taken by generated images and the potential for such a system in the field of content synthesis.
 While the conclusions derived from \citet{nguyen2015innovation} and \citet{nguyen2015deep} contrast greatly, the quality-diverse generative method used to understand the visual components learnt by the classifier show such an architecture's exploratory abilities.
+This technique for understanding the patterns learnt by such a classifier has not been explored in the context of regression.
 
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
-Sentiment-driven generative systems such as the image captioning according to target sentiment \citep{mathews2016senticap}, 
-\textit{Emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
-
-
+Sentiment-driven examples of generative systems include image captioning according to target sentiment \citep{mathews2016senticap}.
+The task of describing an image was extended from a traditional GAN approach through the addition of an sentiment target input.
+The method used to train such a generative system involved the conditional GAN architecture as described by \citet{gauthier2014conditional}.
+A similar technique was used in style-driven image captioning (factual, romantic, humorous) in combination with a long short-term memory (LSTM) neural network model \citet{gan2017stylenet}.
+In the context of image-to-image synthesis, \textit{emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
 
 \section{Methodology}
 
@@ -204,7 +202,7 @@ With respect to generative adversarial networks, this technique involves the inp
 In doing so a generator can be trained that aims to minimise error between the target condition, and that predicted by the pre-trained regression network.
 This conditional generative framework can also be used in the categorical representation.
 
-While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to explore DNN image classifiers involved the MAP-Elites algorithm, the task of generating images that maximise an objective function given an input condition can be completed with a conditional GAN approach.
+While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to explore DNN image classifiers involved the MAP-Elites algorithm, the task of generating images that maximise an objective function given an input condition can also be completed with a conditional GAN approach.
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
 Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate no prior learning into the process.
 However there exists the possibility of investigating the use of prior generative learning such as that used by \citet{nguyen2016synthesizing}.
