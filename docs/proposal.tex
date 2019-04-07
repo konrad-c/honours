@@ -109,7 +109,9 @@ Some of the key issues with such a model is its dichotomous nature, resulting in
 The use of continuous emotion representations, particularly relating to the circumplex model have been explored in image emotion recognition tasks \citep{kim2018building, zhao2016predicting, zhao2017continuous}.
 Regression models produced to predict the valence-arousal (VA) values of given images have shown high accuracy on various datasets.
 In leveraging pre-trained image classification networks through transfer learning, even smaller datasets (10,000 images) can have high accuracy classification results \citep{kim2018building}.
-
+Recent datasets produced for image emotion recognition have used the valence-arousal-dominance model due to its continuity \citep{zhao2016predicting}.
+While categorical classification is more easily verified by humans, training predictive models with data that has an element of noise and uncertainty benefits from both continuity and volume.
+This is a key advantage of the circumplex model as applied by \citet{kim2018building} and \citet{zhao2016predicting} in image emotion recognition over categorical classification.
 
 
 \subsection{Computational image synthesis}
@@ -152,9 +154,10 @@ Thus enabling exploration into the inner workings of the DNN classifier by uncov
 In contrast, \citet{nguyen2015innovation} uses the same architecture to explore the novelty-driven evolutionary path taken by generated images and the potential for such a system in the field of content synthesis.
 While the conclusions derived from \citet{nguyen2015innovation} and \citet{nguyen2015deep} contrast greatly, the quality-diverse generative method used to understand the visual components learnt by the classifier show such an architecture's exploratory abilities.
 
-
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
+Sentiment-driven generative systems such as the image captioning according to target sentiment \citep{mathews2016senticap}, 
 \textit{Emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
+
 
 
 \section{Methodology}
@@ -205,10 +208,6 @@ While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation}
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
 Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate no prior learning into the process.
 However there exists the possibility of investigating the use of prior generative learning such as that used by \citet{nguyen2016synthesizing}.
-
-\subsection{Potential difficulties}
-
-
 
 \section{Expected Outcomes \& Contributions}
 
