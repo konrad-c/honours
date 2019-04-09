@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{enumitem}
 
 \title{Synthesising emotion-driven images using image emotion classifiers}
 \author{Konrad Cybulski}
@@ -199,6 +200,58 @@ Techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to ex
 While these techniques used the MAP-Elites algorithm, the process of exploring the feature-space through image synthesis can also be completed by the neural network approach mentioned.
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
 Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate as little prior learning into the process.
+
+\section{Proposed thesis structure}
+
+\begin{enumerate}[label*=\arabic*.]
+	\item Abstract
+	\item Introduction
+	\begin{enumerate}[label*=\arabic*.]
+		\item Overview
+		\item Background
+		\item Aims and motivation
+		\item Research questions
+	\end{enumerate}
+	
+	\item Literature Review
+	\begin{enumerate}[label*=\arabic*.]
+		\item Introduction
+		\item Definition of terms
+		\item Image emotion classification
+		\item Computational image synthesis
+		\item Affective content synthesis
+		\item Conclusion
+	\end{enumerate}
+
+	\item Methodology
+	\begin{enumerate}[label*=\arabic*.]
+		\item Proposed approach
+		\item Justification
+	\end{enumerate}
+	
+	\item Implementation
+	\begin{enumerate}[label*=\arabic*.]
+		\item Data compilation architecture
+		\item Representations for image emotion prediction
+		\item Emotion-driven image synthesis
+	\end{enumerate}
+	
+	\item Discussion and evaluation
+	\begin{enumerate}[label*=\arabic*.]
+		\item Introduction
+		\item Representations for image emotion prediction
+		\item Emotion-driven image synthesis
+		\item Exploration of patterns learnt by image emotion classifier
+		\item Generative architecture extensibility with transfer learning
+	\end{enumerate}
+	
+	\item Conclusion
+	\begin{enumerate}[label*=\arabic*.]
+		\item Contribution
+		\item Limitations
+		\item Future work
+	\end{enumerate}
+\end{enumerate}
 
 \section{Timeline}
 
