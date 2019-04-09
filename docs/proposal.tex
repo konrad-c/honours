@@ -5,7 +5,7 @@
 \author{Konrad Cybulski}
 \date{April 2019}
 
-\usepackage[numbers]{natbib}
+\usepackage{natbib}
 \usepackage{graphicx}
 
 \begin{document}
@@ -43,6 +43,7 @@ This method allowed the exploration of images to which the classifier assigns a 
 The aim of this research is develop an image emotion classifier in order to produce a generative system to synthesise emotionally-driven images to better understand the visual patterns associated with emotions conveyed in images as learnt by such a classifier.
 This will primarily leverage image emotion recognition architectures explored by \citet{kim2018building}, in combination with the dataset produced by \citet{zhao2016predicting} containing over 1.4 million images with assigned valence, arousal, and dominance levels derived from their descriptions.
 Producing and comparing architectures with which valence-arousal (VA) values, or emotion labels can be assigned to images forms the basis for this research.
+
 This base architecture enables the exploration into how VA values are assigned to more complex, multi-faceted and multi-layered images, and methods for incorporating this classifier into an image synthesis system.
 A generative process for synthesising emotionally-driven images will be explored that utilises the image emotion classifier produced.
 This generative system, and the patterns learned by it, will be better explored by maximising given target features in a quality-diverse way \citep{nguyen2015innovation, nguyen2015deep}, and through a conditional generative adversarial approach \citep{tan2017artgan, gan2017stylenet}.
@@ -50,7 +51,7 @@ In the context of this research, such features include valence, arousal, dominan
 This will allow a greater understanding of the visual patterns that such an architecture learns, and any psychological or artistic parallels that can be drawn.
 The combination of such a generative system with a classifier of emotion can be further extended to domains such as generative art and text-to-image synthesis, with a focus on emotion-driven image generation.
 
-\subsection{Research questions}
+\section{Research questions}
 
 \paragraph{How can an image emotion classifier be used to synthesise emotion-driven images?}
 \begin{itemize}
@@ -164,9 +165,11 @@ The more complex models investigated in this research include both the two and t
 Each of these three models will be used as the classification/regression target of a deep neural network (DNN) model.
 
 The DNN model architectures tested will be based on commonly used techniques such as those explored by \citet{kim2018building, chen2015learning}.
-This technique, known as transfer learning, involves the repurposing of pre-trained DNN image classifiers by replacing or feeding through the final layers to another network with the desired output shape and proceeding with further training in the given problem domain.
+This technique, known as transfer learning, involves the repurposing of pre-trained DNN image classifiers by replacing or feeding through the final layers to another network.
+The altered topology has the desired output shape and is able to proceed with further training in the given problem domain.
 Initial investigation into the classification of image emotion will involve the use of such pre-trained DNN classifiers as ResNet, AlexNet, Inception, and VGGNet.
 Further feature extraction and ensemble methods may be explored, particularly those investigated by \citet{kim2018building}, \citet{chen2015learning}, and \citet{chen2015learning}.
+The accuracy of architectures will be compared within the context of each emotional representation, and between them.
 
 \subsection{Image synthesis}
 Having produced an image emotion classifier, this research will then focus itself on developing an emotion-driven image generation system to both generate images, and explore the underlying patterns and shapes learnt by the predictor network.
@@ -179,28 +182,74 @@ The multi-dimensional regression model spanning the valence-arousal-dominance (V
 The MAP-Elites algorithm will be applied in a similar way to investigate the use of such an evolutionary image synthesis method for later comparison.
 In this context, fitness evaluation will be computed using the error between target VAD values and those determined by the classifier.
 
-The other method explored for image synthesis involves training a conditional generator neural network following from work by \citet{tan2017artgan}, and 
-As a result the associated feature-space will be explored using a conditional generative approach similar to that of \citet{tan2017artgan} and \citet{gauthier2014conditional}.
-With respect to generative adversarial networks, this technique involves the input of a condition vector (target VA/VAD) to both generator and discriminator networks alongside their standard inputs.
-In doing so a generator can be trained that aims to minimise error between the target condition, and that predicted by the pre-trained regression network.
-This conditional generative framework can also be used in the categorical representation.
+The other method explored for image synthesis involves training a conditional generator neural network following from work by \citet{tan2017artgan} and \citet{gauthier2014conditional}.
+This process involves the training of a network that accepts as input: noise, and a condition.
+The condition with which this network is trained represents the target emotion of the generated image.
+This proposed architecture is trained to minimise error between the target emotion and that predicted by the classifier.
+There exists the option to use networks pre-trained on other datasets for the generator network, as is explored by \citet{nguyen2016synthesizing}.
+In doing so, enabling the generation of emotionally-driven images specific to a given domain.
+
+In order to verify the system for emotion-driven image synthesis, the images generated by it will be involved in a human-validation process.
+This will involve a sample of generated images having VAD values assigned to them using the self-assessment manikin \citep{bradley1994measuring} and the analysis of how human-attributed values compare to those intended by the system.
 
 \subsection{Exploring emotion-specific patterns learnt by the image classifier}
 
-While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to explore DNN image classifiers involved the MAP-Elites algorithm, the task of generating images that maximise an objective function given an input condition can also be completed with a conditional GAN approach.
+A process for image synthesis conditioned on a target emotion enables the exploration of generated images with regard to their emotion-differentiating patterns and visual characteristics.
+Techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to explore DNN image classifiers involved the MAP-Elites algorithm; generating images that maximise classification accuracy as discussed in \textit{Background}.
+While these techniques used the MAP-Elites algorithm, the process of exploring the feature-space through image synthesis can also be completed by the neural network approach mentioned.
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
-Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate no prior learning into the process.
-However there exists the possibility of investigating the use of prior generative learning such as that used by \citet{nguyen2016synthesizing}.
+Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate as little prior learning into the process.
+
+\section{Timeline}
+
+\begin{table}[h!]
+	\newcommand\tl[2]{
+		\parbox[b]{8em}{\hfill{\bfseries #1}~$\cdots$~}\makebox[0pt][c]{$\bullet$}\vrule\quad \parbox[c]{6.5cm}{\vspace{7pt}\raggedright #2.\\[7pt]}\\[-3pt]
+	}
+	\centering
+	\begin{minipage}[t]{.9\linewidth}
+		\rule{\linewidth}{1pt}
+		
+		\centering \textbf{Semester One} \par
+		
+		\rule{\linewidth}{.7pt}%
+		\tl{Week 6}{Research proposal}
+		\tl{Week 9}{Literature review draft}
+		\tl{Week 12}{Literature review}
+		\tl{Week 13}{Compilation of data, ready for experimentation}
+		\tl{Week 14}{Interim presentation}
+		\rule{\linewidth}{.7pt}
+		
+		\centering \textbf{Semester Two} \par
+		
+		\rule{\linewidth}{.7pt}%
+		\tl{Week 3}{Emotion representation predictive models trained}
+		\tl{Week 4}{Comparison of image emotion predictive models completed}
+		\tl{Week 6}{Image synthesis systems created and content produced for human-validation}
+		\tl{Week 8}{Human validation of synthesised images complete}
+		\tl{Week 10}{Further exploration of patterns learnt by classifier through generative exploration}
+		\tl{Week 12}{Thesis completion}
+		\tl{Week 14}{Final presentation}
+		\bigskip
+		\rule{\linewidth}{1pt}%
+	\end{minipage}%
+\end{table}
+
+
 
 \section{Expected Outcomes and Contributions}
 
 The initial outcome of this project is an image emotion classification system.
-Multiple types of emotional representation are explored with reference to the classifier, both the categorical and continuous multi-dimensional representation of valence, arousal, and dominance.
-Comparisons between the performance of both representations with respect to the classification domain will be explored.
+Multiple types of emotional representation are explored with reference to the classifier, both categorical emotion labels, and continuous multi-dimensional representations of valence, arousal, and dominance.
+Comparisons between the accuracy of representations with respect to the classification domain will be explored, as will the comparative performance of various network architectures used in the transfer learning approach.
+This section of the research will produce a usable, generalised, and extensible image emotion classifier.
 
-The primary outcome of this research is the creation of a generative system with which the visual patterns and characteristics learned by such a deep image classifier can be explored.
-Such a generative system will explore various methods as discussed in \textit{Methodology}, and produce comparisons between them.
-The content produced by the generative system in order to better understand the visual components learnt by the classifier will be qualitatively analysed with respect to technical, artistic and psychological image features as introduced by \citet{machajdik2010affective}.
+The primary outcome of this research is the creation of an emotion-driven image synthesis system.
+It will have been developed exploring various generative methods as discussed in \textit{Methodology}, and comparisons between them will be produced.
+The generative process will be computationally validated in its ability to generate images according to a target emotion, in addition to being validated by humans using methods for measuring affective emotion.
+The extensibility of techniques used for developing the image generator, particularly related to transfer learning from pre-trained image generators, will also be explored.
+The content produced by the generative system in order to explore and better understand the visual components learnt by the classifier will be qualitatively analysed with respect to technical, artistic and psychological image features as introduced by \citet{machajdik2010affective}.
+The synthesised images from the system developed will be exhibited to validate the efficacy with which it is able to produce targeted affective images.
 
 \bibliographystyle{apalike}
 \bibliography{references}
