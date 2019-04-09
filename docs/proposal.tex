@@ -1,9 +1,9 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{Exploring emotional representation in deep neural network image emotion classifiers}
+\title{Synthesising emotion-driven images using image emotion classifiers}
 \author{Konrad Cybulski}
-\date{March 2019}
+\date{April 2019}
 
 \usepackage[numbers]{natbib}
 \usepackage{graphicx}
@@ -20,7 +20,12 @@ Extensive research has been conducted into how visual features affect humans emo
 Due to the subjective and qualitative nature of human emotion, assigning a quantitative measure of emotion to an image is no easy task.
 Furthermore the ability to computationally recognise the emotional content of an image has wide-ranging applications from classifying posts on social media, to the creation of images, text, and even physical spaces in an emotionally quantifiable way.
 
-Methods for quantifiably representing emotion have been explored thoroughly in the domain of psychology, with continuous multi-dimensional models being used in lieu of a single emotional label .
+This research aims to explore the use of neural network image emotion classifiers in synthesising emotionally-driven images.
+Primarily exploring the patterns and visual characteristics of such generative systems in their ability to create emotionally-targeted images.
+In doing so, compare categorical (happy, sad, etc.) and continuous (valence-arousal-dominance) representations for emotion in the context of both image classification, and synthesis.
+Through the generative process, gain a better understanding of visual patterns learnt by such a classifier by maximising classification confidence through the use of conditional generative adversarial networks \citep{gauthier2014conditional}, and evolutionary techniques explored by \citep{nguyen2015deep}.
+
+Methods for quantifiably representing emotion have been explored thoroughly in the domain of psychology, with continuous multi-dimensional models being used in lieu of a single emotional label.
 The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with it \citep{russell1980circumplex}.
 Such a continuous model is not without flaw, failing to accurately capture more complex emotional states, often those that represent concurrent conflicting sides of a given axis \citep{larsen1992promises}.
 The complexity of such a continuous representation of emotion has been investigated in depth and extended in various ways such as by \citet{bradley1994measuring}, through the addition of a third dimension: dominance; which is particularly of interest within social dynamics.
@@ -34,23 +39,24 @@ Recent work has looked at the use of quality-diverse generative algorithms with 
 The underlying patterns learned by the classifier can be surfaced by synthesising images that maximise various desirable features.
 This method allowed the exploration of images to which the classifier assigns a given label such as \textit{school bus} or \textit{lighthouse}, enabling a deeper understanding of the visual characteristics inherent to each class.
 
-\section{Aims and Motivation}
-The aim of this research is to better understand the visual patterns associated with various emotions conveyed in images.
+\section{Aims and motivation}
+The aim of this research is develop an image emotion classifier in order to produce a generative system to synthesise emotionally-driven images to better understand the visual patterns associated with emotions conveyed in images as learnt by such a classifier.
 This will primarily leverage image emotion recognition architectures explored by \citet{kim2018building}, in combination with the dataset produced by \citet{zhao2016predicting} containing over 1.4 million images with assigned valence, arousal, and dominance levels derived from their descriptions.
-Producing an architecture with which valence-arousal (VA) values can be assigned to images forms the basis for this research.
-Such a platform allows enables the exploration into how VA values are assigned to more complex, multi-faceted and multi-layered images, and the efficacy with which this is done.
-Furthermore this process, and the patterns learned by it will be better understood through the use of generative processes which maximise given target features in a quality-diverse way \citep{nguyen2015innovation, nguyen2015deep}, or through a generative adversarial approach \citep{tan2017artgan}.
+Producing and comparing architectures with which valence-arousal (VA) values, or emotion labels can be assigned to images forms the basis for this research.
+This base architecture enables the exploration into how VA values are assigned to more complex, multi-faceted and multi-layered images, and methods for incorporating this classifier into an image synthesis system.
+A generative process for synthesising emotionally-driven images will be explored that utilises the image emotion classifier produced.
+This generative system, and the patterns learned by it, will be better explored by maximising given target features in a quality-diverse way \citep{nguyen2015innovation, nguyen2015deep}, and through a conditional generative adversarial approach \citep{tan2017artgan, gan2017stylenet}.
 In the context of this research, such features include valence, arousal, dominance, happiness, sadness, etc.
-This will allow a great understanding of the visual patterns that such an architecture learns, and any psychological or artistic parallels that can be drawn.
+This will allow a greater understanding of the visual patterns that such an architecture learns, and any psychological or artistic parallels that can be drawn.
 The combination of such a generative system with a classifier of emotion can be further extended to domains such as generative art and text-to-image synthesis, with a focus on emotion-driven image generation.
 
 \subsection{Research questions}
 
+\paragraph{How can an image emotion classifier be used to synthesise emotion-driven images?}
 \begin{itemize}
-	\item How does quantitative emotion representation affect convolutional neural network classifiers of image emotion?
-	\item How does performance of such image emotion classifiers differ between categorical and continuous representations of emotion?
-	\item What class-differentiating visual patterns and characteristics are learned by such classifiers?
-	\item How do such visual characteristics learnt by an image emotion classifier relate to known psychological and artistic understandings of image emotion?
+	\item How can the emotional content of images be represented?
+	\item What methods can be used in combination with an image emotion classifier to synthesise images?
+	\item How can patterns and visual characteristics learnt by an image emotion classifier be explored?
 \end{itemize}
 
 
@@ -87,7 +93,7 @@ Some of the key issues with such a model is its dichotomous nature, resulting in
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.75\textwidth]{images/valence-arousal-grid.png}
-	\caption{Distribution of emotions associated with levels of valence and arousal determined by DNN classifier produced by \citet{kim2018building}}
+	\caption{Distribution of emotions associated with levels of valence and arousal determined by the DNN classifier produced by \citet{kim2018building}}
 	\label{fig:valence-arousal}
 \end{figure}
 
@@ -149,20 +155,6 @@ In the context of image-to-image synthesis, \textit{emotion transfer} was explor
 
 \section{Methodology}
 
-\subsection{Datasets}
-
-There exist a few datasets in which non-facial images have labels of their affective emotion on the viewer.
-Produced recently by \citep{zhao2016predicting} is a compilation of 1.4 million images from \textit{Flickr}, each assigned with a respective valence, arousal, and dominance (VAD) according to the circumplex model of emotion \citep{russell1980circumplex, bradley1994measuring}.
-The assigned values are derived from the analysis of each images textual description according to the methods described by \citet{warriner2013norms}.
-This dataset also contains the assigned categorical emotion according to the VAD values, and comments written by viewers for each image along with their derived VAD values.
-This dataset has been chosen due to its large volume of data, and the method in which each VAD value is assigned.
-As detailed in \citet{zhao2016predicting}, the method for assigning values to each image involved the computational analysis of an image's description, in addition to a human filtering step to ensure the relative accuracy and validity of the assigned values.
-
-As previously discussed, there exist issues with the circumplex model of emotion.
-There exist shortcomings particularly in both its ability to capture more complex emotion, and the ease with which humans are able to convert felt emotions to a continuous space.
-The value in using such a large dataset is to overcome any potential error or inaccuracy associated with the assigned VAD values.
-
-
 \subsection{Emotion representation and prediction}
 Method for representing emotion in this research have been limited to three options based on the dataset: a single categorical label (happy, sad, etc.); a two-dimensional circumplex model (valence-arousal); and a three-dimensional circumplex model (valence-arousal-dominance).
 A model commonly used for representing emotion in classification tasks is that of a single categorical label, due its simplicity.
@@ -176,20 +168,24 @@ This technique, known as transfer learning, involves the repurposing of pre-trai
 Initial investigation into the classification of image emotion will involve the use of such pre-trained DNN classifiers as ResNet, AlexNet, Inception, and VGGNet.
 Further feature extraction and ensemble methods may be explored, particularly those investigated by \citet{kim2018building}, \citet{chen2015learning}, and \citet{chen2015learning}.
 
-\subsection{Generative architecture for model exploration}
-In order to explore and better understand the underlying patterns and shapes learnt by the predictor network, a generative architecture is required which allows the generation of images throughout a desired feature-space.
-In a categorical representation model, the associated feature-space is defined as the coordinate space spanned by the softmax output of the classifier.
-And that of the multi-dimensional regression model is spanned by the valence-arousal-dominance coordinate space.
-The process by which features in the categorical emotion model will be explored involves methods introduced by \citet{nguyen2015deep,nguyen2015innovation}.
-This process uses the previously discussed quality-diverse MAP-Elites algorithm.
-Generating images according to the fitness function defined by the accuracy with which it is classified, and storing individuals in the feature-space matrix.
-This process will result in a multi-dimensional space in which each dimension represents a given emotion categorisation, divided into \textit{N} bins each with an image that aims to satisfy the emotions with which it was classified.
+\subsection{Image synthesis}
+Having produced an image emotion classifier, this research will then focus itself on developing an emotion-driven image generation system to both generate images, and explore the underlying patterns and shapes learnt by the predictor network.
+Following from work by \citet{nguyen2015innovation} and \citet{tan2017artgan}, this research will explore both the evolutionary quality-diverse algorithm MAP-Elites, in addition to neural networks for image synthesis.
 
-In the multi-dimensional regression variant, where the given image's VA/VAD values are computed, categorical classification accuracy cannot be used as an objective function.
+In exploring the use of MAP-Elites for image generation, the system architecture used bases itself heavily on that introduced in \citet{nguyen2015innovation}.
+The feature-space is explored through the evolution of direct image representations, allowing crossover and mutation of individual and collections of pixel values, evaluating fitness according to the accuracy with which the image is classified.
+Given the quality-diverse focus of the MAP-Elites algorithm, the output will be a multi-dimensional space containing generated images distributed according to their label and classification accuracy.
+The multi-dimensional regression model spanning the valence-arousal-dominance (VAD) coordinate space however cannot be explored in the same way since there is no classification accuracy with which to assign fitness.
+The MAP-Elites algorithm will be applied in a similar way to investigate the use of such an evolutionary image synthesis method for later comparison.
+In this context, fitness evaluation will be computed using the error between target VAD values and those determined by the classifier.
+
+The other method explored for image synthesis involves training a conditional generator neural network following from work by \citet{tan2017artgan}, and 
 As a result the associated feature-space will be explored using a conditional generative approach similar to that of \citet{tan2017artgan} and \citet{gauthier2014conditional}.
 With respect to generative adversarial networks, this technique involves the input of a condition vector (target VA/VAD) to both generator and discriminator networks alongside their standard inputs.
 In doing so a generator can be trained that aims to minimise error between the target condition, and that predicted by the pre-trained regression network.
 This conditional generative framework can also be used in the categorical representation.
+
+\subsection{Exploring emotion-specific patterns learnt by the image classifier}
 
 While techniques used by \citet{nguyen2015deep} and \citet{nguyen2015innovation} to explore DNN image classifiers involved the MAP-Elites algorithm, the task of generating images that maximise an objective function given an input condition can also be completed with a conditional GAN approach.
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
