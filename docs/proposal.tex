@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
 
-\title{Synthesising emotion-driven images using image emotion classifiers}
+\title{Synthesising emotion-driven images}
 \author{Konrad Cybulski}
 \date{April 2019}
 
@@ -21,18 +21,17 @@ Due to the subjective and qualitative nature of human emotion, assigning a quant
 Furthermore the ability to computationally recognise the emotional content of an image has wide-ranging applications from classifying posts on social media, to the creation of images, text, and even physical spaces in an emotionally quantifiable way.
 
 This research aims to explore the use of neural network image emotion classifiers in synthesising emotionally-driven images.
-Primarily exploring the patterns and visual characteristics of such generative systems in their ability to create emotionally-targeted images.
 In doing so, compare categorical (happy, sad, etc.) and continuous (valence-arousal-dominance) representations for emotion in the context of both image classification, and synthesis.
 Through the generative process, gain a better understanding of visual patterns learnt by such a classifier by maximising classification confidence through the use of conditional generative adversarial networks \citep{gauthier2014conditional}, and evolutionary techniques explored by \citep{nguyen2015deep}.
 
 Methods for quantifiably representing emotion have been explored thoroughly in the domain of psychology, with continuous multi-dimensional models being used in lieu of a single emotional label.
 The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with it \citep{russell1980circumplex}.
 Such a continuous model is not without flaw, failing to accurately capture more complex emotional states, often those that represent concurrent conflicting sides of a given axis \citep{larsen1992promises}.
-The complexity of such a continuous representation of emotion has been investigated in depth and extended in various ways such as by \citet{bradley1994measuring}, through the addition of a third dimension: dominance; which is particularly of interest within social dynamics.
+The complexity of such a continuous representation of emotion has been investigated in depth and extended in various ways, including through the addition of a third dimension: dominance \citep{bradley1994measuring}; which is particularly of interest within social dynamics.
 
 The domain of emotion classification has had a particular focus on facial expressions and text \citep{cambria2016affective, warriner2013norms}.
 Image emotion classifiers have been explored \citep{kim2018building, machajdik2010affective, chen2015learning, chen2014deepsentibank} yet their use has been limited.
-While humans ability to recognise, label, and discuss the emotive content of an image is not lacking, the capability to computationally classify image emotion, and the underlying patterns learnt by such classifiers is.
+While human ability to recognise, label, and discuss the emotive content of an image is not lacking, the capability to computationally classify image emotion, and the underlying patterns learnt by such classifiers is.
 
 As with the use of deep neural network image classifiers such as ResNet, AlexNet, and Inception, the shapes and patterns learnt by such deep learning systems are difficult to extract.
 Recent work has looked at the use of quality-diverse generative algorithms with such deep classifiers \citep{nguyen2015deep, nguyen2015innovation}.
@@ -74,18 +73,18 @@ Deep neural networks in this domain provide less transparency to the process wit
 The emotional content of an image can be decomposed in various ways.
 Image databases with singular emotion labels, and adjective-noun pairs (ANP) have been used for the training of deep neural network classifiers \citep{chen2014deepsentibank, yang2018visual} with up to 200\% performance gains over support vector machine classifiers.
 
-Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis from images.
+Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis of images.
 Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
 The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
 Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
 
-Sentiment is typically represented as a binary classification of either positive or negative \citep{yang2018visual, chen2014deepsentibank}.
+Sentiment is typically represented as a binary classification: positive or negative \citep{yang2018visual, chen2014deepsentibank}.
 Facial and image emotion classification however face a higher complexity problem, where research has typically focused on a subset of potential emotions ranging in size from 7 \citep{ali2017emotional}, 8 \citep{machajdik2010affective}, 11 \citep{wangarttalk}, and even 19 \citep{mohammad2018wikiart}.
 Other methods for representing emotion include use of the circumplex model of affective emotion \citep{russell1980circumplex, bradley1994measuring}.
 This model represents emotion as a continuous multi-dimensional space.
 The original definition by \citet{russell1980circumplex} introduces a two-dimensional space defined by valence, and arousal.
 Valence represents the positive and negative aspect of an emotion; arousal, the excitatory component.
-In such a model, each emotion label used in common categorical classification resides within the space as seen in \ref{fig:valence-arousal}.
+In such a model, each emotion label used in common categorical classification resides within the space as seen in Figure \ref{fig:valence-arousal}.
 The circumplex model has been applied and extended in various ways.
 The addition of a third dimension, dominance, introduced by \citet{bradley1994measuring} allowed the representation of emotion relating to feelings of situational control.
 Despite the increased freedom of representation in a continuous space, problems exist with the circumplex model \citep{larsen1992promises}.
@@ -117,23 +116,23 @@ This is a key advantage of the circumplex model as applied by \citet{kim2018buil
 Generative systems have been explored in various domains with numerous techniques.
 Examples range from the generation of images and art using evolutionary methods \citep{sims, nevar}, to the synthesis of text to describe a given image through the use of deep neural networks \citep{mathews2016senticap}.
 Some of the first \textit{human-in-the-loop} image synthesis systems such as \textit{NEvAr} \citep{nevar} produced greatly impressive images through evolutionary techniques.
-Evolutionary art leveraged methods introduced and exemplified by \citet{sims} such as those shown in Figure \ref{fig:sims}.
-\citet{sims} proposed using \textit{Lisp} expressions for genotype definitions, which accepted a coordinate (x, y) which could be evaluated into a grayscale or RGB value producing images.
-This genotype expression has been used in numerous further research into the process of both supervised and unsupervised image synthesis through evolutionary techniques \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
+Evolutionary art leveraged methods introduced and exemplified by \citet{sims}, producing images such as those shown in Figure \ref{fig:sims}.
+\citet{sims} proposed using \textit{Lisp} expressions for genotype definitions, which map a coordinate (x, y) into a grayscale or RGB value.
+This genotype expression has been used in numerous further research of both supervised and unsupervised image synthesis through evolutionary techniques \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
 
 Despite the slow nature of the interactive process, \citet{sims} and \citet{nevar} were able to produce images with visually striking characteristics.
 \citet{aesthetic-measures} investigated measures of aesthetics for fitness evaluation in artificially evolving images.
-This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend towards normal.
+This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend toward normal.
 While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing imagery without human interaction.
 
 Introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to depend only on collecting a sufficiently large dataset.
-Common GAN application has involved the generation of realistic images, such as has been done by \citet{bao2017cvae}, where images have been synthesised to fine-detailed target labels such as bird species' and actors.
+Common GAN application has involved the generation of realistic images, including work by \citet{bao2017cvae} where images have been synthesised to fine-detailed target labels such as bird species' and actors.
 \citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
 Such an architecture has been applied to the area of art synthesis by \citet{tan2017artgan} in which images were generated according to a target genre and artist.
-Learning from a dataset of countless artworks under various categories, styles, and artists, it was hugely successful in generating images that were stylistically similar to existing art of the target artist/genre.
+Learning from a dataset of countless artworks in various categories, styles, and artists, it was hugely successful in generating images that were stylistically similar to existing art of the target artist/genre.
 Due to the competitive relationship of the generator and discriminator networks, the patterns learned by the discriminator propagate through the generator network.
 The discriminator network of the GAN architecture aims to learn patterns and styles from the dataset on which it is trained in order to discriminate between the generated and existing images.
-As a result, the images generated tend to resemble closely those in the training dataset, which represents a benefit in successfully producing images closely matching the target domain, and a detriment with regard to the networks potential creativity.
+As a result, the images generated tend to resemble closely those in the training dataset, an advantage when similarity and realism to existing data is desired, and a detriment when generative creativity is a target attribute.
 
 Recent work by \citet{nguyen2015innovation} and \citet{nguyen2015deep} investigated the use of quality-diverse algorithms for image generation particularly to better understand the patterns learned by deep neural network image classifiers.
 Quality-diverse (QD) evolutionary algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed to address the need for a high quality, yet diverse solution space in related optimisation domains.
@@ -149,7 +148,7 @@ This technique for understanding the patterns learnt by such a classifier has no
 
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
 Sentiment-driven examples of generative systems include image captioning according to target sentiment \citep{mathews2016senticap}.
-The task of describing an image was extended from a traditional GAN approach through the addition of an sentiment target input.
+The task of describing an image was extended from a traditional GAN approach through the addition of a sentiment target input.
 The method used to train such a generative system involved the conditional GAN architecture as described by \citet{gauthier2014conditional}.
 A similar technique was used in style-driven image captioning (factual, romantic, humorous) in combination with a long short-term memory (LSTM) neural network model \citet{gan2017stylenet}.
 In the context of image-to-image synthesis, \textit{emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
@@ -200,6 +199,7 @@ While these techniques used the MAP-Elites algorithm, the process of exploring t
 The generative system produced as part of this research aims to generate images within a feature-space, that minimise the classification/regression error in order to better understand some key visual patterns and characteristics learned by the predictive network.
 Since generative systems trained on given sets of data tend toward generating images similar to its training data, this generative exploration aims to incorporate as little prior learning into the process.
 
+\pagebreak
 \section{Proposed thesis structure}
 
 \begin{enumerate}[label*=\arabic*.]
@@ -252,6 +252,7 @@ Since generative systems trained on given sets of data tend toward generating im
 	\end{enumerate}
 \end{enumerate}
 
+\pagebreak
 \section{Timeline}
 
 \begin{table}[h!]
