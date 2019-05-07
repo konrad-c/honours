@@ -20,7 +20,7 @@ The two core themes explored are image generation techniques, and processes for 
 As a result this literature review aims to explore and understand the progression of knowledge in the fields of emotion representation and classification, computational image synthesis, and affective content synthesis.
 All of which represent the multiple facets of the proposed body of research with which an investigation into the use of image emotion classifiers for emotion-driven image generation will be explored.
 
-\section{Emotion representation and classification}
+\section{Emotion representation}
 
 The field of emotion classification has surged in recent years given a popularity and rising interest in facial emotion recognition.
 Other research has focused on exploring ways in which emotion can be recognised in images, text, and more abstract content.
@@ -46,12 +46,31 @@ For example, the discrete emotion label of \textbf{happiness} could be represent
 While this continuous dimensional model allows for greater continuity in measuring emotions, it is not without fault \citep{larsen1992promises}.
 The primary limitations of such a model involve it's likelihood of misinterpretation particularly when considering the labels of each dimension, and any information loss arising from reducing more complex emotions to a two-dimensional space.
 One way in which the circumplex model of affect introduced by \citet{russell1980circumplex} has been extended to address its weaknesses is through the introduction of a third-dimension: Dominance, the amount of control associated with an emotion.
-Despite contention, particularly with regard to its limitations, the circumplex model has been used extensively in the field of psychology, and in computational emotion classification to a limited extent \citep{zhao2016predicting}.
+Despite its limitations, the circumplex model has been used extensively in the field of psychology \citep{bradley1994measuring,warriner2013norms}, and in computational emotion classification to a limited extent \citep{zhao2016predicting}.
+
+While both models for the representation of emotion have trade-offs, both suffer from issues related to cross-cultural differences in emotion expression and recognition.
+Cultures inherently differ with respect to how emotions are both felt and expressed \citep{markus1991culture}; this is becomes increasingly evident when attempting to classify the affective emotion embodied and expressed by more abstract content such as imagery and sound.
+The popular image-emotion dataset used for classification known as the International Affective Picture System (IAPS) was shown to have a significantly different valence-arousal assignment for up to 31.74\% of images between Chinese and American young adults \citep{huang2015affective}.
+Valence-arousal values assigned to images often vary when considering a group of people.
+To address this potential for error in reporting the subjective emotion imparted by content, the self-assessment manikin (SAM) was introduced \citep{lang1980behavioral}.
+SAM, as can be seen in Figure \ref{fig:SAM}, was developed to aid in the evaluation of emotion, particularly its translation into the commonly used three dimensions of the circumplex model of affect: valence, arousal, dominance.
+It has proved itself as more accurate and effective than other methods of emotion self-assessment while being less complex \citep{bradley1994measuring}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.75\textwidth]{images/self-assessment-manikin.png}
+	\caption{The self-assessment manikin: a guide for reporting individual emotional affect in the three dimensions valence (top), arousal (middle), and dominance (bottom) as introduced by \citet{lang1980behavioral}}
+	\label{fig:SAM}
+\end{figure}
+
+While both discrete and continuous methods of representing emotion have their respective benefits and trade-offs, the choice to use one over another often depends on the way in which the data gathering process for content emotion classification is performed.
+These two representations of emotion can be translated between, since all categorical emotions can be converted to the continuous circumplex model, and the inverse.
+However due to the higher complexity nature of the continuous model, even with the use of SAM, dimensional representations are more difficult to gather on a large scale in comparison to categorical emotions.
 
 \section{Emotion classification}
 
-Emotion classification has been research in depth particularly with respect to two sub-domains: facial emotion recognition, and content emotion classification (image, text, sound).
-Facial emotion recognition has been more heavily researched in this field when comparing it to content emotion classification.
+Emotion classification has been researched in depth particularly with respect to two sub-domains: facial emotion recognition, and content emotion classification (image, text, sound).
+Facial emotion recognition has been more heavily researched in this field when compared to content emotion classification.
 
 \subsection{Facial emotion recognition}
 
@@ -59,9 +78,6 @@ Humans are known to be more accurate in classifying facial emotion of another wh
 This was also found to be the case with computational facial emotion classifiers when trained more heavily on one culture over another \citep{dailey2010evidence}.
 
 
-Cultures inherently differ with respect to how emotions are both felt and expressed \citep{markus1991culture}, as such, the emotions contained and expressed in more abstract content such as imagery and sound, depend on the culture of the person consuming it.
-The popular image-emotion dataset used for classification known as the International Affective Picture System (IAPS) was shown to have a significantly different valence-arousal assignment for up to 31.74\% of images between Chinese and American young adults.
-The issues associated with cross-cultural emotion recognition further extend to the domain of content emotion classification.
 
 \subsection{Image emotion classification}
 
