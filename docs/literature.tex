@@ -13,6 +13,10 @@
 	
 \maketitle
 
+\tableofcontents
+
+\pagebreak
+
 \section{Aims and Scope}
 
 The primary focus of the proposed research is to produce an image emotion classifier, and to further leverage it in the process of emotion-driven image synthesis.
@@ -30,13 +34,24 @@ This section will discuss the evolution of these aspects of emotion classificati
 The computational recognition of emotion has been explored in countless studies and projects, in both the context of image emotion recognition \citep{machajdik2010affective,zhao2014exploring,kim2018building} and facial emotion classification \citep{mollahosseini2016going}.
 However a core component and key difference between a large number of such bodies of research is the method by which emotion is represented.
 Two of the most common representations represent a discrete, and continuous approach.
+
+\subsection{Categorical}
+
 Discrete emotion representations generally involve the categorisation of emotion to a series of labels.
 Discrete approaches represent the method used in a large number of papers \citep{machajdik2010affective,ali2017emotional,wangarttalk,mohammad2018wikiart} however the number of emotion labels explored varies greatly.
 An example of the size of emotion label subsets used in studies of image emotion classification using such a discrete model are 7 \citep{ali2017emotional}, 8 \citep{machajdik2010affective}, 11 \citep{wangarttalk}, and even 19 \citep{mohammad2018wikiart}.
-Due to this lack of consistency in emotion classification targets, such studies often resort to performing similar data gathering and classifier training methods.
+Due to this lack of consistency in emotion classification targets, such studies often repeat similar data gathering and classifier training methods again for their own use.
 Despite the consequences of inconsistency in the emotion labels chosen, due to the simplicity of discrete categorical emotion assignment, data gathering can be performed with ease compared to continuous methods of emotion representation.
 In order to create large image datasets of labelled images can be completed with greater ease when the number of such labels is reduced.
 However there remains difficulty in labelling images with respect to emotion given the inherent variation in the emotion felt by someone when both viewing an abstract image, or accurately determining the emotion expressed by a facial expression.
+
+The categorical representation is the simplest method for emotion classification, due not only to the consequent ease with which data can be gathered, but due to the extensive research surrounding methods for computational classification of content.
+Many techniques for prediction, both for regression and classification rely on large datasets, something more easily available and more accurate for categorical data.
+Research in psychology has understood the increased error associated with continuous measurement tasked performed by humans in comparison to categorical classification \citep{harnad2003categorical}.
+With the human brain's attempt to sort perceived objects and situations into learned categories, it has been shown to warp continuous variables and scales to do so.
+As a result there exists an increased error in human measurement of continuous, compared to categorical variables.
+
+\subsection{Continuous dimensional}
 
 The aforementioned difficulty associated with labelling images according to their respective emotional content is accentuated with the introduction of a dimensionally continuous representation of emotion.
 While proposed representations vary, the most recognised basis for many continuous models is the circumplex model of emotion \citep{russell1980circumplex}.
@@ -135,6 +150,8 @@ CGI has, for the most part, involved human interaction, and human-controlled ima
 However generative systems and methods for both supervised, and unsupervised image synthesis have evolved in recent years with the increased use of evolutionary algorithms, and in more recent times, neural networks.
 While extensive research has been conducted into the generation of visually aesthetic images, applications of image synthesis extend to the synthesis of text to describe a given image \citep{mathews2016senticap}, as well as the generation of an image according to a target caption \citep{reed2016generative,zhang2017stackgan}.
 
+\subsection{Evolutionary computing}
+
 Some of the first methods for image generation focused on the synthesis of visually appealing images.
 While often using human-in-the-loop systems, visually striking and aesthetic images were the goal of methods introduced by \citet{sims} and \citet{nevar} involving evolutionary techniques.
 \textit{NEvAr} \citep{nevar} was one of the first such image synthesis systems able to produce greatly impressive images through evolutionary techniques.
@@ -144,19 +161,32 @@ This genotype representation leveraged extensive research done into the use of e
 This genotype expression has been used in numerous further research of both supervised and unsupervised image synthesis through evolutionary techniques \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
 However the way in which NEvAr and Sims evolved images involved the manual process of selecting individuals in the population they deemed to be of higher fitness than the rest.
 
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{images/sims-interactive-image-generation.png}
+	\caption{Images generated through the process of interactive evolution introduced by \citet{sims}}
+	\label{fig:sims}
+\end{figure}
+
+Evolutionary computing techniques for image synthesis have been able to produce increasingly interesting and appealing imagery and artwork.
+While the genotype representation introduced by \citet{sims} was further used by countless bodies of research, there exist countless other unique methods for image synthesis.
+Line-drawing as exemplified by \citet{niche-reproduction} has built upon evolutionary techniques, using a collection of individuals interacting in real-time to synthesis artwork.
+In traditional well-mixed \citep{sims} or distributed population \citep{distributed-evolutionary-art} each individual represents an image, or a model for generating one; however the line-drawing model of image synthesis acts like a swarm of individuals, each drawing on a canvas as they move through the space.
+This real-time evolutionary image drawing mechanism, while producing visually interesting images, has not been explored with regard to its use in other application domains.
+
+\subsection{Measures of aesthetics}
+
 Despite the slow nature of the interactive process, \citet{sims} and \citet{nevar} were able to produce images with visually striking characteristics.
 \citet{aesthetic-measures} investigated measures of aesthetics for fitness evaluation in artificially evolving images.
 This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend toward normal.
 While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing imagery without human interaction.
 
-The introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to depend only on collecting a sufficiently large dataset.
-Common GAN application has involved the generation of realistic images, including work by \citet{bao2017cvae} where images have been synthesised to fine-detailed target labels such as bird species' and actors.
-\citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
-Such an architecture has been applied to the area of art synthesis by \citet{tan2017artgan} in which images were generated according to a target genre and artist.
-Learning from a dataset of countless artworks in various categories, styles, and artists, it was hugely successful in generating images that were stylistically similar to existing art of the target artist/genre.
-Due to the competitive relationship of the generator and discriminator networks, the patterns learned by the discriminator propagate through the generator network.
-The discriminator network of the GAN architecture aims to learn patterns and styles from the dataset on which it is trained in order to discriminate between the generated and existing images.
-As a result, the images generated tend to resemble closely those in the training dataset, an advantage when similarity and realism to existing data is desired, and a detriment when generative creativity is a target attribute.
+Measures of aesthetics have been explored and multiple have been derived using information about fine art \citep{ralph-bell-curve}, and others measuring levels of symmetry, and even complexity measures according to image compression ratios \citep{den2010using}.
+Work by \citet{den2014investigating} performed a comparison of seven measures of aesthetics, comparing even some of the most popular metrics such as the Ralph bell curve \citep{ralph-bell-curve}.
+The primary finding of this work showed that the visual styles and nature of the images depended heavily on the given aesthetic metric used to determine fitness.
+Particularly given that the process by which images are generated is an optimisation problem, maximising the aesthetic value as measured by the given metric, the metric used has an immense impact on the resulting styles.
+However it was found that various pairs of metrics were correlated, resulting in images with highly similar characteristics when using one metric or the other.
+\citet{den2014investigating} also further explored the multi-objective optimisation problem of image synthesis when using combinations of aesthetic measures.
+The multi-objective optimisation variant of this research showed an increased aesthetic appeal of the images produced particularly with non-correlated metrics.
 
 Recent work by \citet{nguyen2015innovation} and \citet{nguyen2015deep} investigated the use of quality-diverse algorithms for image generation particularly to better understand the patterns learned by deep neural network image classifiers.
 Quality-diverse (QD) evolutionary algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed to address the need for a high quality, yet diverse solution space in related optimisation domains.
@@ -169,6 +199,19 @@ Thus enabling exploration into the inner workings of the DNN classifier by uncov
 In contrast, \citet{nguyen2015innovation} uses the same architecture to explore the novelty-driven evolutionary path taken by generated images and the potential for such a system in the field of content synthesis.
 While the conclusions derived from \citet{nguyen2015innovation} and \citet{nguyen2015deep} contrast greatly, the quality-diverse generative method used to understand the visual components learnt by the classifier show such an architecture's exploratory abilities.
 This technique for understanding the patterns learnt by such a classifier has not been explored in the context of regression.
+
+\subsection{Neural networks}
+
+The introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to depend only on collecting a sufficiently large dataset.
+Common GAN application has involved the generation of realistic images, including work by \citet{bao2017cvae} where images have been synthesised to fine-detailed target labels such as bird species' and actors.
+\citet{zhang2017stackgan} and \citet{reed2016generative} have recently explored text to image synthesis, in which detailed descriptions of birds and flowers have been converted into photo-realistic images using the GAN model.
+Such an architecture has been applied to the area of art synthesis by \citet{tan2017artgan} in which images were generated according to a target genre and artist.
+Learning from a dataset of countless artworks in various categories, styles, and artists, it was hugely successful in generating images that were stylistically similar to existing art of the target artist/genre.
+Due to the competitive relationship of the generator and discriminator networks, the patterns learned by the discriminator propagate through the generator network.
+The discriminator network of the GAN architecture aims to learn patterns and styles from the dataset on which it is trained in order to discriminate between the generated and existing images.
+As a result, the images generated tend to resemble closely those in the training dataset, an advantage when similarity and realism to existing data is desired, and a detriment when generative creativity is a target attribute.
+
+
 
 
 \section{Affective content synthesis}
