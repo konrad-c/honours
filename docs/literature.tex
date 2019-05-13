@@ -24,6 +24,7 @@ The two core themes explored are image generation techniques, and processes for 
 As a result this literature review aims to explore and understand the progression of knowledge in the fields of emotion representation and classification, computational image synthesis, and affective content synthesis.
 All of which represent the multiple facets of the proposed body of research with which an investigation into the use of image emotion classifiers for emotion-driven image generation will be explored.
 
+
 \section{Emotion representation}
 
 The field of emotion classification has surged in recent years given a popularity and rising interest in facial emotion recognition.
@@ -34,6 +35,7 @@ This section will discuss the evolution of these aspects of emotion classificati
 The computational recognition of emotion has been explored in countless studies and projects, in both the context of image emotion recognition \citep{machajdik2010affective,zhao2014exploring,kim2018building} and facial emotion classification \citep{mollahosseini2016going}.
 However a core component and key difference between a large number of such bodies of research is the method by which emotion is represented.
 Two of the most common representations represent a discrete, and continuous approach.
+
 
 \subsection{Categorical}
 
@@ -50,6 +52,7 @@ Many techniques for prediction, both for regression and classification rely on l
 Research in psychology has understood the increased error associated with continuous measurement tasked performed by humans in comparison to categorical classification \citep{harnad2003categorical}.
 With the human brain's attempt to sort perceived objects and situations into learned categories, it has been shown to warp continuous variables and scales to do so.
 As a result there exists an increased error in human measurement of continuous, compared to categorical variables.
+
 
 \subsection{Continuous dimensional}
 
@@ -82,10 +85,12 @@ While both discrete and continuous methods of representing emotion have their re
 These two representations of emotion can be translated between, since all categorical emotions can be converted to the continuous circumplex model, and the inverse.
 However due to the higher complexity nature of the continuous model, even with the use of SAM, dimensional representations are more difficult to gather on a large scale in comparison to categorical emotions.
 
+
 \section{Emotion classification}
 
 Emotion classification has been researched in depth particularly with respect to two sub-domains: facial emotion recognition, and content emotion classification (image, text, sound).
 Facial emotion recognition has been more heavily researched in this field when compared to content emotion classification.
+
 
 \subsection{Facial emotion recognition}
 
@@ -104,6 +109,12 @@ Any current issues
 
 Humans are known to be more accurate in classifying facial emotion of another when they are culturally similar due to their in-group advantage.
 This was also found to be the case with computational facial emotion classifiers when trained more heavily on one culture over another \citep{dailey2010evidence}.
+
+\subsubsection{Neural networks} \label{sec:neural-network-overview}
+
+Neural networks have become extremely popular in various domains of both prediction, and content generation.
+Before proceeding with further discussion about applications of more complex neural network architectures such as convolutional neural networks (CNN) and generative adversarial networks
+
 
 \subsection{Image emotion classification}
 
@@ -143,12 +154,14 @@ Recent datasets produced for image emotion recognition have used the valence-aro
 While categorical classification is more easily verified by humans, training predictive models with data that has an element of noise and uncertainty benefits from both continuity and volume.
 This is a key advantage of the circumplex model as applied by \citet{kim2018building} and \citet{zhao2016predicting} in image emotion recognition over categorical classification.
 
+
 \section{Computational image synthesis}
 
 Computer-generated images (CGI), has been a widely used in the film industry, as well as in countless other domains such as gaming, simulation, and art.
 CGI has, for the most part, involved human interaction, and human-controlled image and model generation.
 However generative systems and methods for both supervised, and unsupervised image synthesis have evolved in recent years with the increased use of evolutionary algorithms, and in more recent times, neural networks.
 While extensive research has been conducted into the generation of visually aesthetic images, applications of image synthesis extend to the synthesis of text to describe a given image \citep{mathews2016senticap}, as well as the generation of an image according to a target caption \citep{reed2016generative,zhang2017stackgan}.
+
 
 \subsection{Evolutionary computing}
 
@@ -173,6 +186,7 @@ Line-drawing as exemplified by \citet{niche-reproduction} has built upon evoluti
 In traditional well-mixed \citep{sims} or distributed population \citep{distributed-evolutionary-art} each individual represents an image, or a model for generating one; however the line-drawing model of image synthesis acts like a swarm of individuals, each drawing on a canvas as they move through the space.
 This real-time evolutionary image drawing mechanism, while producing visually interesting images, has not been explored with regard to its use in other application domains.
 
+
 \subsection{Measures of aesthetics}
 
 Despite the slow nature of the interactive process, \citet{sims} and \citet{nevar} were able to produce images with visually striking characteristics.
@@ -188,9 +202,16 @@ However it was found that various pairs of metrics were correlated, resulting in
 \citet{den2014investigating} also further explored the multi-objective optimisation problem of image synthesis when using combinations of aesthetic measures.
 The multi-objective optimisation variant of this research showed an increased aesthetic appeal of the images produced particularly with non-correlated metrics.
 
+
+\subsection{Quality-diverse algorithms}
+
 Recent work by \citet{nguyen2015innovation} and \citet{nguyen2015deep} investigated the use of quality-diverse algorithms for image generation particularly to better understand the patterns learned by deep neural network image classifiers.
 Quality-diverse (QD) evolutionary algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed to address the need for a high quality, yet diverse solution space in related optimisation domains.
-The use of such QD algorithms has shown great promise in its efficiency and accuracy on a number of hard optimisation problems \citep{pugh2016quality} such as maze navigation \citep{lehman2011abandoning}.
+The type of problems QD algorithms aim to address include primarily those in which a multitude of solutions exist within a multi-objective space, however the degree to which each objective is desired may vary.
+Thus algorithms such as MAP-Elites aims to maximise a given fitness function, while maintaining an N-dimensional feature space, where each dimensional represents the feature-specific fitness of a solution.
+The MAP-Elites algorithm results in not just a single or set of high fitness solutions, but a collection of such high fitness solutions spatially distributed over the desired feature space.
+
+The use of QD algorithms has shown great promise in its efficiency and accuracy on a number of hard optimisation problems \citep{pugh2016quality} such as maze navigation \citep{lehman2011abandoning}.
 \citet{nguyen2015deep} and \citet{nguyen2015innovation} use MAP-Elites in conjunction with a pre-trained deep neural network (DNN) image classifier; assigning individual image fitness according to the accuracy with which it is classified.
 Using the MAP-Elites framework in this context, each dimension of the feature-space represents a classification label, and as such the generated images allow the exploration of label representative patterns and shapes learnt by the classifier.
 \citet{nguyen2015deep} leverages such an architecture to show the shallowness with which an image classifier recognises images.
@@ -200,7 +221,12 @@ In contrast, \citet{nguyen2015innovation} uses the same architecture to explore 
 While the conclusions derived from \citet{nguyen2015innovation} and \citet{nguyen2015deep} contrast greatly, the quality-diverse generative method used to understand the visual components learnt by the classifier show such an architecture's exploratory abilities.
 This technique for understanding the patterns learnt by such a classifier has not been explored in the context of regression.
 
-\subsection{Neural networks}
+
+\subsection{Generative adversarial neural networks}
+
+Neural networks, while having been applied and researched extensively with regard to prediction and classification, as discussed in Section \ref{sec:neural-network-overview}, have recently shown exceedingly interesting and even visually realistic results with the generative adversarial architecture.
+Their use is however limited with regard to image synthesis using more traditional feed-forward network architectures due to the difficulty in converting such networks into higher level image generators.
+Limited work has been performed using image classifiers in conjunction with evolutionary computing techniques by \citet{nguyen2015innovation} as discussed previously.
 
 The introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to depend only on collecting a sufficiently large dataset.
 Common GAN application has involved the generation of realistic images, including work by \citet{bao2017cvae} where images have been synthesised to fine-detailed target labels such as bird species' and actors.
@@ -212,8 +238,6 @@ The discriminator network of the GAN architecture aims to learn patterns and sty
 As a result, the images generated tend to resemble closely those in the training dataset, an advantage when similarity and realism to existing data is desired, and a detriment when generative creativity is a target attribute.
 
 
-
-
 \section{Affective content synthesis}
 
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
@@ -222,6 +246,7 @@ The task of describing an image was extended from a traditional GAN approach thr
 The method used to train such a generative system involved the conditional GAN architecture as described by \citet{gauthier2014conditional}.
 A similar technique was used in style-driven image captioning (factual, romantic, humorous) in combination with a long short-term memory (LSTM) neural network model \citet{gan2017stylenet}.
 In the context of image-to-image synthesis, \textit{emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
+
 
 \section{Conclusion}
 
