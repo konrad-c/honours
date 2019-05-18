@@ -86,7 +86,7 @@ These two representations of emotion can be translated between, since all catego
 However due to the higher complexity nature of the continuous model, even with the use of SAM, dimensional representations are more difficult to gather on a large scale in comparison to categorical emotions.
 
 
-\section{Emotion classification}
+\section{Image classification}
 
 Emotion classification has been researched in depth particularly with respect to two sub-domains: facial emotion recognition, and content emotion classification (image, text, sound).
 Facial emotion recognition has been more heavily researched in this field when compared to content emotion classification.
@@ -103,51 +103,55 @@ While neural networks and their use date back to the 1980s, it was only as compu
 
 Up until such time as neural network architectures could be fully leveraged, the majority of image classification tasks lent on manually deriving image features for use in other more traditional classification models (regression, support vector machines, etc.).
 As a result the limiting factor of such classifiers were predictors derived from extracted image features.
+The use of such extracted image features has its benefits however.
+Their primary advantage lies particularly in relation to such features being more interpretable and human-understandable.
+The features extracted from neural network classifiers however are often abstract and may lack any human-comprehensible parallels despite their comparative predictive advantage.
+While it is often seen to be a black-box, the features learnt by a deep convolutional neural network, or any neural network architecture for that matter, do represent a repeatable and content-dependent image feature representation.
+As such the ability to reuse such neural networks and their feature extraction capabilities has been thoroughly explored in various bodies of work \citep{kim2018building,pan2009survey,you2015robust}.
+This practice is known as transfer learning.
 
+\subsection{Neural networks} \label{sec:neural-network-overview}
 
+This section will give a brief overview of neural networks and their application in image and content classification.
+The principles underlying neural networks are simple, yet their ability to capture and learn highly complex non-linear representations of information has resulted in their popularity.
+The fundamental building block of neural networks is the neuron, which itself is a parameterised mathematical function with which a range of inputs can be mapped to a single, or multiple outputs.
+Examples of such mappings range from simple mathematical functions such linear or logistic regression, to more complex applications involving convolution and functions of input sequences.
 
-\subsection{Facial emotion recognition}
+Convolutional neural networks represent current state of the art when using images or text for classification or prediction.
+First introduced by \citet{krizhevsky2012imagenet} as part of the ImageNet image classification competition, it exceeded the state-of-the-art at the time in classification accuracy.
+The way in which such an architecture processes image input data is through convolutional layers.
+As depicted in figure \ref{fig:CNN}, each neuron in a convolutional layer takes as input, a spatial subset of the layer before it.
+The result is layers of neurons that have a greater deal of local spatial awareness when compared to the most commonly used fully connected layers.
+The spatial constraints associated with these layers lends itself to the domain of image processing particularly given the highly spatial relationship of image pixels.
 
-============================================
-
-
-============================================
-
-Why is facial emotion recognition used and is of importance?
-How is it done (methods)? i.e. neural networks vs feature decomposition vs computer vision etc?
-Any current issues
-============================================
-
-
-============================================
-
-Humans are known to be more accurate in classifying facial emotion of another when they are culturally similar due to their in-group advantage.
-This was also found to be the case with computational facial emotion classifiers when trained more heavily on one culture over another \citep{dailey2010evidence}.
-
-\subsubsection{Neural networks} \label{sec:neural-network-overview}
-
-Neural networks have become extremely popular in various domains of both prediction, and content generation.
-Before proceeding with further discussion about applications of more complex neural network architectures such as convolutional neural networks (CNN) and generative adversarial networks
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{images/convolutional-neural-network.jpg}
+	\caption{Visual representation of most convolutional neural network image object classifier structures as introduced by \citet{krizhevsky2012imagenet}}
+	\label{fig:CNN}
+\end{figure}
 
 \subsection{Transfer learning}
 
+Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis of images \citep{pan2009survey}.
+Each of these commonly used object classification architectures have been originally trained on common baseline image object classification datasets such as CIFAR-10, CIFAR-100, and ImageNet.
+These are three of the most common and widely-used image object classification datasets, in which images fall into one of 10, 100, and 1000 categories respectively.
+As a result, the number of outputs of neural networks trained on these datasets is the total number of predictable categories.
+Each of these pre-trained image classifiers can be used in other domains of machine learning by omitting the last layer of their architectures, which represent the object classification layer, and feed the previous feature layer into a new architecture.
+In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains of application.
+
+The use of transfer learning in numerous domains has increased the general ability to produce highly accurate networks even with comparatively small datasets.
+
+Not only do the feature layer dimensions of each architecture differs, the features they themselves represent vary.
+As a result, using stacked predictor architectures, in which multiple feature vectors from multiple neural network classifiers are used as input to a further predictor network \citep{kim2018building}.
+
+
+
+Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
+The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
+Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
+
 
 \subsection{Image emotion classification}
-
-============================================
-
-
-============================================
-
-Brief history, applications, why it's used
-
-Methods: feature decomposition vs CV vs neural networks
-
-Existing problems and shortcomings of current methods.
-============================================
-
-
-============================================
 
 The area of image emotion and sentiment classification has been explored in a number of ways, primarily through image feature analysis derived from art and psychological factors \citep{machajdik2010affective}; and more recently using techniques such as deep neural networks \citep{chen2015learning, kim2018building}.
 Feature extraction and analysis has been used for various applications such as measuring aesthetic appeal \citep{den2010using,den2010comparing,den2011evolving} and as an emotional feature vector for sentiment classification \citep{machajdik2010affective}.
@@ -160,15 +164,6 @@ Image databases with singular emotion labels, and adjective-noun pairs (ANP) hav
 The artificial neural network approach to general image classification domains has exploded in popularity when compared to feature decomposition approaches used by \citet{machajdik2010affective}.
 This is largely due to their learning ability, particularly in recognising "hierarchical representations" \citep{lipton2015critical} of image features; which provides greatly improved performance when compared with manually crafted metrics derived through image decomposition.
 This hands-off approach to image feature vector decomposition has further lent itself to techniques such as transfer learning.
-
-Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis of images \citep{pan2009survey}.
-Each of these pre-trained image classifiers can be used in other domains of machine learning by omitting the last layer of their architectures, which represent the object classification layer, and feed the previous feature layer into a new architecture.
-In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains of application.
-This allows 
-
-Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
-The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
-Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
 
 The use of continuous emotion representations, particularly relating to the circumplex model have been explored in image emotion recognition tasks \citep{kim2018building, zhao2016predicting, zhao2017continuous}.
 Regression models produced to predict the valence-arousal (VA) values of given images have shown high accuracy on various datasets.
