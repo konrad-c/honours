@@ -90,6 +90,20 @@ However due to the higher complexity nature of the continuous model, even with t
 
 Emotion classification has been researched in depth particularly with respect to two sub-domains: facial emotion recognition, and content emotion classification (image, text, sound).
 Facial emotion recognition has been more heavily researched in this field when compared to content emotion classification.
+While the applications of content emotion classifications seem to be few in comparison with those of facial recognition, the field has widely been explored in the context of text emotion classification, with image and sound emotion classification trailing behind.
+
+Emotion classification has itself been a domain built upon the foundation of image classification techniques.
+From hand-crafted feature decomposition, to neural network architectures, the emotional content of images and text rely heavily on findings in other domains such as image object classification and text sentiment analysis.
+
+\subsection{Image object classification}
+
+As the basis for many further computer vision applications, image object classification has been a primary focus of research in the field of machine learning.
+The techniques associated with such tasks have for the most part in recent years involved the use of deep convolutional neural networks, which have proven to be state-of-the-art classifiers, with several high performing architectures such as ResNet, AlexNet, and Inception being used as staple image classifiers in other domains \citep{pan2009survey}.
+While neural networks and their use date back to the 1980s, it was only as computing power sufficiently increased in the 21st century that neural network architectures could be viably trained, and used \citep{rawat2017deep}.
+
+Up until such time as neural network architectures could be fully leveraged, the majority of image classification tasks lent on manually deriving image features for use in other more traditional classification models (regression, support vector machines, etc.).
+As a result the limiting factor of such classifiers were predictors derived from extracted image features.
+
 
 
 \subsection{Facial emotion recognition}
@@ -114,6 +128,8 @@ This was also found to be the case with computational facial emotion classifiers
 
 Neural networks have become extremely popular in various domains of both prediction, and content generation.
 Before proceeding with further discussion about applications of more complex neural network architectures such as convolutional neural networks (CNN) and generative adversarial networks
+
+\subsection{Transfer learning}
 
 
 \subsection{Image emotion classification}
@@ -141,8 +157,15 @@ The relationship between an image's emotion and its core artistic components suc
 Deep neural networks in this domain provide less transparency to the process with which emotions and sentiment are classified compared to feature analysis.
 The emotional content of an image can be decomposed in various ways.
 Image databases with singular emotion labels, and adjective-noun pairs (ANP) have been used for the training of deep neural network classifiers \citep{chen2014deepsentibank, yang2018visual} with up to 200\% performance gains over support vector machine classifiers.
+The artificial neural network approach to general image classification domains has exploded in popularity when compared to feature decomposition approaches used by \citet{machajdik2010affective}.
+This is largely due to their learning ability, particularly in recognising "hierarchical representations" \citep{lipton2015critical} of image features; which provides greatly improved performance when compared with manually crafted metrics derived through image decomposition.
+This hands-off approach to image feature vector decomposition has further lent itself to techniques such as transfer learning.
 
-Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis of images.
+Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis of images \citep{pan2009survey}.
+Each of these pre-trained image classifiers can be used in other domains of machine learning by omitting the last layer of their architectures, which represent the object classification layer, and feed the previous feature layer into a new architecture.
+In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains of application.
+This allows 
+
 Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
 The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
 Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
