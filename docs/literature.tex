@@ -54,7 +54,7 @@ With the human brain's attempt to sort perceived objects and situations into lea
 As a result there exists an increased error in human measurement of continuous, compared to categorical variables.
 
 
-\subsection{Continuous dimensional}
+\subsection{Continuous}
 
 The aforementioned difficulty associated with labelling images according to their respective emotional content is accentuated with the introduction of a dimensionally continuous representation of emotion.
 While proposed representations vary, the most recognised basis for many continuous models is the circumplex model of emotion \citep{russell1980circumplex}.
@@ -130,8 +130,6 @@ The spatial constraints associated with these layers lends itself to the domain 
 	\label{fig:CNN}
 \end{figure}
 
-\subsection{Transfer learning}
-
 Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis of images \citep{pan2009survey}.
 Each of these commonly used object classification architectures have been originally trained on common baseline image object classification datasets such as CIFAR-10, CIFAR-100, and ImageNet.
 These are three of the most common and widely-used image object classification datasets, in which images fall into one of 10, 100, and 1000 categories respectively.
@@ -140,15 +138,11 @@ Each of these pre-trained image classifiers can be used in other domains of mach
 In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains of application.
 
 The use of transfer learning in numerous domains has increased the general ability to produce highly accurate networks even with comparatively small datasets.
-
-Not only do the feature layer dimensions of each architecture differs, the features they themselves represent vary.
-As a result, using stacked predictor architectures, in which multiple feature vectors from multiple neural network classifiers are used as input to a further predictor network \citep{kim2018building}.
-
-
-
-Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
-The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
-Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
+Not only do the feature layer dimensions of each architecture differs, the information contained within these feature layers vary.
+In order to make use of collections of these derived features from multiple classifiers, some research has used a technique known as stacking \citep{tsoumakas2002effective}.
+The ensemble technique, in which multiple predictive models are trained and then used collectively to decide on the final prediction (often based on a majority vote of the models within it) resembles closely the stacking method.
+Model stacking, often known as meta ensembling involves the use of multiple models with which to derive a larger set of feature information which is then used for the predictive process.
+This has been used in various bodies of research, particularly in combination with existing image classifiers in order to derive a superset of features to further predict image emotion \citep{kim2018building} or even to synthesise photo-realistic images \citep{zhang2017stackgan}.
 
 
 \subsection{Image emotion classification}
@@ -164,6 +158,11 @@ Image databases with singular emotion labels, and adjective-noun pairs (ANP) hav
 The artificial neural network approach to general image classification domains has exploded in popularity when compared to feature decomposition approaches used by \citet{machajdik2010affective}.
 This is largely due to their learning ability, particularly in recognising "hierarchical representations" \citep{lipton2015critical} of image features; which provides greatly improved performance when compared with manually crafted metrics derived through image decomposition.
 This hands-off approach to image feature vector decomposition has further lent itself to techniques such as transfer learning.
+
+Techniques used in image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
+However the subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
+This is discussed in detail in the previous section, however the importance of domain agnostic and transferable predictive models is highlighted due to the particular case of image emotion and emotion as a target in the general case.
+Through techniques such as transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
 
 The use of continuous emotion representations, particularly relating to the circumplex model have been explored in image emotion recognition tasks \citep{kim2018building, zhao2016predicting, zhao2017continuous}.
 Regression models produced to predict the valence-arousal (VA) values of given images have shown high accuracy on various datasets.
