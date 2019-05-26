@@ -10,7 +10,7 @@
 \usepackage{graphicx}
 
 \begin{document}
-	
+
 \maketitle
 
 \tableofcontents
@@ -25,9 +25,13 @@ As a result this literature review aims to explore and understand the progressio
 All of which represent the multiple facets of the proposed body of research with which an investigation into the use of image emotion classifiers for emotion-driven image generation will be explored.
 
 
-\section{Emotion representation}
+\section{Models of emotion}
 
-The field of emotion classification has surged in recent years given a popularity and rising interest in facial emotion recognition.
+
+
+\section{Computational emotion representation}
+
+The field of emotion classification has surged in recent years given a popularity and rising interest in the use of facial recognition, gesture, voice, and body language for emotion recognition.
 Other research has focused on exploring ways in which emotion can be recognised in images, text, and more abstract content.
 Underlying these two areas of emotion recognition is the methods for quantitatively representing emotion in both a meaningful, and accurate way.
 This section will discuss the evolution of these aspects of emotion classification, in addition to their commonalities, and differences.
@@ -45,16 +49,22 @@ An example of the size of emotion label subsets used in studies of image emotion
 Due to this lack of consistency in emotion classification targets, such studies often repeat similar data gathering and classifier training methods again for their own use.
 Despite the consequences of inconsistency in the emotion labels chosen, due to the simplicity of discrete categorical emotion assignment, data gathering can be performed with ease compared to continuous methods of emotion representation.
 In order to create large image datasets of labelled images can be completed with greater ease when the number of such labels is reduced.
-However there remains difficulty in labelling images with respect to emotion given the inherent variation in the emotion felt by someone when both viewing an abstract image, or accurately determining the emotion expressed by a facial expression.
+However there remains difficulty in labelling images with respect to emotion given the inherent variation in the emotional affect of an image, or accurately determining the emotion expressed by a facial expression.
 
 The categorical representation is the simplest method for emotion classification, due not only to the consequent ease with which data can be gathered, but due to the extensive research surrounding methods for computational classification of content.
-Many techniques for prediction, both for regression and classification rely on large datasets, something more easily available and more accurate for categorical data.
+Many techniques for prediction, both for regression and classification rely on sufficiently large datasets of labelled data.
+It is often difficult to determine the label of a datapoint computationally, since this ability would imply that such a predictive model already exists.
+As a result dataset creation often involves a manual process of labelling datapoints.
+
+something more easily available and more accurate for categorical data.
 Research in psychology has understood the increased error associated with continuous measurement tasked performed by humans in comparison to categorical classification \citep{harnad2003categorical}.
 With the human brain's attempt to sort perceived objects and situations into learned categories, it has been shown to warp continuous variables and scales to do so.
-As a result there exists an increased error in human measurement of continuous, compared to categorical variables.
+As a result there exists an increased human error associated with the absolute measurements of continuous, compared to categorical variables.
+However such absolute error can be mitigated by introducing comparative measurements in combination with a standard ranking algorithm such as \citet{glickman2012example,glickman1995glicko}
 
 
-\subsection{Continuous}
+
+\subsection{Continuous dimensional}
 
 The aforementioned difficulty associated with labelling images according to their respective emotional content is accentuated with the introduction of a dimensionally continuous representation of emotion.
 While proposed representations vary, the most recognised basis for many continuous models is the circumplex model of emotion \citep{russell1980circumplex}.
@@ -67,7 +77,7 @@ One way in which the circumplex model of affect introduced by \citet{russell1980
 Despite its limitations, the circumplex model has been used extensively in the field of psychology \citep{bradley1994measuring,warriner2013norms}, and in computational emotion classification to a limited extent \citep{zhao2016predicting}.
 
 While both models for the representation of emotion have trade-offs, both suffer from issues related to cross-cultural differences in emotion expression and recognition.
-Cultures inherently differ with respect to how emotions are both felt and expressed \citep{markus1991culture}; this is becomes increasingly evident when attempting to classify the affective emotion embodied and expressed by more abstract content such as imagery and sound.
+Cultures inherently differ with respect to how emotions are both felt and expressed \citep{markus1991culture}; this becomes increasingly evident when attempting to classify the affective emotion embodied and expressed by more abstract content such as imagery and sound.
 The popular image-emotion dataset used for classification known as the International Affective Picture System (IAPS) was shown to have a significantly different valence-arousal assignment for up to 31.74\% of images between Chinese and American young adults \citep{huang2015affective}.
 Valence-arousal values assigned to images often vary when considering a group of people.
 To address this potential for error in reporting the subjective emotion imparted by content, the self-assessment manikin (SAM) was introduced \citep{lang1980behavioral}.
@@ -130,6 +140,8 @@ The spatial constraints associated with these layers lends itself to the domain 
 	\label{fig:CNN}
 \end{figure}
 
+\subsection{Transfer learning}
+
 Given the large amount of work conducted into image object classification, producing neural networks such as AlexNet, ResNet, and Inception, transfer learning has been heavily relied upon in various domains of classification and synthesis of images \citep{pan2009survey}.
 Each of these commonly used object classification architectures have been originally trained on common baseline image object classification datasets such as CIFAR-10, CIFAR-100, and ImageNet.
 These are three of the most common and widely-used image object classification datasets, in which images fall into one of 10, 100, and 1000 categories respectively.
@@ -138,11 +150,15 @@ Each of these pre-trained image classifiers can be used in other domains of mach
 In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains of application.
 
 The use of transfer learning in numerous domains has increased the general ability to produce highly accurate networks even with comparatively small datasets.
-Not only do the feature layer dimensions of each architecture differs, the information contained within these feature layers vary.
-In order to make use of collections of these derived features from multiple classifiers, some research has used a technique known as stacking \citep{tsoumakas2002effective}.
-The ensemble technique, in which multiple predictive models are trained and then used collectively to decide on the final prediction (often based on a majority vote of the models within it) resembles closely the stacking method.
-Model stacking, often known as meta ensembling involves the use of multiple models with which to derive a larger set of feature information which is then used for the predictive process.
-This has been used in various bodies of research, particularly in combination with existing image classifiers in order to derive a superset of features to further predict image emotion \citep{kim2018building} or even to synthesise photo-realistic images \citep{zhang2017stackgan}.
+
+Not only do the feature layer dimensions of each architecture differs, the features they themselves represent vary.
+As a result, using stacked predictor architectures, in which multiple feature vectors from multiple neural network classifiers are used as input to a further predictor network \citep{kim2018building}.
+
+
+
+Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
+The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
+Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
 
 
 \subsection{Image emotion classification}
@@ -159,11 +175,6 @@ The artificial neural network approach to general image classification domains h
 This is largely due to their learning ability, particularly in recognising "hierarchical representations" \citep{lipton2015critical} of image features; which provides greatly improved performance when compared with manually crafted metrics derived through image decomposition.
 This hands-off approach to image feature vector decomposition has further lent itself to techniques such as transfer learning.
 
-Techniques used in image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
-However the subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
-This is discussed in detail in the previous section, however the importance of domain agnostic and transferable predictive models is highlighted due to the particular case of image emotion and emotion as a target in the general case.
-Through techniques such as transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
-
 The use of continuous emotion representations, particularly relating to the circumplex model have been explored in image emotion recognition tasks \citep{kim2018building, zhao2016predicting, zhao2017continuous}.
 Regression models produced to predict the valence-arousal (VA) values of given images have shown high accuracy on various datasets.
 In leveraging pre-trained image classification networks through transfer learning, even smaller datasets (10,000 images) can have high accuracy classification results \citep{kim2018building}.
@@ -174,9 +185,8 @@ This is a key advantage of the circumplex model as applied by \citet{kim2018buil
 
 \section{Computational image synthesis}
 
-Computer-generated images (CGI), has been a widely used in the film industry, as well as in countless other domains such as gaming, simulation, and art.
+Computer-generated images (CGI), have been a widely used in the film industry, as well as in countless other domains such as gaming, simulation, and art.
 CGI has, for the most part, involved human interaction, and human-controlled image and model generation.
-However generative systems and methods for both supervised, and unsupervised image synthesis have evolved in recent years with the increased use of evolutionary algorithms, and in more recent times, neural networks.
 While extensive research has been conducted into the generation of visually aesthetic images, applications of image synthesis extend to the synthesis of text to describe a given image \citep{mathews2016senticap}, as well as the generation of an image according to a target caption \citep{reed2016generative,zhang2017stackgan}.
 
 
@@ -200,7 +210,8 @@ However the way in which NEvAr and Sims evolved images involved the manual proce
 Evolutionary computing techniques for image synthesis have been able to produce increasingly interesting and appealing imagery and artwork.
 While the genotype representation introduced by \citet{sims} was further used by countless bodies of research, there exist countless other unique methods for image synthesis.
 Line-drawing as exemplified by \citet{niche-reproduction} has built upon evolutionary techniques, using a collection of individuals interacting in real-time to synthesis artwork.
-In traditional well-mixed \citep{sims} or distributed population \citep{distributed-evolutionary-art} each individual represents an image, or a model for generating one; however the line-drawing model of image synthesis acts like a swarm of individuals, each drawing on a canvas as they move through the space.
+In a traditional well-mixed \citep{sims} or distributed population \citep{distributed-evolutionary-art} each individual represents an image, or a model for generating one.
+The particle swarm technique employed by \citet{niche-reproduction} however, generates images through the interaction of actors all of whom draw on the same canvas.
 This real-time evolutionary image drawing mechanism, while producing visually interesting images, has not been explored with regard to its use in other application domains.
 
 
@@ -218,6 +229,8 @@ Particularly given that the process by which images are generated is an optimisa
 However it was found that various pairs of metrics were correlated, resulting in images with highly similar characteristics when using one metric or the other.
 \citet{den2014investigating} also further explored the multi-objective optimisation problem of image synthesis when using combinations of aesthetic measures.
 The multi-objective optimisation variant of this research showed an increased aesthetic appeal of the images produced particularly with non-correlated metrics.
+
+
 
 
 \subsection{Quality-diverse algorithms}
