@@ -17,6 +17,33 @@
 
 \pagebreak
 
+\section{Introduction}
+
+For centuries artists have been extremely talented at creating pieces of artwork that convey a range of emotions to those who view them.
+Extensive research has been conducted into how visual features affect humans emotionally and how these can be used to predict and detect the emotional content of images and text \citep{machajdik2010affective, zhao2014exploring}.
+Due to the subjective and qualitative nature of human emotion, assigning a quantitative measure of emotion to an image is no easy task.
+Furthermore the ability to computationally recognise the emotional content of an image has wide-ranging applications from classifying posts on social media, to the creation of images, text, and even physical spaces in an emotionally quantifiable way.
+
+This research aims to investigate representations for quantitatively representing emotion and its effect on image emotion classification
+Primarily focusing on comparing categorical (happy, sad, etc.) and continuous (valence-arousal-dominance) representations for emotion in the context of image classification, and extending the learnings of such a classifier in image synthesis.
+Through the generative process, gain a better understanding of visual patterns learnt by such a classifier by maximising classification confidence through the use of conditional generative adversarial networks \citep{gauthier2014conditional}, and evolutionary techniques explored by \citep{nguyen2015deep}.
+
+Methods for quantifiably representing emotion have been explored thoroughly in the domain of psychology, with continuous multi-dimensional models being used in lieu of a single emotional label.
+The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with it \citep{russell1980circumplex}.
+Such a continuous model is not without flaw, failing to accurately capture more complex emotional states, often those that represent concurrent conflicting sides of a given axis \citep{larsen1992promises}.
+The complexity of such a continuous representation of emotion has been investigated in depth and extended in various ways, including through the addition of a third dimension: dominance \citep{bradley1994measuring}; which is particularly of interest within social dynamics.
+
+The domain of emotion classification has had a particular focus on facial expressions and text \citep{cambria2016affective, warriner2013norms}.
+Image emotion classifiers have been explored \citep{kim2018building, machajdik2010affective, chen2015learning, chen2014deepsentibank} yet their use has been limited.
+Humans are able to fluently recognise, label, and discuss the emotional affect of an image, yet computers currently lack this ability.
+However ongoing research is still further enabling and advancing the computational classification of image affect, and understanding the underlying patterns associated with image emotion.
+
+As with the use of deep neural network image classifiers such as ResNet, AlexNet, and Inception, the shapes and patterns learnt by such deep learning systems are difficult to extract.
+Recent work has looked at the use of quality-diverse generative algorithms with such deep classifiers \citep{nguyen2015deep, nguyen2015innovation}.
+The underlying patterns learned by the classifier can be surfaced by synthesising images that maximise various desirable features.
+This method allowed the exploration of images to which the classifier assigns a given label such as \textit{school bus} or \textit{lighthouse}, enabling a deeper understanding of the visual characteristics inherent to each class.
+This process however does not limit itself to the use of evolutionary algorithms for image synthesis, with other techniques including the use of generative adversarial networks \citep{GAN}.
+
 \section{Aims and Scope}
 
 The primary focus of the proposed research is to produce an image emotion classifier, and to further leverage it in the process of emotion-driven image synthesis.
@@ -25,7 +52,8 @@ As a result this literature review aims to explore and understand the progressio
 All of which represent the multiple facets of the proposed body of research with which an investigation into the use of image emotion classifiers for emotion-driven image generation will be explored.
 
 
-\section{Models of emotion}
+\section{Models of affect}
+
 
 
 
@@ -56,12 +84,11 @@ Many techniques for prediction, both for regression and classification rely on s
 It is often difficult to determine the label of a datapoint computationally, since this ability would imply that such a predictive model already exists.
 As a result dataset creation often involves a manual process of labelling datapoints.
 
-something more easily available and more accurate for categorical data.
 Research in psychology has understood the increased error associated with continuous measurement tasked performed by humans in comparison to categorical classification \citep{harnad2003categorical}.
 With the human brain's attempt to sort perceived objects and situations into learned categories, it has been shown to warp continuous variables and scales to do so.
 As a result there exists an increased human error associated with the absolute measurements of continuous, compared to categorical variables.
-However such absolute error can be mitigated by introducing comparative measurements in combination with a standard ranking algorithm such as \citet{glickman2012example,glickman1995glicko}
-
+However such absolute error can be mitigated by introducing comparative measurements in combination with a standard ranking algorithm such as \citet{glickman2012example,glickman1995glicko}.
+Furthermore the introduction of processes such as the self-assessment manikin \citep{lang1980behavioral} assist the assessment of emotional affect associated with the circumplex model of affect (valence, arousal, and dominance).
 
 
 \subsection{Continuous dimensional}
@@ -72,15 +99,17 @@ The circumplex model of emotion introduced by \citet{russell1980circumplex} asse
 Valence measures the positivity or negativity associated with an emotion; and arousal measures the excitement associated with it.
 For example, the discrete emotion label of \textbf{happiness} could be represented in the continuous valence-arousal (VA) space with high-valence, medium-arousal; while the label \textbf{depressed} would translate to low-valence, low-arousal; and \textbf{relaxed} being medium-valence, low-arousal.
 While this continuous dimensional model allows for greater continuity in measuring emotions, it is not without fault \citep{larsen1992promises}.
-The primary limitations of such a model involve it's likelihood of misinterpretation particularly when considering the labels of each dimension, and any information loss arising from reducing more complex emotions to a two-dimensional space.
+The primary limitations of such a model involve it's likelihood of misinterpretation particularly when considering the labels of each dimension.
+This issue of misinterpretation was of particular interest as the circumplex model of emotional affect was being refined and compared to other models emotional assessment such 
 One way in which the circumplex model of affect introduced by \citet{russell1980circumplex} has been extended to address its weaknesses is through the introduction of a third-dimension: Dominance, the amount of control associated with an emotion.
 Despite its limitations, the circumplex model has been used extensively in the field of psychology \citep{bradley1994measuring,warriner2013norms}, and in computational emotion classification to a limited extent \citep{zhao2016predicting}.
 
 While both models for the representation of emotion have trade-offs, both suffer from issues related to cross-cultural differences in emotion expression and recognition.
 Cultures inherently differ with respect to how emotions are both felt and expressed \citep{markus1991culture}; this becomes increasingly evident when attempting to classify the affective emotion embodied and expressed by more abstract content such as imagery and sound.
 The popular image-emotion dataset used for classification known as the International Affective Picture System (IAPS) was shown to have a significantly different valence-arousal assignment for up to 31.74\% of images between Chinese and American young adults \citep{huang2015affective}.
-Valence-arousal values assigned to images often vary when considering a group of people.
-To address this potential for error in reporting the subjective emotion imparted by content, the self-assessment manikin (SAM) was introduced \citep{lang1980behavioral}.
+Even with respect to the distribution of image valence-arousal values as assigned within a group of the same culture, these values often vary.
+This culture-independent variation can be reduced by introducing valence-arousal assignment guidelines and benchmark comparisons.
+One of the most commonly used methods for emotional affect self-assessment is the self-assessment manikin (SAM) \citep{lang1980behavioral}.
 SAM, as can be seen in Figure \ref{fig:SAM}, was developed to aid in the evaluation of emotion, particularly its translation into the commonly used three dimensions of the circumplex model of affect: valence, arousal, dominance.
 It has proved itself as more accurate and effective than other methods of emotion self-assessment while being less complex \citep{bradley1994measuring}.
 
@@ -156,8 +185,14 @@ Using such a stacked predictor architecture enabled \citet{kim2018building} to g
 
 The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
 Through transfer learning, pre-trained image object classifiers reduce the both the computational and dataset size requirements \citep{pan2009survey} for creating new predictive models.
-Particularly in the domain of image emotion, transfer learning has enabled accurate classifiers to be built with relatively small image datasets (e.g. 10766 \citep{kim2018building}) by extracting image features as  
-can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
+Particularly in the domain of image emotion, transfer learning has enabled accurate classifiers to be built with relatively small image datasets (e.g. 10766 \citep{kim2018building}) by extracting the image features derived by image object classifiers such as ResNet and AlexNet.
+Small datasets such as this however can benefit from other techniques such as data augmentation \citep{perez2017effectiveness} which through various image transformations such as rotation, cropping, blurring, and colour distortions, can increase the effective number of images available for training.
+This technique, in combination with transfer learning is the foundation of research by \citet{wangarttalk} to create an art emotion and theme classifier.
+Furthermore exploring simple variations on the transfer architecture, to determine the impact of a varying number of network layers taking as input, the feature vector of VGG and ResNet object classifiers.
+This differs from the stacked feature extraction approach by \citet{kim2018building} with considerable success despite.
+
+Transfer learning represents a core component of classifier architectures to leverage vast amounts of work done to train image object classifiers \citep{krizhevsky2012imagenet,pan2009survey} in domains that suffer from issues such as small datasets.
+While opportunities exist to maximise accuracy through image classifier stacking for feature extraction \citep{kim2018building}, simpler architectures involving a single image object classifier and less than three hidden layers to process these features \citep{wangarttalk} have shown to provide considerably good results.
 
 
 \subsection{Image emotion classification}
