@@ -150,15 +150,14 @@ Each of these pre-trained image classifiers can be used in other domains of mach
 In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains of application.
 
 The use of transfer learning in numerous domains has increased the general ability to produce highly accurate networks even with comparatively small datasets.
-
-Not only do the feature layer dimensions of each architecture differs, the features they themselves represent vary.
+Not only do the feature layer dimensions of each architecture differs, the features they represent vary.
 As a result, using stacked predictor architectures, in which multiple feature vectors from multiple neural network classifiers are used as input to a further predictor network \citep{kim2018building}.
+Using such a stacked predictor architecture enabled \citet{kim2018building} to generate a highly accurate image emotion classifier using a relatively small dataset of 10766 images.
 
-
-
-Techniques used by image emotion recognition have been used extensively in domains such as image sentiment analysis \citep{you2015robust}, and image-to-text synthesis \citep{vinyals2015show}.
 The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
-Through transfer learning, pre-trained image object classifiers can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
+Through transfer learning, pre-trained image object classifiers reduce the both the computational and dataset size requirements \citep{pan2009survey} for creating new predictive models.
+Particularly in the domain of image emotion, transfer learning has enabled accurate classifiers to be built with relatively small image datasets (e.g. 10766 \citep{kim2018building}) by extracting image features as  
+can and have been used in the domain of image emotion \citep{kim2018building, wangarttalk}.
 
 
 \subsection{Image emotion classification}
@@ -178,7 +177,8 @@ This hands-off approach to image feature vector decomposition has further lent i
 The use of continuous emotion representations, particularly relating to the circumplex model have been explored in image emotion recognition tasks \citep{kim2018building, zhao2016predicting, zhao2017continuous}.
 Regression models produced to predict the valence-arousal (VA) values of given images have shown high accuracy on various datasets.
 In leveraging pre-trained image classification networks through transfer learning, even smaller datasets (10,000 images) can have high accuracy classification results \citep{kim2018building}.
-Recent datasets produced for image emotion recognition have used the valence-arousal-dominance model due to its continuity \citep{zhao2016predicting}.
+Despite the aforementioned difficulty associated with labelling images on continuous dimensions such as the circumplex model of affect \citep{russell1980circumplex}, \citet{zhao2016predicting} have used image descriptions and comments to generate an image's respective valence, arousal, and dominance values.
+\citet{zhao2016predicting} further use this dataset with hypergraph learning techniques for the personalised prediction of an image's emotional affect.
 While categorical classification is more easily verified by humans, training predictive models with data that has an element of noise and uncertainty benefits from both continuity and volume.
 This is a key advantage of the circumplex model as applied by \citet{kim2018building} and \citet{zhao2016predicting} in image emotion recognition over categorical classification.
 
@@ -194,7 +194,7 @@ While extensive research has been conducted into the generation of visually aest
 
 Some of the first methods for image generation focused on the synthesis of visually appealing images.
 While often using human-in-the-loop systems, visually striking and aesthetic images were the goal of methods introduced by \citet{sims} and \citet{nevar} involving evolutionary techniques.
-\textit{NEvAr} \citep{nevar} was one of the first such image synthesis systems able to produce greatly impressive images through evolutionary techniques.
+The \textit{NEvAr} \citep{nevar} system for the interactive evolution of images exemplifies the range of visual outputs possible with these techniques.
 Evolutionary art leveraged methods introduced and exemplified by \citet{sims}, producing images such as those shown in Figure \ref{fig:sims}.
 \citet{sims} proposed using \textit{Lisp} expressions for genotype definitions, which map a coordinate (x, y) into a grayscale or RGB value.
 This genotype representation leveraged extensive research done into the use of evolutionary computing for optimisation problems.
@@ -208,7 +208,8 @@ However the way in which NEvAr and Sims evolved images involved the manual proce
 \end{figure}
 
 Evolutionary computing techniques for image synthesis have been able to produce increasingly interesting and appealing imagery and artwork.
-While the genotype representation introduced by \citet{sims} was further used by countless bodies of research, there exist countless other unique methods for image synthesis.
+While the genotype representation introduced by \citet{sims} has formed a basis for further research in the field of evolutionary image synthesis \citep{den2011evolving,den2010using,nevar,den2012maintaining,distributed-evolutionary-art}, other genotype representations for image synthesis have been explored.
+While common generative representations have involved the use of expression trees \citep{sims,nevar,aesthetic-measures}, methods such as direct pixel encodings \citep{nguyen2015deep}, and the more novel technique of line-drawing \citep{annunziato1998nagual,niche-reproduction}
 Line-drawing as exemplified by \citet{niche-reproduction} has built upon evolutionary techniques, using a collection of individuals interacting in real-time to synthesis artwork.
 In a traditional well-mixed \citep{sims} or distributed population \citep{distributed-evolutionary-art} each individual represents an image, or a model for generating one.
 The particle swarm technique employed by \citet{niche-reproduction} however, generates images through the interaction of actors all of whom draw on the same canvas.
