@@ -318,7 +318,14 @@ The comparative complexity of emotional representation self-evident as the compl
 
 In a similar domain is the synthesis of factual image captions according to target textual themes \citep{gan2017stylenet}.
 This differed from the conditional GAN approach being used by \citet{mathews2016senticap}, instead using a long short-term memory (LSTM) neural network model in style-driven image captioning: factual, romantic, humorous.
-In the context of image-to-image synthesis, \textit{emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
+Despite the target being simply one of three themes, each represents a fundamentally different underlying emotion.
+The use of a categorical emotion representation is applied to affective image-to-image transformations by \citet{ali2017emotional}.
+Here \citet{ali2017emotional} introduces \textit{emotion transfer}, involving the transformation of an image's colour distribution with the aim of altering its affective emotion.
+The target emotional profile is represented here as the ratios of combinations of seven discrete emotions.
+Then using the known image affective emotions and their respective colour distributions, performs colour transformations.
+This differs from the practice of \textit{style transfer} in which images are altered to stylistically match another image \citep{gatys2016image}.
+While style transfer aims to find a middle-ground between maintaining the content of the image and imparting the style of its target, the emotion transfer technique leaves the image content unaltered varying only its distribution of colour.
+
 
 
 \section{Conclusion}
