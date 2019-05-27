@@ -304,13 +304,20 @@ The discriminator network of the GAN architecture aims to learn patterns and sty
 As a result, the images generated tend to resemble closely those in the training dataset, an advantage when similarity and realism to existing data is desired, and a detriment when generative creativity is a target attribute.
 
 
-\section{Affective content synthesis}
+\section{Affective image synthesis}
 
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
+The domain of affective content synthesis, involves the generation of text, image, sound, and other types of content according to a target emotional affect.
+Work in this domain has largely involved sentiment as a target generative condition \citep{cambria2016affective,gunes2011emotion,mathews2016senticap}.
 Sentiment-driven examples of generative systems include image captioning according to target sentiment \citep{mathews2016senticap}.
 The task of describing an image was extended from a traditional GAN approach through the addition of a sentiment target input.
 The method used to train such a generative system involved the conditional GAN architecture as described by \citet{gauthier2014conditional}.
-A similar technique was used in style-driven image captioning (factual, romantic, humorous) in combination with a long short-term memory (LSTM) neural network model \citet{gan2017stylenet}.
+Sentiment is comparatively simpler to represent and classify than emotion.
+Often represented categorically as negative, neutral, and positive being valued -1, 0, and 1 respectively or continuously between -1 and 1 following a similar pattern \citep{mathews2016senticap,gunes2011emotion,zhao2016predicting}.
+The comparative complexity of emotional representation self-evident as the complexity of categorical classification increases, and the one-dimensional continuous model is replaced by up to three dimensions \citep{zhao2016predicting}.
+
+In a similar domain is the synthesis of factual image captions according to target textual themes \citep{gan2017stylenet}.
+This differed from the conditional GAN approach being used by \citet{mathews2016senticap}, instead using a long short-term memory (LSTM) neural network model in style-driven image captioning: factual, romantic, humorous.
 In the context of image-to-image synthesis, \textit{emotion transfer} was explored by \citet{ali2017emotional} which involved the transformation of an image's colour and style with the aim of altering its conveyed emotion.
 
 
