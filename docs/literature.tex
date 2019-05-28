@@ -74,7 +74,7 @@ Despite this, the use of categorical emotional states and labels represents the 
 More complex relationships between the processes involved with affect, feeling, and emotion are often represented as dichotomous dimensional models, such as the two-dimensional model of valence and arousal (discussed below) in which each dimension represents polar states of affect \citep{grandjean2008conscious}.
 
 
-\section{Computationally representing affect}
+\section{Computational models of affect}
 
 The field of emotion classification has surged in recent years given a popularity and rising interest in the use of facial recognition, gesture, voice, and body language for emotion recognition.
 Other research has focused on exploring ways in which emotion can be recognised in images, text, and more abstract content.
@@ -155,7 +155,7 @@ From hand-crafted feature decomposition, to neural network architectures, the em
 
 As the basis for many further computer vision applications, image object classification has been a primary focus of research in the field of machine learning.
 The techniques associated with such tasks have for the most part in recent years involved the use of deep convolutional neural networks, which have proven to be state-of-the-art classifiers, with several high performing architectures such as ResNet, AlexNet, and Inception being used as staple image classifiers in other domains \citep{pan2009survey}.
-While neural networks and their use date back to the 1980s, it was only as computing power sufficiently increased in the 21st century that neural network architectures could be viably trained, and used \citep{rawat2017deep}.
+While neural networks and their use date back to the 1980s, the higher availability and lower cost of single-instruction multiple-data (SIMD) processing architectures such as graphics processing units (GPU) has allowed for their widespread use \citep{rawat2017deep}.
 
 Up until such time as neural network architectures could be fully leveraged, the majority of image classification tasks lent on manually deriving image features for use in other more traditional classification models (regression, support vector machines, etc.).
 As a result the limiting factor of such classifiers were predictors derived from extracted image features.
@@ -283,6 +283,18 @@ However it was found that various pairs of metrics were correlated, resulting in
 \citet{den2014investigating} also further explored the multi-objective optimisation problem of image synthesis when using combinations of aesthetic measures.
 The multi-objective optimisation variant of this research showed an increased aesthetic appeal of the images produced particularly with non-correlated metrics.
 
+With goals of synthesising \textit{interesting} images through the use of such aesthetic measures, the current state-of-the-art metrics include measures of compression complexity and fractal dimension \citep{johnson2019understanding}.
+The use of measures of aesthetics in image synthesis and computationally determining image beauty can provide considerably accurate predictions of perceived image beauty \citep{forsythe2011predicting}.
+However recent works has investigated the accuracy of such metrics with respect to user-reported image complexity and aesthetic appeal \citep{johnson2019understanding}.
+Even in controlled environments, the evaluations of images made by study participants can vary substantially.
+This variation depends heavily on the context in which such evaluations are made, and the data gathering process can be greatly impacted when performed in more uncontrolled environments such as online.
+
+The mathematical functions for the measure of visual aesthetic value explored by \citet{den2014investigating} and \citet{forsythe2011predicting} can provide useful optimisation targets in applications of image synthesis.
+Another popular technique used in this domain of application is the use of an image collection used as a seed in the synthesis process.
+This collection of images, known as an \textit{inspiring set} \citep{johnson2019understanding}, forms a set on which a synthesis process is run, often aiming to replicate style and form while remaining novel from the inspiring set.
+This approach, while omitting targets such as fractal dimension and compression complexity, uses measures of colour distribution or geometrical analysis \citep{johnson2019understanding}.
+\citet{kim2018building} utilises exactly this method in its image-to-image \textit{emotion transfer}, looking particularly at the transference of colour distributions based on an inspiring set determined by the target emotion.
+
 
 \subsection{Quality-diverse algorithms}
 
@@ -342,8 +354,20 @@ This differs from the practice of \textit{style transfer} in which images are al
 While style transfer aims to find a middle-ground between maintaining the content of the image and imparting the style of its target, the emotion transfer technique leaves the image content unaltered varying only its distribution of colour.
 
 
-
 \section{Conclusion}
+
+There exist numerous valuable applications of image affect and emotion classification, in addition to its use in image synthesis.
+While emotion and affect often represent abstract and fluid concepts, applications in computing ultimately require methods for their representation.
+There exist two main quantitative representations of affect most commonly used both in the field of computing and psychology.
+Categorical labels of expressed emotion (e.g. happy, sad, angry) represent the most commonly used representation for various reasons generally due to the ease with which labelled datasets can be produced.
+The second representation is dimensionally continuous, most commonly represented by the two dimensions valence and arousal, with a third, dominance, often added.
+When used in classification tasks, the decision to use one representation over another is often arbitrary or reflective only of past research.
+The deep understanding of their respective advantages and disadvantages in psychology has not been tested or understood in the domain of content affect classification.
+
+Generative processes whether through the use of neural networks or evolutionary computing have shown great promise in synthesising target driven content.
+
+
+
 
 \bibliographystyle{apalike}
 \bibliography{references}
