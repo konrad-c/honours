@@ -284,10 +284,10 @@ A popular application of generative neural network architectures has been the ge
 Some of the first methods for image generation focused on the synthesis of visually appealing images.
 While often using human-in-the-loop systems, visually striking and aesthetic images were the goal of methods introduced by \citet{sims} and \citet{nevar} involving evolutionary techniques.
 The \textit{NEvAr} \citep{nevar} system for the interactive evolution of images exemplifies the range of visual outputs possible with these techniques.
-Evolutionary art leveraged methods introduced and exemplified by \citet{sims}, producing images such as those shown in Figure \ref{fig:sims}.
+Evolutionary art leveraged methods introduced and exhibited by \citet{sims}, producing images such as those shown in Figure \ref{fig:sims}.
 \citet{sims} proposed using \textit{Lisp} expressions for genotype definitions, which map a coordinate (x, y) into a grayscale or RGB value.
 This genotype representation leveraged extensive research done into the use of evolutionary computing for optimisation problems.
-This genotype expression has been used in numerous further research of both supervised and unsupervised image synthesis through evolutionary techniques \citep{nevar, sims, den2011evolving, distributed-evolutionary-art, aesthetic-measures}.
+This genotype expression has been used in numerous further research of both supervised and unsupervised image synthesis with evolutionary techniques \citep{nevar,sims,den2011evolving,distributed-evolutionary-art,aesthetic-measures}.
 However the way in which NEvAr and Sims evolved images involved the manual process of selecting individuals in the population they deemed to be of higher fitness than the rest.
 
 \begin{figure}[h!]
@@ -297,12 +297,12 @@ However the way in which NEvAr and Sims evolved images involved the manual proce
 \end{figure}
 
 Evolutionary computing techniques for image synthesis have been able to produce increasingly interesting and appealing imagery and artwork.
-While the genotype representation introduced by \citet{sims} has formed a basis for further research in the field of evolutionary image synthesis \citep{den2011evolving,den2010using,nevar,den2012maintaining,distributed-evolutionary-art}, other genotype representations for image synthesis have been explored.
-While common generative representations have involved the use of expression trees \citep{sims,nevar,aesthetic-measures}, methods such as direct pixel encodings \citep{nguyen2015deep}, and the more novel technique of line-drawing \citep{annunziato1998nagual,niche-reproduction}
+While the genotype representation introduced by \citet{sims} has formed the basis for numerous studies in the field of evolutionary image synthesis \citep{den2011evolving,den2010using,nevar,den2012maintaining,distributed-evolutionary-art}, other genotype representations for image synthesis have been explored.
+While common generative representations have involved the use of expression trees \citep{sims,nevar,aesthetic-measures}, other methods used include direct pixel encoding \citep{nguyen2015deep}, and the more novel technique of line-drawing \citep{annunziato1998nagual,niche-reproduction}.
 Line-drawing as exemplified by \citet{niche-reproduction} has built upon evolutionary techniques, using a collection of individuals interacting in real-time to synthesise artwork.
 In a traditional well-mixed \citep{sims} or distributed population \citep{distributed-evolutionary-art} each individual represents an image, or a model for generating one.
-The particle swarm technique employed by \citet{niche-reproduction} however, generates images through the interaction of actors all of whom draw on the same canvas.
-This real-time evolutionary image drawing mechanism, while producing visually interesting images, has not been explored with regard to its use in other application domains.
+The particle swarm technique employed by \citet{niche-reproduction} generates images through the interaction of actors all of whom draw on the same canvas.
+Despite producing visually interesting images, this real-time evolutionary image drawing mechanism has not been explored with regard to its use in other application domains.
 
 
 \subsection{Measures of aesthetics}
@@ -312,16 +312,16 @@ Despite the slow nature of the interactive process, \citet{sims} and \citet{neva
 This research primarily used observations by \citet{ralph-bell-curve}, that the distribution of colour gradients in fine art tend toward normal.
 While the images produced through this method did not meet the level of intricacy and detail as the results of \citet{sims} or \citet{nevar}, it represented a self-contained system able to generate appealing imagery without human interaction.
 
-Measures of aesthetics have been explored and multiple have been derived using information about fine art \citep{ralph-bell-curve}, and others measuring levels of symmetry, and even complexity measures according to image compression ratios \citep{den2010using}.
+Measures of aesthetics have been explored and multiple have been derived using information about fine art \citep{ralph-bell-curve}, measures of symmetry, and even complexity measures based on image compression ratios \citep{den2010using}.
 Work by \citet{den2014investigating} performed a comparison of seven measures of aesthetics, comparing even some of the most popular metrics such as the Ralph bell curve \citep{ralph-bell-curve}.
-The primary finding of this work showed that the visual styles and nature of the images depended heavily on the given aesthetic metric used to determine fitness.
-Particularly given that the process by which images are generated is an optimisation problem, maximising the aesthetic value as measured by the given metric, the metric used has an immense impact on the resulting styles.
-However it was found that various pairs of metrics were correlated, resulting in images with highly similar characteristics when using one metric or the other.
+The primary finding of this work showed that the visual styles of the images generated depended heavily on the given aesthetic metric used to determine fitness.
+The process by which images are generated is an optimisation problem, maximising the aesthetic value as measured by the given metric.
+It was found that combining various pairs of metrics were correlated, resulting in images with highly similar characteristics when using one metric or the other.
 \citet{den2014investigating} also further explored the multi-objective optimisation problem of image synthesis when using combinations of aesthetic measures.
-The multi-objective optimisation variant of this research showed an increased aesthetic appeal of the images produced particularly with non-correlated metrics.
+The multi-objective optimisation variant of this research showed an increased aesthetic appeal of the images produced particularly with combinations of non-correlated metrics.
 
-With goals of synthesising \textit{interesting} images through the use of such aesthetic measures, the current state-of-the-art metrics include measures of compression complexity and fractal dimension \citep{johnson2019understanding}.
-The use of measures of aesthetics in image synthesis and computationally determining image beauty can provide considerably accurate predictions of perceived image beauty \citep{forsythe2011predicting}.
+With goals of synthesising \textit{interesting} images through the use of such aesthetic measures, current state-of-the-art metrics include measures of compression complexity and fractal dimension \citep{johnson2019understanding}.
+The perceived beauty of an image can be predicted with considerable accuracy using these measures of aesthetics, particularly the fractal dimension of the image \citep{forsythe2011predicting}.
 However recent works has investigated the accuracy of such metrics with respect to user-reported image complexity and aesthetic appeal \citep{johnson2019understanding}.
 Even in controlled environments, the evaluations of images made by study participants can vary substantially.
 This variation depends heavily on the context in which such evaluations are made, and the data gathering process can be greatly impacted when performed in more uncontrolled environments such as online.
