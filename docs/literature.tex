@@ -177,36 +177,34 @@ Due to the higher complexity nature of the continuous model, even with the use o
 
 \section{Image classification}
 
-Emotion classification has been researched in depth particularly with respect to two sub-domains: facial emotion recognition, and content emotion classification (image, text, sound).
-Facial emotion recognition has been more heavily researched in this field when compared to content emotion classification.
-While the applications of content emotion classifications seem to be few in comparison with those of facial recognition, the field has widely been explored in the context of text emotion classification, with image and sound emotion classification trailing behind.
-
-Emotion classification has itself been a domain built upon the foundation of image classification techniques.
+Emotion classification has been researched particularly with respect to two sub-domains: facial emotion recognition, and content emotion classification (image, text, sound).
+While the applications of content emotion classifications seem few in comparison to that of facial recognition, emotion classification of text, image, and sound has seen increased research interest.
+Image emotion classification has itself been a domain built upon the foundation of image classification techniques.
 From hand-crafted feature decomposition, to neural network architectures, the emotional content of images and text rely heavily on findings in other domains such as image object classification and text sentiment analysis.
 
 \subsection{Image object classification}
 
-As the basis for many further computer vision applications, image object classification has been a primary focus of research in the field of machine learning.
-The techniques associated with such tasks have for the most part in recent years involved the use of deep convolutional neural networks, which have proven to be state-of-the-art classifiers, with several high performing architectures such as ResNet, AlexNet, and Inception being used as staple image classifiers in other domains \citep{pan2009survey}.
-While neural networks and their use date back to the 1980s, the higher availability and lower cost of single-instruction multiple-data (SIMD) processing architectures such as graphics processing units (GPU) has allowed for their widespread use \citep{rawat2017deep}.
+As the basis for numerous computer vision applications, image object classification has been a primary focus of research in the field of machine learning.
+The techniques associated with such tasks have for the most part in recent years involved the use of deep convolutional neural networks (DCNN).
+DCNN have proven to be state-of-the-art classifiers, with several high performing architectures such as ResNet, AlexNet, and Inception being used as staple image classifiers in other domains \citep{pan2009survey}.
+While neural networks and their use date back to the 1980s, the higher availability and lower cost of single-instruction multiple-data (SIMD) processing architectures such as graphics processing units (GPU) has enabled their widespread use \citep{rawat2017deep}.
 
-Up until such time as neural network architectures could be fully leveraged, the majority of image classification tasks lent on manually deriving image features for use in other more traditional classification models (regression, support vector machines, etc.).
+Before popular use of neural network image classifiers, the majority of image classification tasks lent on manually deriving image features for use in other more traditional classification models (regression, support vector machines, etc).
 As a result the limiting factor of such classifiers were predictors derived from extracted image features.
-The use of such extracted image features has its benefits however.
-Their primary advantage lies particularly in relation to such features being more interpretable and human-understandable.
-The features extracted from neural network classifiers however are often abstract and may lack any human-comprehensible parallels despite their comparative predictive advantage.
+The primary advantage of extracted image features lies particularly in relation to such features being more interpretable and human-understandable when manually predefined.
+The features extracted from neural network classifiers are often abstract and may lack any human-comprehensible parallels despite their comparative predictive advantage.
 While it is often seen to be a black-box, the features learnt by a deep convolutional neural network, or any neural network architecture for that matter, do represent a repeatable and content-dependent image feature representation.
-As such the ability to reuse such neural networks and their feature extraction capabilities has been thoroughly explored in various bodies of work \citep{kim2018building,pan2009survey,you2015robust}.
+As such the ability to reuse pre-trained neural networks and their feature extraction capabilities has been thoroughly explored in various bodies of work \citep{kim2018building,pan2009survey,you2015robust}.
 This practice is known as transfer learning.
 
 \subsection{Neural networks} \label{sec:neural-network-overview}
 
 This section will give a brief overview of neural networks and their application in image and content classification.
-The principles underlying neural networks are simple, yet their ability to capture and learn highly complex non-linear representations of information has resulted in their popularity.
+The principles underlying neural networks are simple, yet their ability to capture and learn highly complex non-linear representations of information has been key in their rise to popularity.
 The fundamental building block of neural networks is the neuron, which itself is a parameterised mathematical function with which a range of inputs can be mapped to a single, or multiple outputs.
 Examples of such mappings range from simple mathematical functions such linear or logistic regression, to more complex applications involving convolution and functions of input sequences.
 
-Convolutional neural networks represent current state of the art when using images or text for classification or prediction.
+Convolutional neural networks represent current state-of-the-art when using images or text for classification or regression.
 First introduced by \citet{krizhevsky2012imagenet} as part of the ImageNet image classification competition, it exceeded the state-of-the-art at the time in classification accuracy.
 The way in which such an architecture processes image input data is through convolutional layers.
 As depicted in figure \ref{fig:CNN}, each neuron in a convolutional layer takes as input, a spatial subset of the layer before it.
@@ -225,8 +223,9 @@ Given the large amount of work conducted into image object classification, produ
 Each of these commonly used object classification architectures have been originally trained on common baseline image object classification datasets such as CIFAR-10, CIFAR-100, and ImageNet.
 These are three of the most common and widely-used image object classification datasets, in which images fall into one of 10, 100, and 1000 categories respectively.
 As a result, the number of outputs of neural networks trained on these datasets is the total number of predictable categories.
-Each of these pre-trained image classifiers can be used in other domains of machine learning by omitting the last layer of their architectures, which represent the object classification layer, and feed the previous feature layer into a new architecture.
-In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains of application.
+Each of these pre-trained image classifiers can be used in other domains of machine learning by omitting the last layer of their architectures and feeding the previous layer into a new architecture.
+This last layer represents the object classification layer, while the previous feature layer represents a tensor of extracted image features.
+In doing so, the information held within the neural network can be repurposed, and the learnings reused in other domains and applications.
 
 The use of transfer learning in numerous domains has increased the general ability to produce highly accurate networks even with comparatively small datasets.
 Not only do the feature layer dimensions of each architecture differs, the features they represent vary.
@@ -234,14 +233,17 @@ As a result, using stacked predictor architectures, in which multiple feature ve
 Using such a stacked predictor architecture enabled \citet{kim2018building} to generate a highly accurate image emotion classifier using a relatively small dataset of 10766 images.
 
 The subjectivity and human-dependent nature of emotion has naturally resulted in only small datasets of emotion-labelled images.
-Through transfer learning, pre-trained image object classifiers reduce the both the computational and dataset size requirements \citep{pan2009survey} for creating new predictive models.
+Through transfer learning, pre-trained image object classifiers reduce both the computational and dataset size requirements \citep{pan2009survey} for creating new predictive models.
 Particularly in the domain of image emotion, transfer learning has enabled accurate classifiers to be built with relatively small image datasets (e.g. 10766 \citep{kim2018building}) by extracting the image features derived by image object classifiers such as ResNet and AlexNet.
-Small datasets such as this however can benefit from other techniques such as data augmentation \citep{perez2017effectiveness} which through various image transformations such as rotation, cropping, blurring, and colour distortions, can increase the effective number of images available for training.
-This technique, in combination with transfer learning is the foundation of research by \citet{wangarttalk} to create an art emotion and theme classifier.
-Furthermore exploring simple variations on the transfer architecture, to determine the impact of a varying number of network layers taking as input, the feature vector of VGG and ResNet object classifiers.
+Small datasets such as this however can benefit from other techniques such as data augmentation \citep{perez2017effectiveness}.
+This process involves transforming images from the dataset by rotation, cropping, blurring, colour distortions, and combinations of these.
+In doing so, the effective number of images available for training is increased since each augmented image is sufficiently different from the original.
+This technique, in combination with transfer learning is the foundation of research by \citet{wangarttalk} to create an emotion and theme classifier of art.
+Then further exploring simple variations on the transfer architecture by changing the network structure, in addition to which pre-trained image object classifier , the feature vector of VGG and ResNet object classifiers.
 This differs from the stacked feature extraction approach by \citet{kim2018building} with considerable success despite.
 
-Transfer learning represents a core component of classifier architectures to leverage vast amounts of work done to train image object classifiers \citep{krizhevsky2012imagenet,pan2009survey} in domains that suffer from issues such as small datasets.
+Transfer learning enables the training of classifier architectures that can base themselves on image object classifiers that have already been tirelessly trained \citep{krizhevsky2012imagenet,pan2009survey}.
+This allows classifiers to be trained in domains that suffer from a lack of data.
 While opportunities exist to maximise accuracy through image classifier stacking for feature extraction \citep{kim2018building}, simpler architectures involving a single image object classifier and less than three hidden layers to process these features \citep{wangarttalk} have shown to provide considerably good results.
 
 
