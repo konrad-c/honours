@@ -1,17 +1,46 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{enumitem}
 
-\title{Literature Review: Synthesising emotion-driven images}
-\author{Konrad Cybulski}
-\date{May 2019}
-
-\usepackage[numbers]{natbib}
+\usepackage{natbib}
 \usepackage{graphicx}
 
 \begin{document}
+	
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		\LARGE \textbf{Synthesising emotion-driven images}
+		
+		\vspace*{1cm}
+		\Large Konrad Cybulski
+		
+		\vspace*{0.5cm}
+		\large 27807460
+		
+		\vspace*{2cm}
+		
+		
+		\includegraphics[width=0.4\textwidth]{images/monash_emblem.jpg}
+		
+		\vspace*{2cm}
+		\Large Literature Review - Semester 1, May 2019
+		
+		\vspace*{1cm}
+		\Large Supervisor: Jon McCormack
+		
+		\vfill
+		
+		\large Faculty of Information Technology
+		
+		\large Monash University
+		
+		\large Australia
+		
+	\end{center}
 
-\maketitle
+\end{titlepage}
+
+\pagebreak
 
 \tableofcontents
 
@@ -54,6 +83,13 @@ All of which represent the multiple facets of the proposed body of research with
 
 \section{Models of affect}
 
+The field of emotion classification has surged in recent years given a popularity and rising interest in the use of facial recognition, gesture, voice, and body language for emotion recognition.
+Other research has focused on exploring ways in which emotion can be recognised in images, text, and more abstract content.
+Underlying the area of affect classification and recognition is the process of representing affect and emotion in both a meaningful, and accurate way.
+This section will discuss representations in the context of computational classification, in addition to their psychological underpinnings.
+
+\subsection{Affect in psychology}
+
 \textit{Affect} is a psychological term used to describe the experience or feeling of emotion.
 Affect is fundamentally different to both emotion and feeling.
 Feeling represents the label used to denote the inner processes triggered by situation and context \citep{shouse2005feeling}.
@@ -74,19 +110,11 @@ Despite this, the use of categorical emotional states and labels represents the 
 More complex relationships between the processes involved with affect, feeling, and emotion are often represented as dichotomous dimensional models, such as the two-dimensional model of valence and arousal (discussed below) in which each dimension represents polar states of affect \citep{grandjean2008conscious}.
 
 
-\section{Computational models of affect}
-
-The field of emotion classification has surged in recent years given a popularity and rising interest in the use of facial recognition, gesture, voice, and body language for emotion recognition.
-Other research has focused on exploring ways in which emotion can be recognised in images, text, and more abstract content.
-Underlying these two areas of emotion recognition is the methods for quantitatively representing emotion in both a meaningful, and accurate way.
-This section will discuss the evolution of these aspects of emotion classification, in addition to their commonalities, and differences.
+\subsection{Categorical}
 
 The computational recognition of emotion has been explored in countless studies and projects, in both the context of image emotion recognition \citep{machajdik2010affective,zhao2014exploring,kim2018building} and facial emotion classification \citep{mollahosseini2016going}.
 However a core component and key difference between a large number of such bodies of research is the method by which emotion is represented.
 Two of the most common representations represent a discrete, and continuous approach.
-
-
-\subsection{Categorical}
 
 Discrete emotion representations generally involve the categorisation of emotion to a series of labels.
 Discrete approaches represent the method used in a large number of papers \citep{machajdik2010affective,ali2017emotional,wangarttalk,mohammad2018wikiart} however the number of emotion labels explored varies greatly.
@@ -262,7 +290,7 @@ However the way in which NEvAr and Sims evolved images involved the manual proce
 Evolutionary computing techniques for image synthesis have been able to produce increasingly interesting and appealing imagery and artwork.
 While the genotype representation introduced by \citet{sims} has formed a basis for further research in the field of evolutionary image synthesis \citep{den2011evolving,den2010using,nevar,den2012maintaining,distributed-evolutionary-art}, other genotype representations for image synthesis have been explored.
 While common generative representations have involved the use of expression trees \citep{sims,nevar,aesthetic-measures}, methods such as direct pixel encodings \citep{nguyen2015deep}, and the more novel technique of line-drawing \citep{annunziato1998nagual,niche-reproduction}
-Line-drawing as exemplified by \citet{niche-reproduction} has built upon evolutionary techniques, using a collection of individuals interacting in real-time to synthesis artwork.
+Line-drawing as exemplified by \citet{niche-reproduction} has built upon evolutionary techniques, using a collection of individuals interacting in real-time to synthesise artwork.
 In a traditional well-mixed \citep{sims} or distributed population \citep{distributed-evolutionary-art} each individual represents an image, or a model for generating one.
 The particle swarm technique employed by \citet{niche-reproduction} however, generates images through the interaction of actors all of whom draw on the same canvas.
 This real-time evolutionary image drawing mechanism, while producing visually interesting images, has not been explored with regard to its use in other application domains.
@@ -331,7 +359,7 @@ The discriminator network of the GAN architecture aims to learn patterns and sty
 As a result, the images generated tend to resemble closely those in the training dataset, an advantage when similarity and realism to existing data is desired, and a detriment when generative creativity is a target attribute.
 
 
-\section{Affective image synthesis}
+\subsection{Affective image synthesis}
 
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
 The domain of affective content synthesis, involves the generation of text, image, sound, and other types of content according to a target emotional affect.
@@ -364,9 +392,15 @@ The second representation is dimensionally continuous, most commonly represented
 When used in classification tasks, the decision to use one representation over another is often arbitrary or reflective only of past research.
 The deep understanding of their respective advantages and disadvantages in psychology has not been tested or understood in the domain of content affect classification.
 
-Generative processes whether through the use of neural networks or evolutionary computing have shown great promise in synthesising target driven content.
+Generative processes whether through the use of neural networks or evolutionary computing have shown great promise in synthesising content.
+Adversarial approaches to generative architectures enable synthesis of increasingly realistic images, and stylistically accurate artworks.
+Such architectures tend to learn the form and style of the images shown to them during the training process.
+In the domain of affective content synthesis however, particularly images, there is limited work.
 
-
+Such generative architectures have enabled exploration into the visual patterns learnt by widely used image object classifiers such as ResNet and Inception.
+While often seen as a black box, neural networks and the information learnt by them can be better understood through such processes.
+This process however has not been widely used to explore other domains involving image classification.
+Visual exploration provides a novel avenue for understanding the effects of data representation and modelling on the information learnt by a network in addition to its output.
 
 
 \bibliographystyle{apalike}
