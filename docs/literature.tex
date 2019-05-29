@@ -339,11 +339,12 @@ Recent work by \citet{nguyen2015innovation} and \citet{nguyen2015deep} investiga
 Quality-diverse (QD) evolutionary algorithms such as Multi-dimensional Archive of Phenotypic Elites (MAP-Elites) \citep{mouret2015illuminating} and Novelty Search \citep{lehman2008exploiting, lehman2011abandoning} have been developed to address the need for a high quality, yet diverse solution space in related optimisation domains.
 The type of problems QD algorithms aim to address include primarily those in which a multitude of solutions exist within a multi-objective space, however the degree to which each objective is desired may vary.
 Thus algorithms such as MAP-Elites aims to maximise a given fitness function, while maintaining an N-dimensional feature space, where each dimensional represents the feature-specific fitness of a solution.
-The MAP-Elites algorithm results in not just a single or set of high fitness solutions, but a collection of such high fitness solutions spatially distributed over the desired feature space.
+The MAP-Elites algorithm results in not just a single or set of high fitness solutions, but a collection of high fitness solutions spatially distributed over the desired feature space.
 
 The use of QD algorithms has shown great promise in its efficiency and accuracy on a number of hard optimisation problems \citep{pugh2016quality} such as maze navigation \citep{lehman2011abandoning}.
 \citet{nguyen2015deep} and \citet{nguyen2015innovation} use MAP-Elites in conjunction with a pre-trained deep neural network (DNN) image classifier; assigning individual image fitness according to the accuracy with which it is classified.
-Using the MAP-Elites framework in this context, each dimension of the feature-space represents a classification label, and as such the generated images allow the exploration of label representative patterns and shapes learnt by the classifier.
+Using the MAP-Elites framework in this context, each dimension of the feature-space represents a classification label.
+The generated images show the exploration of representative patterns and shapes learnt by the classifier.
 \citet{nguyen2015deep} leverages such an architecture to show the shallowness with which an image classifier recognises images.
 Assigning the label of \textit{school bus} to alternating yellow and black lines is a prime example of the way such a network has learnt to differentiate one class from the others.
 Thus enabling exploration into the inner workings of the DNN classifier by uncovering features that maximise the separation of one label to another.
@@ -355,7 +356,7 @@ This technique for understanding the patterns learnt by such a classifier has no
 \subsection{Generative adversarial neural networks}
 
 Neural networks, while having been applied and researched extensively with regard to prediction and classification, as discussed in Section \ref{sec:neural-network-overview}, have recently shown exceedingly interesting and even visually realistic results with the generative adversarial architecture.
-Their use is however limited with regard to image synthesis using more traditional feed-forward network architectures due to the difficulty in converting such networks into higher level image generators.
+Their use is however limited with regard to image synthesis using more traditional feed-forward network architectures due to the difficulty in converting such networks into image generators.
 Limited work has been performed using image classifiers in conjunction with evolutionary computing techniques by \citet{nguyen2015innovation} as discussed previously.
 
 The introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to depend only on collecting a sufficiently large dataset.
