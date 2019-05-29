@@ -140,18 +140,20 @@ Furthermore the introduction of processes such as the self-assessment manikin \c
 \subsection{Continuous dimensional}
 
 The aforementioned difficulty associated with labelling images according to their respective emotional content is accentuated with the introduction of a dimensionally continuous representation of emotion.
-While proposed representations vary, the most recognised basis for many continuous models is the circumplex model of emotion \citep{russell1980circumplex}.
+The most recognised and commonly used continuous model for emotional affect the circumplex model of emotion \citep{russell1980circumplex}.
 The circumplex model of emotion introduced by \citet{russell1980circumplex} asserts that emotion can be measured in terms of two continuous variables: valence, and arousal.
 Valence measures the positivity or negativity associated with an emotion; and arousal measures the excitement associated with it.
 For example, the discrete emotion label of \textbf{happiness} could be represented in the continuous valence-arousal (VA) space with high-valence, medium-arousal; while the label \textbf{depressed} would translate to low-valence, low-arousal; and \textbf{relaxed} being medium-valence, low-arousal.
 While this continuous dimensional model allows for greater continuity in measuring emotions, it is not without fault \citep{larsen1992promises}.
-The primary limitations of such a model involve it's likelihood of misinterpretation particularly when considering the labels of each dimension.
-This issue of misinterpretation was of particular interest as the circumplex model of emotional affect was being refined and compared to other models emotional assessment such 
-One way in which the circumplex model of affect introduced by \citet{russell1980circumplex} has been extended to address its weaknesses is through the introduction of a third-dimension: Dominance, the amount of control associated with an emotion.
-Despite its limitations, the circumplex model has been used extensively in the field of psychology \citep{bradley1994measuring,warriner2013norms}, and in computational emotion classification to a limited extent \citep{zhao2016predicting}.
+The primary limitations of such a model pointed out by \citet{larsen1992promises} involve the likelihood of misinterpretation, particularly referring to the names of the respective dimensions.
+This issue of misinterpretation was of particular interest as the circumplex model of emotional affect was being refined and compared to other models for emotional assessment.
+One extension on the circumplex model of affect is the introduction of a third-dimension: dominance, the amount of control associated with an emotion.
+The three-dimensional model of affect has been used in both the field of psychology and computing \citep{warriner2013norms,zhao2016predicting}.
+Despite its limitations, both the two and three-dimensional circumplex model have been used extensively in the field of psychology \citep{bradley1994measuring,warriner2013norms}, and to a limited extent in computational emotion classification \citep{zhao2016predicting}.
 
-While both models for the representation of emotion have trade-offs, both suffer from issues related to cross-cultural differences in emotion expression and recognition.
-Cultures inherently differ with respect to how emotions are both felt and expressed \citep{markus1991culture}; this becomes increasingly evident when attempting to classify the affective emotion embodied and expressed by more abstract content such as imagery and sound.
+While both models for the representation of affect have trade-offs, both suffer from issues related to cross-cultural differences in emotion expression and recognition.
+Cultures inherently differ with respect to how emotions are both felt and expressed \citep{markus1991culture}.
+This becomes increasingly evident when attempting to classify the affective emotion associated with more abstract content such as imagery and sound.
 The popular image-emotion dataset used for classification known as the International Affective Picture System (IAPS) was shown to have a significantly different valence-arousal assignment for up to 31.74\% of images between Chinese and American young adults \citep{huang2015affective}.
 Even with respect to the distribution of image valence-arousal values as assigned within a group of the same culture, these values often vary.
 This culture-independent variation can be reduced by introducing valence-arousal assignment guidelines and benchmark comparisons.
@@ -166,9 +168,11 @@ It has proved itself as more accurate and effective than other methods of emotio
 	\label{fig:SAM}
 \end{figure}
 
-While both discrete and continuous methods of representing emotion have their respective benefits and trade-offs, the choice to use one over another often depends on the way in which the data gathering process for content emotion classification is performed.
+Both discrete and continuous methods of representing emotion have their respective benefits and trade-offs.
+The choice to use one over another often depends on the data gathering process for the classification task, in addition to the previous research on which the task is based.
 These two representations of emotion can be translated between, since all categorical emotions can be converted to the continuous circumplex model, and the inverse.
-However due to the higher complexity nature of the continuous model, even with the use of SAM, dimensional representations are more difficult to gather on a large scale in comparison to categorical emotions.
+This translation however does introduce error since the valence-arousal-dominance model captures states of affect that fail to be captured by a broad and shallow categorical model 
+Due to the higher complexity nature of the continuous model, even with the use of SAM, dimensional representations are more difficult to gather on a large scale in comparison to categorical emotions.
 
 
 \section{Image classification}
