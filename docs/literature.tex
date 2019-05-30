@@ -355,8 +355,8 @@ This technique for understanding the patterns learnt by such a classifier has no
 
 \subsection{Generative adversarial neural networks}
 
-Neural networks, while having been applied and researched extensively with regard to prediction and classification, as discussed in Section \ref{sec:neural-network-overview}, have recently shown exceedingly interesting and even visually realistic results with the generative adversarial architecture.
-Their use is however limited with regard to image synthesis using more traditional feed-forward network architectures due to the difficulty in converting such networks into image generators.
+Neural networks have been applied and researched extensively with regard to prediction and classification, as discussed in Section \ref{sec:neural-network-overview}, and recently shown exceedingly interesting and even visually realistic results with the generative adversarial architecture.
+Their use is limited with regard to image synthesis using more traditional feed-forward network architectures due to the difficulty in converting such networks into image generators.
 Limited work has been performed using image classifiers in conjunction with evolutionary computing techniques by \citet{nguyen2015innovation} as discussed previously.
 
 The introduction of the generative adversarial network architecture (GAN) by \citet{GAN} allowed the process of image generation to depend only on collecting a sufficiently large dataset.
@@ -366,28 +366,33 @@ Such an architecture has been applied to the area of art synthesis by \citet{tan
 Learning from a dataset of countless artworks in various categories, styles, and artists, it was hugely successful in generating images that were stylistically similar to existing art of the target artist/genre.
 Due to the competitive relationship of the generator and discriminator networks, the patterns learned by the discriminator propagate through the generator network.
 The discriminator network of the GAN architecture aims to learn patterns and styles from the dataset on which it is trained in order to discriminate between the generated and existing images.
-As a result, the images generated tend to resemble closely those in the training dataset, an advantage when similarity and realism to existing data is desired, and a detriment when generative creativity is a target attribute.
+As a result, the images generated tend to closely resemble those in the training dataset.
+This is advantageous when similarity to existing data or realism is desired, and detrimental when generative creativity is a target attribute.
+
+The GAN architecture has been built on in various ways \citep{han2018adversarial}.
+The conditional GAN introduced by \citet{gauthier2014conditional} represents the base architecture of conditioned generative networks \citep{mathews2016senticap,tan2017artgan}.
+This method involves bases itself on the normal GAN, however with the target condition being used as additional input to both the generator and discriminator networks.
+Thus when the discriminator aims to determine the training image, both images \textit{should} satisfy the target condition.
+The conditional GAN has formed a basis for the generation of sentiment-driven, and affect-driven content synthesis.
 
 
 \subsection{Affective image synthesis}
 
 The application of generative systems in the domain of affective computing, particularly with regard to emotion and content synthesis, is limited.
 The domain of affective content synthesis, involves the generation of text, image, sound, and other types of content according to a target emotional affect.
-Work in this domain has largely involved sentiment as a target generative condition \citep{cambria2016affective,gunes2011emotion,mathews2016senticap}.
-Sentiment-driven examples of generative systems include image captioning according to target sentiment \citep{mathews2016senticap}.
-The task of describing an image was extended from a traditional GAN approach through the addition of a sentiment target input.
-The method used to train such a generative system involved the conditional GAN architecture as described by \citet{gauthier2014conditional}.
+Work in this domain has largely involved the generation of content conditioning on sentiment \citep{cambria2016affective,gunes2011emotion,mathews2016senticap}.
+The task of captioning or describing an image conditioning on sentiment has often been performed using a conditional GAN architecture by \citep{gauthier2014conditional}.
 Sentiment is comparatively simpler to represent and classify than emotion.
 Often represented categorically as negative, neutral, and positive being valued -1, 0, and 1 respectively or continuously between -1 and 1 following a similar pattern \citep{mathews2016senticap,gunes2011emotion,zhao2016predicting}.
 The comparative complexity of emotional representation self-evident as the complexity of categorical classification increases, and the one-dimensional continuous model is replaced by up to three dimensions \citep{zhao2016predicting}.
 
 In a similar domain is the synthesis of factual image captions according to target textual themes \citep{gan2017stylenet}.
 This differed from the conditional GAN approach being used by \citet{mathews2016senticap}, instead using a long short-term memory (LSTM) neural network model in style-driven image captioning: factual, romantic, humorous.
-Despite the target being simply one of three themes, each represents a fundamentally different underlying emotion.
+Despite the target being simply one of three themes, each had a fundamentally different underlying emotion.
 The use of a categorical emotion representation is applied to affective image-to-image transformations by \citet{ali2017emotional}.
 Here \citet{ali2017emotional} introduces \textit{emotion transfer}, involving the transformation of an image's colour distribution with the aim of altering its affective emotion.
-The target emotional profile is represented here as the ratios of combinations of seven discrete emotions.
-Then using the known image affective emotions and their respective colour distributions, performs colour transformations.
+The target emotional profile is represented here as proportions of seven emotions.
+Then performs colour transformations based on an inspirational set of images with known affect and their respective colour distributions.
 This differs from the practice of \textit{style transfer} in which images are altered to stylistically match another image \citep{gatys2016image}.
 While style transfer aims to find a middle-ground between maintaining the content of the image and imparting the style of its target, the emotion transfer technique leaves the image content unaltered varying only its distribution of colour.
 
@@ -402,15 +407,15 @@ The second representation is dimensionally continuous, most commonly represented
 When used in classification tasks, the decision to use one representation over another is often arbitrary or reflective only of past research.
 The deep understanding of their respective advantages and disadvantages in psychology has not been tested or understood in the domain of content affect classification.
 
-Generative processes whether through the use of neural networks or evolutionary computing have shown great promise in synthesising content.
+Generative processes using neural networks or evolutionary computing have shown great promise in synthesising content.
 Adversarial approaches to generative architectures enable synthesis of increasingly realistic images, and stylistically accurate artworks.
 Such architectures tend to learn the form and style of the images shown to them during the training process.
 In the domain of affective content synthesis however, particularly images, there is limited work.
 
-Such generative architectures have enabled exploration into the visual patterns learnt by widely used image object classifiers such as ResNet and Inception.
+Such generative architectures have enabled exploration into the visual patterns learnt by image object classifiers such as ResNet and Inception.
 While often seen as a black box, neural networks and the information learnt by them can be better understood through such processes.
 This process however has not been widely used to explore other domains involving image classification.
-Visual exploration provides a novel avenue for understanding the effects of data representation and modelling on the information learnt by a network in addition to its output.
+Visual exploration provides a novel avenue for understanding the effects of data representation and modelling on the information learnt by such a network.
 
 
 \bibliographystyle{apalike}
