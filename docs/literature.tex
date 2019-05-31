@@ -5,7 +5,7 @@
 \usepackage{graphicx}
 
 \begin{document}
-	
+
 \begin{titlepage}
 	\begin{center}
 		\vspace*{1cm}
@@ -37,7 +37,7 @@
 		\large Australia
 		
 	\end{center}
-
+	
 \end{titlepage}
 
 \pagebreak
@@ -49,33 +49,33 @@
 \section{Introduction}
 
 For centuries artists have been extremely talented at creating pieces of artwork that convey a range of emotions to those who view them.
-Extensive research has been conducted into how visual features affect humans emotionally and how these can be used to predict and detect the emotional content of images and text \citep{machajdik2010affective, zhao2014exploring}.
+Extensive research has been conducted into how visual features affect humans emotionally and how these can be used to predict and detect the emotional content of images \citep{machajdik2010affective, zhao2014exploring}.
 Due to the subjective and qualitative nature of human emotion, assigning a quantitative measure of emotion to an image is no easy task.
 Furthermore the ability to computationally recognise the emotional content of an image has wide-ranging applications from classifying posts on social media, to the creation of images, text, and even physical spaces in an emotionally quantifiable way.
 
 This research aims to investigate quantitative representations of emotion and its effect on image emotion classification.
 Primarily focusing on comparing categorical (happy, sad, etc.) and continuous (valence-arousal-dominance) representations for emotion in the context of image classification, and extending the use of such a classifier in image synthesis.
-Through the generative process, gain a better understanding of visual patterns learnt by such a classifier by maximising classification confidence through the use of conditional generative adversarial networks \citep{gauthier2014conditional}, and evolutionary techniques explored by \citep{nguyen2015deep}.
+Through the generative process, I also aim to gain a better understanding of visual patterns learnt by such a classifier by maximising classification confidence through the use of conditional generative adversarial networks \citep{gauthier2014conditional}, and evolutionary techniques explored by \citep{nguyen2015deep}.
 
-Methods for quantifiably representing emotion have been explored thoroughly in the domain of psychology, with continuous multi-dimensional models being used in lieu of a single emotional label.
-The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with it \citep{russell1980circumplex}.
+Models for quantifiably representing emotion have been explored thoroughly in the domain of psychology, with continuous multi-dimensional models being used in lieu of a single emotional label.
+The circumplex model of emotion introduced a two-dimensional space characterised by valence, and arousal; respectively representing positivity or negativity, and the level of excitement associated with the emotion \citep{russell1980circumplex}.
 Such a continuous model is not without flaw, failing to accurately capture more complex emotional states, often those that represent concurrent conflicting sides of a given axis \citep{larsen1992promises}.
 The complexity of such a continuous representation of emotion has been investigated in depth and extended in various ways, including through the addition of a third dimension: dominance \citep{bradley1994measuring}; which is of particular interest within social dynamics.
 
-The domain of emotion classification has had a particular focus on facial expressions and text \citep{cambria2016affective, warriner2013norms}.
+The domain of automated emotion classification has had a particular focus on facial expressions and text \citep{cambria2016affective, warriner2013norms}.
 Image emotion classifiers have been explored \citep{kim2018building, machajdik2010affective, chen2015learning, chen2014deepsentibank} yet their use has been limited.
 Humans are able to fluently recognise, label, and discuss the emotional affect of an image, yet computers currently lack this ability.
 Ongoing research is further enabling and advancing the computational classification of image affect, and understanding the underlying patterns associated with image emotion.
 
-As with the use of deep neural network image classifiers such as ResNet, AlexNet, and Inception, the shapes and patterns learnt by deep learning systems are difficult to extract.
+As with the use of deep neural network image classifiers such as ResNet, AlexNet, and Inception, the shapes and patterns learnt by deep learning systems are difficult to reverse-engineer into a format easily understandable by humans.
 Recent work has looked at the use of quality-diverse generative algorithms with deep classifiers \citep{nguyen2015deep, nguyen2015innovation}.
 The underlying patterns learned by the classifier can be surfaced by synthesising images that maximise various desirable features.
 This method allowed the exploration of images to which the classifier assigns a given label such as \textit{school bus} or \textit{lighthouse}, enabling a deeper understanding of the representative visual characteristics of each class.
-This process however does not limit itself to the use of evolutionary algorithms for image synthesis, with other methods that lend themselves to this process, including generative adversarial networks (GANs) \citep{GAN}.
+This process of synthesising images to better understand the inner workings of image classifiers can be performed with other methods including generative adversarial networks (GANs) \citep{GAN}.
 
 \section{Aims and Scope}
 
-The primary focus of the proposed research is to produce an image emotion classifier, and to use this for emotion-driven image synthesis.
+The primary focus of the proposed research is to develop an image emotion classifier, and to use this for emotion-driven image synthesis.
 Additionally to explore the patterns learnt by the classifier using techniques introduced by \citet{nguyen2015deep,nguyen2015innovation}.
 This literature review aims to explore and understand the existing research in areas of quantitative representations of emotion, image classification techniques with a focus on neural networks, and image synthesis techniques.
 Furthermore to understand the impacts of emotion representation on image classification tasks, and processes for gaining a deeper understanding of the information learnt by deep classifiers depending on the representation.
@@ -97,7 +97,7 @@ This section will discuss representations in the context of computational classi
 
 \subsection{Affect in psychology}
 
-Given the abstract nature of affect, we often measure and describe it through introspection of emotion and feeling, or observing their outward displays and projections.
+Given the abstract nature of affect, we often measure and describe it through introspection of emotion and feeling, or observing someone's outward displays and projections.
 As a result, shallow representations of emotion become widely used models of affect due to their simplicity.
 Shallow models generally involve the translation of outward displays of emotion such as facial expressions, gestures, and brain activation, to their corresponding labels of emotion: happy, sad, etc \citep{sloman2001beyond}.
 Aiming to capture more complex and deeper representations of emotion, \citet{sloman2001beyond} introduces the interpretation of emotion as the composition of information processing architectures.
@@ -114,7 +114,7 @@ More complex relationships between the processes involved with affect, feeling, 
 
 The computational recognition of emotion has been explored in countless studies and projects, in both the context of image emotion recognition \citep{machajdik2010affective,zhao2014exploring,kim2018building} and facial emotion classification \citep{mollahosseini2016going}.
 However a core component and key difference between a large number of such bodies of research is the method for representing emotion.
-Two of the most common representations are the discrete, and continuous approach.
+The most common representational schemes use discrete or continuous categorisations.
 
 Discrete emotion representations generally involve the categorisation of emotion to a series of labels.
 Discrete approaches represent the method used in a large number of papers \citep{machajdik2010affective,ali2017emotional,wangarttalk,mohammad2018wikiart} however the number of emotion labels used varies greatly.
@@ -125,7 +125,7 @@ The creation of large labelled image datasets can be completed with greater ease
 However inherent difficulty remains in labelling images with their respective affect.
 This difficulty may arise as a result of variation between individuals in the affect attributed to an image or a facial expression.
 
-The categorical representation is the simplest method for emotion classification, due not only to the consequent ease with which data can be gathered, but due to the extensive research surrounding methods categorical classification.
+The categorical representation is the simplest method for emotion classification, due not only to the ease with which data can be gathered, but due to the extensive research surrounding methods categorical classification.
 Many techniques for prediction, both for regression and classification rely on sufficiently large datasets of labelled data.
 It is often difficult to determine the label of a datapoint computationally, since this ability would imply that such a predictive model already exists.
 As a result dataset creation often involves a manual process of labelling datapoints.
